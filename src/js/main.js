@@ -10,6 +10,7 @@ $(document).on("click", "#minus", function () {
     updateAnimation();
 });
 
+
 let gltf = null;
 let mixer = null;
 let clock = new THREE.Clock();
@@ -21,6 +22,34 @@ let object;
 
 init();
 animate();
+
+// function createStats() {
+//       var stats = new Stats();
+//       stats.setMode(0);
+
+//       stats.domElement.style.position = 'absolute';
+//       stats.domElement.style.left = '0';
+//       stats.domElement.style.top = '0';
+
+//       return stats;
+// }
+
+var lastCalledTime;
+var fps;
+
+function requestAnimFrame() {
+
+  if(!lastCalledTime) {
+     lastCalledTime = performance.now();
+     fps = 0;
+     return;
+  }
+  delta = (performance.now() - lastCalledTime)/1000;
+  lastCalledTime = performance.now();
+  fps = 1/delta;
+  console.log(Math.round(fps));
+  document.getElementById('fps').innerHTML = Math.round(fps);
+}
 
 function updateAnimation() {
     animations = gltf.animations;
@@ -56,10 +85,10 @@ function init() {
         color: "#707070"
     });
 
-    //let ground = new THREE.Mesh(geometry, material);
-    //ground.position.y -= 15;
-    //ground.receiveShadow = true;
-    //scene.add(ground);
+    let ground = new THREE.Mesh(geometry,material);
+    ground.position.y -= 5;
+    ground.receiveShadow = true;
+    scene.add(ground);
 
     let manager = new THREE.LoadingManager();
     manager.onProgress = function (item, loaded, total) {
@@ -107,6 +136,9 @@ function init() {
     renderer.setSize(width, height);
     renderer.gammaOutput = true;
     document.body.appendChild(renderer.domElement);
+
+    // stats = createStats();
+    // document.body.appendChild(stats.domElement );
 }
 
 function animate() {
@@ -114,8 +146,11 @@ function animate() {
     if (mixer) mixer.update(clock.getDelta());
     controls.update();
     render();
+
+
 }
 
 function render() {
     renderer.render(scene, camera);
+    requestAnimFrame()
 }
