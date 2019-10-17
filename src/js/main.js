@@ -36,15 +36,9 @@ animate();
 
 var lastCalledTime;
 var fps;
-
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
-    }
-  }
+var tmp=0;
+var times=[];
+var frames = 10;
 
 function requestAnimFrame() {
 
@@ -57,8 +51,21 @@ function requestAnimFrame() {
   lastCalledTime = performance.now();
   fps = 1/delta;
   console.log(Math.round(fps));
-  document.getElementById('fps').innerHTML = Math.round(fps);
-  sleep(100)
+  if (frames<20) {
+    times.push(fps);  
+    frames++;
+  }
+  else{
+    var sum = 0;
+    for( var i = 0; i < times.length; i++ ){
+        sum += parseInt( times[i], 10 ); //don't forget to add the base
+    }
+
+    var avg = sum/times.length;
+    document.getElementById('fps').innerHTML = avg;
+    frames=0;  
+  }
+  
 }
 
 function updateAnimation() {
