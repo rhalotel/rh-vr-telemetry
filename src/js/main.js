@@ -2,12 +2,20 @@ speedWheel = 0; //speed wheels on the truck
 
 $(document).on("click", "#plus", function () {
     speedWheel++;
-    updateAnimation();
+    for (let i = 0; i < animations.length; i++) { // netreba robit updateanimation
+        let animation = animations[i];
+        mixer.clipAction(animation).timeScale = speedWheel;
+    }
+    //updateAnimation();
 });
 
 $(document).on("click", "#minus", function () {
     speedWheel--;
-    updateAnimation();
+    for (let i = 0; i < animations.length; i++) {
+        let animation = animations[i];
+        mixer.clipAction(animation).timeScale = speedWheel;
+    }
+    //updateAnimation();
 });
 
 
@@ -50,7 +58,7 @@ function requestAnimFrame() {
   delta = (performance.now() - lastCalledTime)/1000;
   lastCalledTime = performance.now();
   fps = 1/delta;
-  console.log(Math.round(fps));
+  // console.log(Math.round(fps));
   if (frames<20) {
     times.push(fps);  
     frames++;
@@ -74,7 +82,7 @@ function updateAnimation() {
         mixer = new THREE.AnimationMixer(object);
         for (let i = 0; i < animations.length; i++) {
             let animation = animations[i];
-            mixer.clipAction(animation).timeScale = speedWheel;
+            // mixer.clipAction(animation).timeScale = speedWheel;
             mixer.clipAction(animation).play();
         }
     }
