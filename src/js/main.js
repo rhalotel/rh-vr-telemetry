@@ -34,32 +34,39 @@ animate();
 //       return stats;
 // }
 
-var lastCalledTime;
-var fps;
+// var lastCalledTime;
+// var fps;
 
-function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
+// function requestAnimFrame() {
+
+//   if(!lastCalledTime) {
+//      lastCalledTime = performance.now();
+//      fps = 0;
+//      return;
+//   }
+//   delta = (performance.now() - lastCalledTime)/1000;
+//   lastCalledTime = performance.now();
+//   fps = 1/delta;
+//   console.log(Math.round(fps));
+//   document.getElementById('fps').innerHTML = Math.round(fps);
+// }
+
+const times = [];
+let fps;
+
+function refreshLoop() {
+  window.requestAnimationFrame(() => {
+    const now = performance.now();
+    while (times.length > 0 && times[0] <= now - 1000) {
+      times.shift();
     }
-  }
-
-function requestAnimFrame() {
-
-  if(!lastCalledTime) {
-     lastCalledTime = performance.now();
-     fps = 0;
-     return;
-  }
-  delta = (performance.now() - lastCalledTime)/1000;
-  lastCalledTime = performance.now();
-  fps = 1/delta;
-  console.log(Math.round(fps));
-  document.getElementById('fps').innerHTML = Math.round(fps);
-  sleep(100)
+    times.push(now);
+    fps = times.length;
+    refreshLoop();
+  });
 }
+
+
 
 function updateAnimation() {
     animations = gltf.animations;
@@ -162,5 +169,5 @@ function animate() {
 
 function render() {
     renderer.render(scene, camera);
-    requestAnimFrame()
+    refreshLoop();
 }
