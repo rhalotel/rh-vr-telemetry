@@ -71,7 +71,7 @@ function requestAnimFrame() {
 
     var avg = sum/times.length;
     document.getElementById('fps').innerHTML = Math.round(avg);
-    frames=0;  
+    frames=0;
   }
   
 }
@@ -82,15 +82,15 @@ function updateAnimation() {
         mixer = new THREE.AnimationMixer(object);
         for (let i = 0; i < animations.length; i++) {
             let animation = animations[i];
-            // mixer.clipAction(animation).timeScale = speedWheel;
+            mixer.clipAction(animation).timeScale = speedWheel;
             mixer.clipAction(animation).play();
         }
     }
 }
 
 function init() {
-    width = window.innerWidth;
-    height = window.innerHeight;
+    width = window.innerWidth-200;
+    height = window.innerHeight-200;
 
     scene = new THREE.Scene();
     let ambient = new THREE.AmbientLight(0x101030);
@@ -105,15 +105,19 @@ function init() {
     //camera.position.set(1, 5, 30);
     camera.position.set(40, 10, 30);
 
+
+    /* GROUND SCENE */
     let geometry = new THREE.BoxGeometry(100, 5, 100);
-    let material = new THREE.MeshLambertMaterial({
-        color: "#707070"
+    let material = new THREE.MeshBasicMaterial({
+        color: "#282B2A"
     });
 
     let ground = new THREE.Mesh(geometry,material);
     ground.position.y -= 5;
     ground.receiveShadow = true;
     scene.add(ground);
+
+
 
     let manager = new THREE.LoadingManager();
     manager.onProgress = function (item, loaded, total) {
@@ -123,6 +127,8 @@ function init() {
     let loader = new THREE.GLTFLoader();
     loader.setCrossOrigin('anonymous'); // r84 以降は明示的に setCrossOrigin() を指定する必要がある
 
+
+    /* TRUCK SCENE */
     let scale = 5.0;
     let url = "https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced.gltf";
 
@@ -141,12 +147,22 @@ function init() {
         scene.add(object);
     });
 
+
+    /* RESIZE WINDOW */
+    window.addEventListener('resize', function() { // resize
+      var WIDTH = window.innerWidth,
+          HEIGHT = window.innerHeight;
+      renderer.setSize(WIDTH, HEIGHT);
+      camera.aspect = WIDTH / HEIGHT;
+      camera.updateProjectionMatrix();
+    });
+
     let axis = new THREE.AxesHelper(1000);
     scene.add(axis);
 
     renderer = new THREE.WebGLRenderer();
     //renderer.setClearColor( 0xbfe4ff );
-    renderer.setClearColor(0xffffff);
+    renderer.setClearColor(0xbfe4ff);
     renderer.shadowMap.enabled = true;
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -160,10 +176,11 @@ function init() {
 
     renderer.setSize(width, height);
     renderer.gammaOutput = true;
-    document.body.appendChild(renderer.domElement);
+    document.getElementById("container").appendChild(renderer.domElement);
 
-    // stats = createStats();
-    // document.body.appendChild(stats.domElement );
+    // stats = new Stats();
+    // stats.showPanel( 1 ); // 0: fps, 1: ms, 2: mb, 3+: custom
+    // document.body.appendChild(stats.dom );
 }
 
 function animate() {
@@ -171,7 +188,6 @@ function animate() {
     if (mixer) mixer.update(clock.getDelta());
     controls.update();
     render();
-
 
 }
 
