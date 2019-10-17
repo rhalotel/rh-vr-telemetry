@@ -62,7 +62,7 @@ function requestAnimFrame() {
     }
 
     var avg = sum/times.length;
-    document.getElementById('fps').innerHTML = avg;
+    document.getElementById('fps').innerHTML = Math.round(avg);
     frames=0;  
   }
   
