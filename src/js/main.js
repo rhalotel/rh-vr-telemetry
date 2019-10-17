@@ -37,6 +37,15 @@ animate();
 var lastCalledTime;
 var fps;
 
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
+  }
+
 function requestAnimFrame() {
 
   if(!lastCalledTime) {
@@ -49,6 +58,7 @@ function requestAnimFrame() {
   fps = 1/delta;
   console.log(Math.round(fps));
   document.getElementById('fps').innerHTML = Math.round(fps);
+  sleep(100)
 }
 
 function updateAnimation() {
