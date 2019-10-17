@@ -34,39 +34,39 @@ animate();
 //       return stats;
 // }
 
-// var lastCalledTime;
-// var fps;
+var lastCalledTime;
+var fps;
+var tmp=0;
+var times=[];
+var frames = 10;
 
-// function requestAnimFrame() {
+function requestAnimFrame() {
 
-//   if(!lastCalledTime) {
-//      lastCalledTime = performance.now();
-//      fps = 0;
-//      return;
-//   }
-//   delta = (performance.now() - lastCalledTime)/1000;
-//   lastCalledTime = performance.now();
-//   fps = 1/delta;
-//   console.log(Math.round(fps));
-//   document.getElementById('fps').innerHTML = Math.round(fps);
-// }
-
-const times = [];
-let fps;
-
-function refreshLoop() {
-  window.requestAnimationFrame(() => {
-    const now = performance.now();
-    while (times.length > 0 && times[0] <= now - 1000) {
-      times.shift();
+  if(!lastCalledTime) {
+     lastCalledTime = performance.now();
+     fps = 0;
+     return;
+  }
+  delta = (performance.now() - lastCalledTime)/1000;
+  lastCalledTime = performance.now();
+  fps = 1/delta;
+  console.log(Math.round(fps));
+  if (frames<20) {
+    times.push(fps);  
+    frames++;
+  }
+  else{
+    var sum = 0;
+    for( var i = 0; i < times.length; i++ ){
+        sum += parseInt( times[i], 10 ); //don't forget to add the base
     }
-    times.push(now);
-    fps = times.length;
-    refreshLoop();
-  });
+
+    var avg = sum/times.length;
+    document.getElementById('fps').innerHTML = avg;
+    frames=0;  
+  }
+  
 }
-
-
 
 function updateAnimation() {
     animations = gltf.animations;
@@ -169,5 +169,5 @@ function animate() {
 
 function render() {
     renderer.render(scene, camera);
-    refreshLoop();
+    requestAnimFrame()
 }
