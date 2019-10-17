@@ -157,14 +157,17 @@ function init() {
       camera.updateProjectionMatrix();
     });
 
-    let axis = new THREE.AxesHelper(1000);
-    scene.add(axis);
+    /* AXES HELPER */
+    // let axis = new THREE.AxesHelper(1000);
+    // scene.add(axis);
 
     renderer = new THREE.WebGLRenderer();
     //renderer.setClearColor( 0xbfe4ff );
     renderer.setClearColor(0xbfe4ff);
     renderer.shadowMap.enabled = true;
 
+
+    /* ORBIT CONTROLS */
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.userPan = false;
     controls.userPanSpeed = 0.0;
