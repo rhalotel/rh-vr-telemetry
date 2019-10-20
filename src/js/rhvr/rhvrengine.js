@@ -1,9 +1,4 @@
-//
-//Prosim implementovat a rozchodit tento interface v takej strukture ako je predpisana. 
-//otestovat pripadne opravit triedu EventDispatcherCreate ktora ma zaulohu vytvorit z objektu objekt podporujuci eventy. tiez doimplementovat rhvr namespace
-//specifikovat strukturu specModel
-// Dakujem, 
-// Rado  
+
 
 
 function EventDispatcherCreate(obj)
