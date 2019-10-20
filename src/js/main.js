@@ -47,6 +47,7 @@ var fps;
 var tmp=0;
 var times=[];
 var frames = 10;
+const engine = new Engine();
 
 function requestAnimFrame() {
 
@@ -73,7 +74,7 @@ function requestAnimFrame() {
     document.getElementById('fps').innerHTML = Math.round(avg);
     frames=0;
   }
-  
+  engine.run();
 }
 
 function updateAnimation() {
@@ -186,12 +187,13 @@ function init() {
     // document.body.appendChild(stats.dom );
 }
 
+
+
 function animate() {
     requestAnimationFrame(animate);
     if (mixer) mixer.update(clock.getDelta());
     controls.update();
     render();
-
 }
 
 function render() {
