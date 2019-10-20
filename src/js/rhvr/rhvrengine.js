@@ -1,9 +1,6 @@
-
-
-
 function EventDispatcherCreate(obj)
 {
-	obj.eventhandlers = [];
+	obj.eventhandlers =  [];
 	
 	obj.on = function(eventType,fun)
 	{
