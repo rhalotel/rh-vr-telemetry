@@ -113,16 +113,15 @@ var rhvr =
 	Visualisation: function(settings)
 	{
 		
-		/*
-			var settings = {
-				htmlEl: ..,
-				specModel: ...,
-				scene3d: .... 
-			
-			
-			}
-		 */
 		
+		var settings = {
+			htmlEl: ...,
+			specModel: ...,
+			scene3d: ..., //URL objektu v docs
+			sceneNewThree: .... //odkaz na scenu do initu
+		}
+	 
+		let gltf = null;
 		
 		
 		this.constructor = function(settings)
@@ -131,11 +130,31 @@ var rhvr =
 		}
 		this.init = function()
 		{
-			
+			// scene = new THREE.Scene();
+			loader.load(this.settings.scene3d, function (data) {
+		        gltf = data;
+		        object = gltf.scene;
+		        object.scale.set(scale, scale, scale);
+		        object.position.y = 0;
+		        object.position.x = 0;
+		        object.castShadow = true;
+		        object.receiveShadow = true;
+		        updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
+		        					//ale mozno netreba updatovat, kedze to je este len init a update sa bude riesit
+		        					//po prijati dat a naslednom .run a .task, co vola .update
+
+		        //var mesh = new THREE.Mesh( object, material );
+		        this.settings.sceneNewThree.add(object);
+	    	});
+
+			renderer = new THREE.WebGLRenderer();
+		    // renderer.setClearColor(0xbfe4ff);
+		    // renderer.shadowMap.enabled = true;
+			document.getElementById(this.settings.htmlEl).appendChild(renderer.domElement);
 		}
 		this.update = function(d)
 		{
-			 var spec =   this.settings.specModel; /// specifikovat strukturu specModel
+			var spec =   this.settings.specModel; /// specifikovat strukturu specModel
 			spec.table.forEach(function(specItem) 
 			{
 				
