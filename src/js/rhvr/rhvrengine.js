@@ -130,6 +130,7 @@ var rhvr =
 		}
 		this.init = function()
 		{
+			let scale = 5.0;
 			// scene = new THREE.Scene();
 			loader.load(this.settings.scene3d, function (data) {
 		        gltf = data;
@@ -151,12 +152,17 @@ var rhvr =
 		    // renderer.setClearColor(0xbfe4ff);
 		    // renderer.shadowMap.enabled = true;
 			document.getElementById(this.settings.htmlEl).appendChild(renderer.domElement);
+			//mixer = new THREE.AnimationMixer(mesh); //tuna si vytvorime mixer
+			
 		}
 		this.update = function(d)
 		{
+
+			
 			var spec =   this.settings.specModel; /// specifikovat strukturu specModel
 			spec.table.forEach(function(specItem) 
 			{
+				
 				
 				/*
 					Tato funckcia by sa mala volat v kazdej vizualicacii ak pridu nove data, ktore su osetrene este frontov ktora sa spracuvava v Core.run
