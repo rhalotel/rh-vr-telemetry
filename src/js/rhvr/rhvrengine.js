@@ -126,7 +126,8 @@ var rhvr =
 		
 		this.constructor = function(settings)
 		{
-			this.settings = settings;
+			//console.log("vis.constructor()")
+			 this.settings = settings;
 		}
 		this.init = function()
 		{

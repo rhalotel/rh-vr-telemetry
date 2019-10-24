@@ -24,6 +24,7 @@ let mixer = null;
 let clock = new THREE.Clock();
 let controls;
 let camera;
+//const myrhvr = new rhvr.Visualisation();
 
 let animations;
 let object;
@@ -47,7 +48,7 @@ var fps;
 var tmp=0;
 var times=[];
 var frames = 10;
-const engine = new Engine();
+//const engine = new rh_telemetry_vr.Engine();
 
 function requestAnimFrame() {
 
@@ -74,7 +75,8 @@ function requestAnimFrame() {
     document.getElementById('fps').innerHTML = Math.round(avg);
     frames=0;
   }
-  engine.run();
+  
+  //myrhvr.constructor();
 }
 
 function updateAnimation() {
