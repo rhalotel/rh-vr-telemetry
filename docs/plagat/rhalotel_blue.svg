@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.2"
+   width="200"
+   height="35.254173"
+   id="svg2">
+  <defs
+     id="defs4">
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="DistanceX"
+       style="overflow:visible">
+      <path
+         d="M 3,-3 -3,3 M 0,-5 0,5"
+         id="path3869"
+         style="stroke:#000000;stroke-width:0.5" />
+    </marker>
+    <pattern
+       id="Hatch"
+       x="0"
+       y="0"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         id="path3872"
+         d="M8 4 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3874"
+         d="M6 2 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3876"
+         d="M4 0 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+    </pattern>
+    <symbol
+       id="*MODEL_SPACE" />
+    <symbol
+       id="*PAPER_SPACE" />
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="DistanceX-7"
+       style="overflow:visible">
+      <path
+         d="M 3,-3 -3,3 M 0,-5 0,5"
+         id="path3869-1"
+         style="stroke:#000000;stroke-width:0.5" />
+    </marker>
+    <pattern
+       id="Hatch-4"
+       x="0"
+       y="0"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         id="path3872-5"
+         d="M8 4 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3874-5"
+         d="M6 2 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3876-1"
+         d="M4 0 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+    </pattern>
+    <symbol
+       id="*MODEL_SPACE-2" />
+    <symbol
+       id="*PAPER_SPACE-8" />
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="DistanceX-9"
+       style="overflow:visible">
+      <path
+         d="M 3,-3 -3,3 M 0,-5 0,5"
+         id="path3869-2"
+         style="stroke:#000000;stroke-width:0.5" />
+    </marker>
+    <pattern
+       id="Hatch-8"
+       x="0"
+       y="0"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         id="path3872-57"
+         d="M8 4 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3874-6"
+         d="M6 2 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3876-18"
+         d="M4 0 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+    </pattern>
+    <symbol
+       id="*MODEL_SPACE-6" />
+    <symbol
+       id="*PAPER_SPACE-1" />
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="DistanceX-8"
+       style="overflow:visible">
+      <path
+         d="M 3,-3 -3,3 M 0,-5 0,5"
+         id="path3869-7"
+         style="stroke:#000000;stroke-width:0.5" />
+    </marker>
+    <pattern
+       id="Hatch-3"
+       x="0"
+       y="0"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         id="path3872-4"
+         d="M8 4 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3874-1"
+         d="M6 2 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3876-13"
+         d="M4 0 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+    </pattern>
+    <symbol
+       id="*MODEL_SPACE-3" />
+    <symbol
+       id="*PAPER_SPACE-12" />
+    <marker
+       refX="0"
+       refY="0"
+       orient="auto"
+       id="DistanceX-2"
+       style="overflow:visible">
+      <path
+         d="M 3,-3 -3,3 M 0,-5 0,5"
+         id="path3869-8"
+         style="stroke:#000000;stroke-width:0.5" />
+    </marker>
+    <pattern
+       id="Hatch-9"
+       x="0"
+       y="0"
+       patternUnits="userSpaceOnUse"
+       width="8"
+       height="8">
+      <path
+         id="path3872-8"
+         d="M8 4 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3874-65"
+         d="M6 2 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+      <path
+         id="path3876-0"
+         d="M4 0 l-4,4"
+         stroke-width="0.25"
+         stroke="#000000"
+         linecap="square" />
+    </pattern>
+    <symbol
+       id="*MODEL_SPACE-1" />
+    <symbol
+       id="*PAPER_SPACE-3" />
+  </defs>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-37.955445,-35.460947)"
+     id="layer1">
+    <g
+       transform="matrix(1.4366578,0,0,1.4366578,-39.360494,-105.64187)"
+       id="layer1-2">
+      <g
+         transform="matrix(1,0,0,1.0745465,-23.579089,0.40979909)"
+         id="g4027">
+        <flowRoot
+           id="flowRoot2996"
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><flowRegion
+             id="flowRegion2998"><rect
+               width="117.14286"
+               height="227.14285"
+               x="391.42856"
+               y="258.07648"
+               id="rect3000" /></flowRegion><flowPara
+             id="flowPara3002" /></flowRoot>        <path
+           d="m 77.39562,97.912695 c 0.0024,-4.672835 0.01832,-5.111414 0.20229,-5.516413 0.25139,-0.55336 0.871718,-1.104877 1.411272,-1.254711 0.579237,-0.160851 41.190708,-0.160851 41.769938,0 0.53955,0.149834 1.15988,0.701351 1.41127,1.254711 0.17194,0.378483 0.20022,0.750353 0.20229,2.660561 l 0.003,2.220576 -0.7129,-0.391859 c -2.24068,-1.231636 -4.78375,-0.848346 -6.58619,0.992664 l -0.76831,0.784773 -9.76871,-1.558631 C 99.186722,96.247126 94.592003,95.515109 94.349016,95.47767 93.938422,95.41441 93.893761,95.371702 93.71666,94.873048 93.433123,94.07474 92.658313,93.114586 91.955782,92.690938 91.156558,92.208989 90.469768,92.01306 89.579654,92.01306 c -2.330648,0 -4.138854,1.597759 -4.381842,3.871871 -0.103473,0.968379 0.0217,1.70385 0.43044,2.52857 l 0.316181,0.638011 -1.110007,1.594828 c -1.094593,1.57267 -1.114717,1.59375 -1.449013,1.51848 -1.012818,-0.22806 -1.288382,-0.26415 -2.050172,-0.26852 -0.99438,-0.006 -2.281392,0.30059 -3.207419,0.76332 -0.362661,0.18123 -0.676193,0.32951 -0.696735,0.32951 -0.02053,0 -0.03626,-2.28439 -0.03491,-5.076435 z"
+           id="path3199"
+           style="fill:#063a5e;fill-opacity:1" />
+        <path
+           d="m 87.323194,105.22359 c -0.156978,-0.26786 -0.434178,-0.65646 -0.616006,-0.86355 -0.20655,-0.23524 -0.298461,-0.42923 -0.244948,-0.517 0.04708,-0.0773 0.544662,-0.78931 1.105686,-1.58234 l 1.020041,-1.44186 1.125466,-0.0459 c 0.95718,-0.039 1.223937,-0.0931 1.784026,-0.36173 0.766893,-0.36774 1.667007,-1.237694 1.965498,-1.899626 0.142239,-0.315431 0.276585,-0.461646 0.424164,-0.461646 0.179912,0 16.301539,2.958082 17.065429,3.131252 0.15315,0.0347 0.24695,0.13777 0.24695,0.27132 0,0.13318 -0.0942,0.23719 -0.24695,0.2726 -0.13584,0.0314 -5.35907,0.92209 -11.607202,1.9791 -6.248126,1.05701 -11.444945,1.94087 -11.548491,1.96413 -0.129073,0.0291 -0.277986,-0.11081 -0.473663,-0.44472 z"
+           id="path3201"
+           style="fill:#09568a;fill-opacity:1" />
+        <path
+           d="m 86.829487,113.28451 c 0.646358,-0.81179 1.161996,-1.95836 1.395242,-3.10245 l 0.200654,-0.98424 12.786507,-2.65493 c 7.03257,-1.46021 12.79028,-2.64725 12.79488,-2.63787 0.84165,1.71415 2.37772,2.84259 4.28394,3.14712 1.21613,0.19427 2.77985,-0.17127 3.78041,-0.88373 l 0.32397,-0.23069 -9.6e-4,3.05334 c -9.6e-4,2.99657 -0.006,3.0639 -0.26607,3.6225 -0.18351,0.39414 -0.40856,0.66417 -0.73178,0.87809 l -0.46676,0.30891 -17.27803,0.0285 -17.278046,0.0285 0.456182,-0.57294 z"
+           id="path3203"
+           style="fill:#0d7fcc;fill-opacity:1" />
+      </g>
+    </g>
+    <text
+       x="107.25935"
+       y="65.008873"
+       id="text3070"
+       xml:space="preserve"
+       style="font-size:77.06820679px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"><tspan
+         x="107.25935"
+         y="65.008873"
+         id="tspan3072"
+         style="font-size:32.75399017px;font-weight:bold;-inkscape-font-specification:Arial Bold">RHalotel</tspan></text>
+  </g>
+</svg>
