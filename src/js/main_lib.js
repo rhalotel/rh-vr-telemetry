@@ -1,19 +1,12 @@
-speedWheel = 0; //speed wheels on the truck
-
-$(document).on("click", "#plus", function () {
-    speedWheel++;
-    updateAnimation();
-});
-
-$(document).on("click", "#minus", function () {
-    speedWheel--;
-    updateAnimation();
-});
-
+/*
+    parse JSON
+*/
 
 let gltf = null;
 let mixer = null;
 let clock = new THREE.Clock();
+let scene = new THREE.Scene()
+let renderer = new THREE.WebGLRenderer();
 let controls;
 let camera;
 
@@ -23,16 +16,17 @@ let object;
 init();
 animate();
 
-// function createStats() {
-//       var stats = new Stats();
-//       stats.setMode(0);
+const engine = new rhvr.Core();
+engine.init();
 
-//       stats.domElement.style.position = 'absolute';
-//       stats.domElement.style.left = '0';
-//       stats.domElement.style.top = '0';
+var vehicleSpeed;
+let truckURL = "https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced.gltf";
+const wheelVis = new rhvr.Visualisation(["container",vehicleSpeed,truckURL,scene]);
+/*
+    implementovat pridavanie vis do core cez dispatcher predpokladam
+*/
 
-//       return stats;
-// }
+
 
 var lastCalledTime;
 var fps;
@@ -50,7 +44,7 @@ function requestAnimFrame() {
   delta = (performance.now() - lastCalledTime)/1000;
   lastCalledTime = performance.now();
   fps = 1/delta;
-  console.log(Math.round(fps));
+  
   if (frames<20) {
     times.push(fps);  
     frames++;
@@ -62,29 +56,16 @@ function requestAnimFrame() {
     }
 
     var avg = sum/times.length;
-    document.getElementById('fps').innerHTML = avg;
-    frames=0;  
+    document.getElementById('fps').innerHTML = Math.round(avg);
+    frames=0;
   }
-  
-}
-
-function updateAnimation() {
-    animations = gltf.animations;
-    if (animations && animations.length) {
-        mixer = new THREE.AnimationMixer(object);
-        for (let i = 0; i < animations.length; i++) {
-            let animation = animations[i];
-            mixer.clipAction(animation).timeScale = speedWheel;
-            mixer.clipAction(animation).play();
-        }
-    }
+   
 }
 
 function init() {
-    width = window.innerWidth;
-    height = window.innerHeight;
+    width = window.innerWidth-200;
+    height = window.innerHeight-200;
 
-    scene = new THREE.Scene();
     let ambient = new THREE.AmbientLight(0x101030);
     scene.add(ambient);
 
@@ -97,15 +78,19 @@ function init() {
     //camera.position.set(1, 5, 30);
     camera.position.set(40, 10, 30);
 
+
+    /* GROUND SCENE */
     let geometry = new THREE.BoxGeometry(100, 5, 100);
-    let material = new THREE.MeshLambertMaterial({
-        color: "#707070"
+    let material = new THREE.MeshBasicMaterial({
+        color: "#282B2A"
     });
 
     let ground = new THREE.Mesh(geometry,material);
     ground.position.y -= 5;
     ground.receiveShadow = true;
     scene.add(ground);
+
+
 
     let manager = new THREE.LoadingManager();
     manager.onProgress = function (item, loaded, total) {
@@ -115,32 +100,47 @@ function init() {
     let loader = new THREE.GLTFLoader();
     loader.setCrossOrigin('anonymous'); // r84 以降は明示的に setCrossOrigin() を指定する必要がある
 
-    let scale = 5.0;
-    let url = "https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced.gltf";
 
-    loader.load(url, function (data) {
-        gltf = data;
-        object = gltf.scene;
-        //var mesh = scene.children[ 3 ];
-        object.scale.set(scale, scale, scale);
-        object.position.y = 0;
-        object.position.x = 0;
-        object.castShadow = true;
-        object.receiveShadow = true;
-        updateAnimation();
+    // /* TRUCK SCENE */
+    // let scale = 5.0;
+    // let url = "https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced.gltf";
 
-        //var mesh = new THREE.Mesh( object, material );
-        scene.add(object);
+    // loader.load(url, function (data) {
+    //     gltf = data;
+    //     object = gltf.scene;
+    //     //var mesh = scene.children[ 3 ];
+    //     object.scale.set(scale, scale, scale);
+    //     object.position.y = 0;
+    //     object.position.x = 0;
+    //     object.castShadow = true;
+    //     object.receiveShadow = true;
+    //     updateAnimation();
+
+    //     //var mesh = new THREE.Mesh( object, material );
+    //     scene.add(object);
+    // });
+
+
+    /* RESIZE WINDOW */
+    window.addEventListener('resize', function() { // resize
+      var WIDTH = window.innerWidth,
+          HEIGHT = window.innerHeight;
+      renderer.setSize(WIDTH, HEIGHT);
+      camera.aspect = WIDTH / HEIGHT;
+      camera.updateProjectionMatrix();
     });
 
-    let axis = new THREE.AxesHelper(1000);
-    scene.add(axis);
+    /* AXES HELPER */
+    // let axis = new THREE.AxesHelper(1000);
+    // scene.add(axis);
 
-    renderer = new THREE.WebGLRenderer();
+    
     //renderer.setClearColor( 0xbfe4ff );
-    renderer.setClearColor(0xffffff);
+    renderer.setClearColor(0xbfe4ff);
     renderer.shadowMap.enabled = true;
 
+
+    /* ORBIT CONTROLS */
     controls = new THREE.OrbitControls(camera, renderer.domElement);
     controls.userPan = false;
     controls.userPanSpeed = 0.0;
@@ -152,10 +152,8 @@ function init() {
 
     renderer.setSize(width, height);
     renderer.gammaOutput = true;
-    document.body.appendChild(renderer.domElement);
+    document.getElementById("container").appendChild(renderer.domElement);
 
-    // stats = createStats();
-    // document.body.appendChild(stats.domElement );
 }
 
 function animate() {
@@ -163,8 +161,6 @@ function animate() {
     if (mixer) mixer.update(clock.getDelta());
     controls.update();
     render();
-
-
 }
 
 function render() {

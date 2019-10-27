@@ -53,7 +53,8 @@ var rhvr =
 		 
 		
 		
-		var self = this;
+		var self = t
+		his;
 		
 		this.constructor = function()
 		{
@@ -113,7 +114,7 @@ var rhvr =
 	Visualisation: function(settings)
 	{
 		
-		
+		var settings = [];
 		// var settings = {
 		// 	htmlEl: ...,
 		// 	specModel: ...,
@@ -137,7 +138,7 @@ var rhvr =
 		{
 			let scale = 5.0;
 			// scene = new THREE.Scene();
-			loader.load(this.settings.scene3d, function (data) {
+			loader.load(this.settings[2], function (data) {
 		        gltf = data;
 		        object = gltf.scene;
 		        object.scale.set(scale, scale, scale);
@@ -150,13 +151,13 @@ var rhvr =
 		        					//po prijati dat a naslednom .run a .task, co vola .update
 
 		        //var mesh = new THREE.Mesh( object, material );
-		        this.settings.sceneNewThree.add(object);
+		        this.settings[3].add(object);
 	    	});
 
-			renderer = new THREE.WebGLRenderer();
+			// renderer = new THREE.WebGLRenderer();
 		    // renderer.setClearColor(0xbfe4ff);
 		    // renderer.shadowMap.enabled = true;
-			document.getElementById(this.settings.htmlEl).appendChild(renderer.domElement);
+			// document.getElementById(this.settings.htmlEl).appendChild(renderer.domElement);
 			//mixer = new THREE.AnimationMixer(mesh); //tuna si vytvorime mixer
 			
 		}
@@ -164,7 +165,7 @@ var rhvr =
 		{
 
 			
-			var spec =   this.settings.specModel; /// specifikovat strukturu specModel
+			var spec =   this.settings[1]; /// specifikovat strukturu specModel
 			spec.table.forEach(function(specItem) 
 			{
 				
