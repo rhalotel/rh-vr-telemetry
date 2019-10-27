@@ -48,7 +48,7 @@ var fps;
 var tmp=0;
 var times=[];
 var frames = 10;
-//const engine = new rh_telemetry_vr.Engine();
+const engine = new rhvr.Visualisation();
 
 function requestAnimFrame() {
 
@@ -76,7 +76,7 @@ function requestAnimFrame() {
     frames=0;
   }
   
-  //myrhvr.constructor();
+  engine.pisUz();
 }
 
 function updateAnimation() {

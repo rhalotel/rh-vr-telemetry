@@ -38,12 +38,12 @@ function EventDispatcherCreate(obj)
 
 
 
-var rhvr =
+var rhvr = 
 {
 	
 	DataProvider: function(options)
 	{
-		
+		;
 	},
 	
 	Core : function()
@@ -114,12 +114,12 @@ var rhvr =
 	{
 		
 		
-		var settings = {
-			htmlEl: ...,
-			specModel: ...,
-			scene3d: ..., //URL objektu v docs
-			sceneNewThree: .... //odkaz na scenu do initu
-		}
+		// var settings = {
+		// 	htmlEl: ...,
+		// 	specModel: ...,
+		// 	scene3d: ..., //URL objektu v docs
+		// 	sceneNewThree: .... //odkaz na scenu do initu
+		// }
 	 
 		let gltf = null;
 		
@@ -128,6 +128,10 @@ var rhvr =
 		{
 			//console.log("vis.constructor()")
 			 this.settings = settings;
+		}
+		this.pisUz = function()
+		{
+			console.log("idzem");
 		}
 		this.init = function()
 		{
@@ -174,7 +178,7 @@ var rhvr =
 		}
 		this.constructor(settings);
 		
-	},
+	}
 	
 };
 
