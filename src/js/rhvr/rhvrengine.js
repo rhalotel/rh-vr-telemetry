@@ -1,5 +1,6 @@
 function EventDispatcherCreate(obj)
 {
+	//ci pridanie fumkcionality kazdemu objektu resp. na co konkretne je potrebne dispatcher pouzit
 	obj.eventhandlers =  [];
 	
 	obj.on = function(eventType,fun)
@@ -175,7 +176,7 @@ var rhvr =
 					specItem by mal mat ciastkovu aktualizacnu konkretnu funkciu na prislusne hodnoty z dat a mala by sa na zaklade hodnoty animovat urita cast modelu napr. tocenie kolies, otocenie solarneho panelu ... atd  
 				
 				 */
-			})
+			});
 		}
 		this.constructor(settings);
 		
