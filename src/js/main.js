@@ -52,7 +52,7 @@ $(document).on("click", "#minus", function () {
 });
 
 
-let gltf = null;
+// let gltf = null;
 let mixer = null;
 let clock = new THREE.Clock();
 let controls;
@@ -109,7 +109,7 @@ function requestAnimFrame() {
     frames=0;
   }
   
-  engine.pisUz();
+//   engine.pisUz();
 }
 
 function updateAnimation() {
@@ -181,7 +181,19 @@ function init() {
 
         //var mesh = new THREE.Mesh( object, material );
         scene.add(object);
-    });
+    },
+    function ( xhr ) {
+
+        console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+    },
+    // called when loading has errors
+    function ( error ) {
+
+        console.log( 'An error happened' );
+
+    }
+    );
 
 
     /* RESIZE WINDOW */

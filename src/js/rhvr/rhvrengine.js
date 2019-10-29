@@ -38,6 +38,10 @@ function EventDispatcherCreate(obj)
 }
 
 
+let manager;
+let loader;
+let gltf;
+
 
 var rhvr = 
 {
@@ -54,8 +58,7 @@ var rhvr =
 		 
 		
 		
-		var self = t
-		his;
+		var self = this;
 		
 		this.constructor = function()
 		{
@@ -75,7 +78,7 @@ var rhvr =
 				
 				function(){
 					
-					if(this.queue.length > 0)
+					if(typeof this.queue!=='undefined' && this.queue.length > 0)
 					{
 						var d = this.queue.shift();
 						self.task(d);
@@ -115,45 +118,74 @@ var rhvr =
 	Visualisation: function(settings)
 	{
 		
-		var settings = [];
+		var settings;
 		// var settings = {
-		// 	htmlEl: ...,
-		// 	specModel: ...,
-		// 	scene3d: ..., //URL objektu v docs
-		// 	sceneNewThree: .... //odkaz na scenu do initu
+		// 	htmlEl: "",
+		// 	specModel: null,
+		// 	scene3d: "", //URL objektu v docs
+		// 	sceneNewThree: null //odkaz na scenu do initu EDIT:uz nie
 		// }
 	 
-		let gltf = null;
+		// let gltf = null;
 		
 		
 		this.constructor = function(settings)
 		{
 			//console.log("vis.constructor()")
-			 this.settings = settings;
+			this.settings = settings;
+			// this.settings.scene3d=settings[2];
 		}
-		this.pisUz = function()
-		{
-			console.log("idzem");
-		}
+		// this.pisUz = function()
+		// {
+		// 	console.log("idzem");
+		// }
+		this.constructor(settings);
 		this.init = function()
 		{
+			
+			manager = new THREE.LoadingManager();
+			manager.onProgress = function (item, loaded, total) {
+				console.log(item, loaded, total);
+			};
+		
+			loader = new THREE.GLTFLoader();
+			loader.setCrossOrigin('anonymous'); // r84 以降は明示的に setCrossOrigin() を指定する必要がある
+
 			let scale = 5.0;
 			// scene = new THREE.Scene();
-			loader.load(this.settings[2], function (data) {
+			var url = this.settings[2];
+			
+			loader.load(url, function (data) {
+				console.log("URL inside loader.load() in library RHVR:"+url);
 		        gltf = data;
 		        object = gltf.scene;
 		        object.scale.set(scale, scale, scale);
 		        object.position.y = 0;
 		        object.position.x = 0;
 		        object.castShadow = true;
-		        object.receiveShadow = true;
-		        updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
+				object.receiveShadow = true;
+				
+		        // updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
 		        					//ale mozno netreba updatovat, kedze to je este len init a update sa bude riesit
 		        					//po prijati dat a naslednom .run a .task, co vola .update
 
 		        //var mesh = new THREE.Mesh( object, material );
-		        this.settings[3].add(object);
-	    	});
+				// this.settings.sceneNewThree.add(object);
+				
+				scene.add(object);
+			},
+			function ( xhr ) {
+
+				console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+		
+			},
+			// called when loading has errors
+			function ( error ) {
+		
+				console.log( 'An error happened' );
+		
+			}
+			);
 
 			// renderer = new THREE.WebGLRenderer();
 		    // renderer.setClearColor(0xbfe4ff);
@@ -178,7 +210,7 @@ var rhvr =
 				 */
 			});
 		}
-		this.constructor(settings);
+		
 		
 	}
 	
