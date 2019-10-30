@@ -41,7 +41,9 @@ function EventDispatcherCreate(obj)
 let manager;
 let loader;
 let gltf;
+
 let scene = new THREE.Scene();
+
 
 var rhvr = 
 {
@@ -157,6 +159,7 @@ var rhvr =
 			
 			loader.load(url, function (data) {
 				console.log("URL inside loader.load() in library RHVR:"+url);
+				console.log(url);
 		        gltf = data;
 		        object = gltf.scene;
 		        object.scale.set(scale, scale, scale);
@@ -171,7 +174,6 @@ var rhvr =
 
 		        //var mesh = new THREE.Mesh( object, material );
 				// this.settings.sceneNewThree.add(object);
-				
 				scene.add(object);
 			},
 			function ( xhr ) {
@@ -219,6 +221,5 @@ var rhvr =
 EventDispatcherCreate(rhvr.Core);
 EventDispatcherCreate(rhvr.Visualisation);
 EventDispatcherCreate(rhvr.DataProvider);
-
 
 
