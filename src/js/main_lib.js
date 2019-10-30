@@ -38,7 +38,7 @@ parseJson();
 // let gltf = null;
 // let mixer = null;
 let clock = new THREE.Clock();
-let scene = new THREE.Scene()
+// let scene = new THREE.Scene();
 let renderer;
 let controls;
 let camera;

@@ -41,7 +41,7 @@ function EventDispatcherCreate(obj)
 let manager;
 let loader;
 let gltf;
-
+let scene = new THREE.Scene();
 
 var rhvr = 
 {
