@@ -39,19 +39,39 @@ parseJson();
 // let mixer = null;
 let clock = new THREE.Clock();
 // let scene = new THREE.Scene();
-let scene = new THREE.Scene()
-let renderer;
+// let scene = new THREE.Scene()
+// let renderer;
 let controls;
 let camera;
-
+let renderer = new THREE.WebGLRenderer();
 let animations;
 let object;
 
 init();
 // animate();
 
-const engine = new rhvr.Core();
+let engine = new rhvr.Core();
 engine.init();
+
+// TestDataProvider = function (params) {
+//   var self =this;
+//   this.init = function (params) {
+//     setInterval(function (params) {
+//       let e = {
+//         type: "recdata",
+//         arg: //json parsnuty
+//       };
+//       self.dispatch("recdata",e);
+//     },1000)
+//   }
+// }
+
+// provider= new TestDataProvider()
+// EventDispatcherCreate(provider);
+
+
+
+
 
 
 
@@ -168,10 +188,10 @@ function init() {
     });
 
     /* AXES HELPER */
-    // let axis = new THREE.AxesHelper(1000);
-    // scene.add(axis);
+    let axis = new THREE.AxesHelper(1000);
+    scene.add(axis);
 
-    renderer = new THREE.WebGLRenderer();
+    
     //renderer.setClearColor( 0xbfe4ff );
     renderer.setClearColor(0xbfe4ff);
     renderer.shadowMap.enabled = true;
@@ -201,8 +221,9 @@ function init() {
 // }
 
 function render() {
-    renderer.render(scene, camera);
+    controls.update();
     requestAnimFrame()
+    renderer.render(scene, camera);
 }
 
 function getJson() {
