@@ -48,7 +48,7 @@ let animations;
 let object;
 
 init();
-// animate();
+animate();
 
 let engine = new rhvr.Core();
 engine.init();
@@ -123,13 +123,13 @@ function init() {
     width = window.innerWidth-200;
     height = window.innerHeight-200;
 
-    // let ambient = new THREE.AmbientLight(0x101030);
-    // scene.add(ambient);
+    let ambient = new THREE.AmbientLight(0x101030);
+    scene.add(ambient);
 
-    // const light = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 8);
-    // light.position.set(10, 25, 25);
-    // light.castShadow = true;
-    // scene.add(light);
+    const light = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 8);
+    light.position.set(10, 25, 25);
+    light.castShadow = true;
+    scene.add(light);
 
     camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 10000);
     //camera.position.set(1, 5, 30);
@@ -213,17 +213,17 @@ function init() {
 
 }
 
-// function animate() {
-//     requestAnimationFrame(animate);
-//     if (mixer) mixer.update(clock.getDelta());
-//     controls.update();
-//     render();
-// }
+function animate() {
+    requestAnimationFrame(animate);
+    // if (mixer) mixer.update(clock.getDelta());
+    controls.update();
+    render();
+}
 
 function render() {
     controls.update();
-    requestAnimFrame()
     renderer.render(scene, camera);
+    // requestAnimFrame()
 }
 
 function getJson() {
