@@ -109,7 +109,6 @@ function requestAnimFrame() {
     frames=0;
   }
   
-//   engine.pisUz();
 }
 
 function updateAnimation() {

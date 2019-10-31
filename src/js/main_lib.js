@@ -83,13 +83,11 @@ wheelVis.init();
   implementovat pridavanie vis do core cez dispatcher predpokladam
 */
 
-render();
-
 var lastCalledTime;
 var fps;
 var tmp=0;
 var times=[];
-var frames = 10;
+var framesFPS = 10;
 
 function requestAnimFrame() {
 
@@ -102,9 +100,9 @@ function requestAnimFrame() {
   lastCalledTime = performance.now();
   fps = 1/delta;
   
-  if (frames<20) {
+  if (framesFPS<20) {
     times.push(fps);  
-    frames++;
+    framesFPS++;
   }
   else{
     var sum = 0;
@@ -114,7 +112,7 @@ function requestAnimFrame() {
 
     var avg = sum/times.length;
     document.getElementById('fps').innerHTML = Math.round(avg);
-    frames=0;
+    framesFPS=0;
   }
    
 }
@@ -221,9 +219,8 @@ function animate() {
 }
 
 function render() {
-    controls.update();
     renderer.render(scene, camera);
-    // requestAnimFrame()
+    requestAnimFrame();
 }
 
 function getJson() {
