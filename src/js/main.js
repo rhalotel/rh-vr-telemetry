@@ -113,6 +113,7 @@ function requestAnimFrame() {
 
 function updateAnimation() {
     animations = gltf.animations;
+    
     if (animations && animations.length) {
         mixer = new THREE.AnimationMixer(object);
         for (let i = 0; i < animations.length; i++) {

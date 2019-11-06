@@ -47,11 +47,14 @@ let renderer = new THREE.WebGLRenderer();
 let animations;
 let object;
 
+
+
 init();
 animate();
 
 let engine = new rhvr.Core();
 engine.init();
+engine.addToQueue(VehicleSpeed);
 
 // TestDataProvider = function (params) {
 //   var self =this;
@@ -77,8 +80,9 @@ engine.init();
 
 // var vehicleSpeed;
 let truckURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced.gltf';
-let wheelVis = new rhvr.Visualisation(["container",VehicleSpeed,truckURL]);
+let wheelVis = new rhvr.Visualisation(["container",VehicleSpeed,truckURL,specModel]);
 wheelVis.init();
+// updateAnimation()
 /*
   implementovat pridavanie vis do core cez dispatcher predpokladam
 */
@@ -210,6 +214,8 @@ function init() {
     document.getElementById("container").appendChild(renderer.domElement);
 
 }
+
+
 
 function animate() {
     requestAnimationFrame(animate);
