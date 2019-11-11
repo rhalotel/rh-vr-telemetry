@@ -38,11 +38,7 @@ function EventDispatcherCreate(obj)
 }
 
 
-let manager;
-let loader;
-let gltf;
-let scene = new THREE.Scene();
-let mixer = new THREE.AnimationMixer(object);
+
 
 var rhvr = 
 {
@@ -54,8 +50,10 @@ var rhvr =
 	
 	Core : function()
 	{
-		if(this._instance != null)
-			return this._instance;
+		if(rhvr.Core.instance != null)
+			return rhvr.Core.instance ;
+			
+		rhvr.Core.instance = this;
 		 
 		
 		
@@ -79,9 +77,9 @@ var rhvr =
 				
 				function(){
 					
-					if(typeof this.queue!=='undefined' && this.queue.length > 0)
+					if(typeof self.queue!=='undefined' && self.queue.length > 0)
 					{
-						var d = this.queue.shift();
+						var d = self.queue.shift();
 						self.task(d);
 					}
 					
@@ -113,6 +111,10 @@ var rhvr =
 		{
 			this.queue.push(dataArg);
 		}
+		this.addsVis = function(vis)
+		{
+			this.visItems.push(vis)
+		}
 		this.constructor();
 		
 		
@@ -121,7 +123,11 @@ var rhvr =
 	
 	Visualisation: function(settings)
 	{
-		
+		let manager;
+		let loader;
+		let gltf;
+		let scene = new THREE.Scene();
+		let mixer = null;
 		var settings;
 		// var settings = {
 		// 	htmlEl: "",
@@ -135,6 +141,8 @@ var rhvr =
 		{
 			//console.log("vis.constructor()")
 			this.settings = settings;
+			rhvr.Core.instance.addsVis(this);
+			
 			// this.settings.scene3d=settings[2];
 		}
 				this.constructor(settings);
@@ -162,6 +170,7 @@ var rhvr =
 		        object.castShadow = true;
 				object.receiveShadow = true;
 				animations=gltf.animations;
+				this.mixer =  new THREE.AnimationMixer(object)
 				updateAnimation();
 				
 		        // updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
@@ -172,6 +181,112 @@ var rhvr =
 				// this.settings.sceneNewThree.add(object);
 				
 				scene.add(object);
+				
+				var fnrender  =  function() {
+				   requestAnimationFrame(fnrender);
+				    // if (mixer) mixer.update(clock.getDelta());
+				    controls.update();
+				    renderer.render(scene, camera);
+				    requestAnimFrame();
+				}
+						
+					var lastCalledTime;
+					var fps;
+					var tmp=0;
+					var times=[];
+					var framesFPS = 10;
+					
+					function requestAnimFrame() {
+					
+					  if(!lastCalledTime) {
+					     lastCalledTime = performance.now();
+					     fps = 0;
+					     return;
+					  }
+					  delta = (performance.now() - lastCalledTime)/1000;
+					  lastCalledTime = performance.now();
+					  fps = 1/delta;
+					  
+					  if (framesFPS<20) {
+					    times.push(fps);  
+					    framesFPS++;
+					  }
+					  else{
+					    var sum = 0;
+					    for( var i = 0; i < times.length; i++ ){
+					        sum += parseInt( times[i], 10 ); //don't forget to add the base
+					    }
+					
+					    var avg = sum/times.length;
+					    document.getElementById('fps').innerHTML = Math.round(avg);
+					    framesFPS=0;
+					  }
+					   
+					}
+			
+			
+				width = window.innerWidth-200;
+					    height = window.innerHeight-200;
+					
+					    let ambient = new THREE.AmbientLight(0x101030);
+					    scene.add(ambient);
+					
+					    const light = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 8);
+					    light.position.set(10, 25, 25);
+					    light.castShadow = true;
+					    scene.add(light);
+					
+					    camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 10000);
+					    //camera.position.set(1, 5, 30);
+					    camera.position.set(40, 10, 30);
+					
+					
+					    /* GROUND SCENE */
+					    let geometry = new THREE.BoxGeometry(100, 5, 100);
+					    let material = new THREE.MeshBasicMaterial({
+					        color: "#282B2A"
+					    });
+					
+					    let ground = new THREE.Mesh(geometry,material);
+					    ground.position.y -= 5;
+					    ground.receiveShadow = true;
+					    scene.add(ground);
+					
+					    /* RESIZE WINDOW */
+					    window.addEventListener('resize', function() { // resize
+					      var WIDTH = window.innerWidth,
+					          HEIGHT = window.innerHeight;
+					      renderer.setSize(WIDTH, HEIGHT);
+					      camera.aspect = WIDTH / HEIGHT;
+					      camera.updateProjectionMatrix();
+					    });
+					
+					    /* AXES HELPER */
+					    let axis = new THREE.AxesHelper(1000);
+					    scene.add(axis);
+					
+					    
+					    //renderer.setClearColor( 0xbfe4ff );
+					    renderer.setClearColor(0xbfe4ff);
+					    renderer.shadowMap.enabled = true;
+					
+					
+					    /* ORBIT CONTROLS */
+					    controls = new THREE.OrbitControls(camera, renderer.domElement);
+					    controls.userPan = false;
+					    controls.userPanSpeed = 0.0;
+					    controls.maxDistance = 5000.0;
+					    controls.maxPolarAngle = Math.PI * 0.495;
+					    //controls.autoRotate = true;
+					    controls.autoRotate = false;
+					    controls.autoRotateSpeed = -2.0;
+					
+					    renderer.setSize(width, height);
+					    renderer.gammaOutput = true;
+					    document.getElementById("container").appendChild(renderer.domElement);
+	
+	
+						requestAnimationFrame(fnrender);
 			}
 			// function ( xhr ) {
 
@@ -212,6 +327,7 @@ var rhvr =
 		
 		
 	}
+	
 	
 };
 
