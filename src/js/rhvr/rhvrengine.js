@@ -144,9 +144,9 @@ var rhvr =
 		this.updateAnimation = function(){
 			if (self.animations && self.animations.length) {
 				for (let i = 0; i < self.animations.length; i++) {
-					let animation = self.animations[i];
-					self.mixer.clipAction(animation).timeScale = 2;
-					self.mixer.clipAction(animation).play();
+					var animation = self.mixer.clipAction(self.animations[i]);
+					animation.timeScale = 2;
+  					animation.play();
 				}
 			}
 			
@@ -200,7 +200,7 @@ var rhvr =
 				
 				var fnrender  =  function() {
 				   requestAnimationFrame(fnrender);
-				    // if (mixer) mixer.update(clock.getDelta());
+				    if (self.mixer) self.mixer.update(clock.getDelta());
 				    self.controls.update();
 				    self.renderer.render(self.scene, self.camera);
 				    requestAnimFrame();
@@ -242,67 +242,67 @@ var rhvr =
 			
 			
 				width = window.innerWidth-200;
-					    height = window.innerHeight-200;
-					
-					    let ambient = new THREE.AmbientLight(0x101030);
-					    self.scene.add(ambient);
-					
-					    const light = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 8);
-					    light.position.set(10, 25, 25);
-					    light.castShadow = true;
-					    self.scene.add(light);
-					
-					    self.camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 10000);
-					    //camera.position.set(1, 5, 30);
-					    self.camera.position.set(40, 10, 30);
-					
-					
-					    /* GROUND SCENE */
-					    let geometry = new THREE.BoxGeometry(100, 5, 100);
-					    let material = new THREE.MeshBasicMaterial({
-					        color: "#282B2A"
-					    });
-					
-					    let ground = new THREE.Mesh(geometry,material);
-					    ground.position.y -= 5;
-					    ground.receiveShadow = true;
-					    self.scene.add(ground);
-					
-					    /* RESIZE WINDOW */
-					    window.addEventListener('resize', function() { // resize
-					      var WIDTH = window.innerWidth,
-					          HEIGHT = window.innerHeight;
-					      self.renderer.setSize(WIDTH, HEIGHT);
-					      self.camera.aspect = WIDTH / HEIGHT;
-					      self.camera.updateProjectionMatrix();
-					    });
-					
-					    /* AXES HELPER */
-					    let axis = new THREE.AxesHelper(1000);
-					    self.scene.add(axis);
-					
-					    
-					    //renderer.setClearColor( 0xbfe4ff );
-					    self.renderer.setClearColor(0xbfe4ff);
-					    self.renderer.shadowMap.enabled = true;
-					
-					
-					    /* ORBIT CONTROLS */
-					    self.controls = new THREE.OrbitControls(self.camera, self.renderer.domElement);
-					    self.controls.userPan = false;
-					    self.controls.userPanSpeed = 0.0;
-					    self.controls.maxDistance = 5000.0;
-					    self.controls.maxPolarAngle = Math.PI * 0.495;
-					    //controls.autoRotate = true;
-					    self.controls.autoRotate = false;
-					    self.controls.autoRotateSpeed = -2.0;
-					
-					    self.renderer.setSize(width, height);
-					    self.renderer.gammaOutput = true;
-					    document.getElementById("container").appendChild(self.renderer.domElement);
-	
-	
-						requestAnimationFrame(fnrender);
+			    height = window.innerHeight-200;
+			
+			    let ambient = new THREE.AmbientLight(0x101030);
+			    self.scene.add(ambient);
+			
+			    const light = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 8);
+			    light.position.set(10, 25, 25);
+			    light.castShadow = true;
+			    self.scene.add(light);
+			
+			    self.camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 10000);
+			    //camera.position.set(1, 5, 30);
+			    self.camera.position.set(40, 10, 30);
+			
+			
+			    /* GROUND SCENE */
+			    let geometry = new THREE.BoxGeometry(100, 5, 100);
+			    let material = new THREE.MeshBasicMaterial({
+			        color: "#282B2A"
+			    });
+			
+			    let ground = new THREE.Mesh(geometry,material);
+			    ground.position.y -= 5;
+			    ground.receiveShadow = true;
+			    self.scene.add(ground);
+			
+			    /* RESIZE WINDOW */
+			    window.addEventListener('resize', function() { // resize
+			      var WIDTH = window.innerWidth,
+			          HEIGHT = window.innerHeight;
+			      self.renderer.setSize(WIDTH, HEIGHT);
+			      self.camera.aspect = WIDTH / HEIGHT;
+			      self.camera.updateProjectionMatrix();
+			    });
+			
+			    /* AXES HELPER */
+			    let axis = new THREE.AxesHelper(1000);
+			    self.scene.add(axis);
+			
+			    
+			    //renderer.setClearColor( 0xbfe4ff );
+			    self.renderer.setClearColor(0xbfe4ff);
+			    self.renderer.shadowMap.enabled = true;
+			
+			
+			    /* ORBIT CONTROLS */
+			    self.controls = new THREE.OrbitControls(self.camera, self.renderer.domElement);
+			    self.controls.userPan = false;
+			    self.controls.userPanSpeed = 0.0;
+			    self.controls.maxDistance = 5000.0;
+			    self.controls.maxPolarAngle = Math.PI * 0.495;
+			    //controls.autoRotate = true;
+			    self.controls.autoRotate = false;
+			    self.controls.autoRotateSpeed = -2.0;
+			
+			    self.renderer.setSize(width, height);
+			    self.renderer.gammaOutput = true;
+			    document.getElementById("container").appendChild(self.renderer.domElement);
+
+
+				requestAnimationFrame(fnrender);
 			}
 			// function ( xhr ) {
 
