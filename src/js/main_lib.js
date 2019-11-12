@@ -1,38 +1,6 @@
 /*
     parse JSON
 */
-var totalFuel = 0;
-var fuelLevel1 = 0;
-var Torque = 0;
-var EngineHours = 0;
-var EngineSpeed = 0;
-var enginePercentLoad = 0;
-var VehicleHDistance = 0;
-var VehicleSpeed = 0;
-var EngineCoolantTmp = 0;
-var AmbientAirTemp = 0;
-var breakPedalPosition = 0;
-var combVeight = 0;
-
-function parseJson () {
-  
-  console.log(obj);
-  totalFuel = obj.fuelConsumption.TotalFuel * 0.001; //L
-  fuelLevel1 = obj.dashDisplay.fuelLevel1 / 2.5; //%
-  Torque = obj.eecTorqueSpeed.Torque - 125.0; //%
-  EngineHours = obj.engineHours.EngineHours * 0.05; //s
-  EngineSpeed = obj.eecTorqueSpeed.EngineSpeed * 0.125; //rpm
-  enginePercentLoad = 0; // %
-  VehicleHDistance = obj.vhdr.VehicleHDistance * 5.0 / 1000; //km
-  VehicleSpeed = obj.tco1.VehicleSpeed / 256; //km/h
-  EngineCoolantTmp = obj.engineTemp.EngineCoolantTmp - 40.0; //°C
-  AmbientAirTemp = (obj.amb.AmbientAirTemp * 0.03125) - 273.0; //°C 
-  breakPedalPosition = obj.electronicBreak.breakPedalPosition * 0.4; //%
-  combVeight = obj.combWeight.combVeight;
-	return obj;
-}
-
-
 
 
 
@@ -52,7 +20,7 @@ engine.init();
 
 // var vehicleSpeed;
 let truckURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced.gltf';
-let wheelVis = new rhvr.Visualisation(["container",VehicleSpeed,truckURL,specModel]);
+let wheelVis = new rhvr.Visualisation(["container",0,truckURL,specModel]);
 console.log("tototootototo"+wheelVis);
 wheelVis.init();
 

@@ -325,7 +325,8 @@ var rhvr =
 		{
 
 			
-			var spec =   this.settings[3]; /// specifikovat strukturu specModel
+			var spec =   self.settings[3]; /// specifikovat strukturu specModel
+			spec.Update(d,self.animations,self.mixer);
 			// spec.table.forEach(function(specItem) 
 			// {
 				
@@ -336,9 +337,9 @@ var rhvr =
 				
 			// 	 */
 			// });
-			if(spec.hasOwnProperty('VehicleSpeed')){
-				spec.VehicleSpeed(d)
-			}
+			// if(spec.hasOwnProperty('VehicleSpeed')){
+			// 	spec.VehicleSpeed(d)
+			// }
 		}
 		
 		
