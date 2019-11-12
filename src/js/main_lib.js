@@ -56,8 +56,9 @@ let engine = new rhvr.Core();
 engine.init();
 
 // var vehicleSpeed;
-let truckURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced.gltf';
+let truckURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced_01.gltf';
 let wheelVis = new rhvr.Visualisation(["container",VehicleSpeed,truckURL,specModel]);
+gltf = wheelVis.gltf;
 wheelVis.init();
 
  TestDataProvider = function (params) {
