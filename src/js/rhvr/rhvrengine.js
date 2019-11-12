@@ -127,10 +127,13 @@ var rhvr =
 		let manager;
 		let loader;
 		let gltf;
-		var scene = new THREE.Scene();
+		let scene;
 		let mixer = null;
 		var settings;
 		let animations;
+		let controls;
+		let renderer;
+		let camera;
 		// var settings = {
 		// 	htmlEl: "",
 		// 	specModel: null,
@@ -160,7 +163,8 @@ var rhvr =
 				this.constructor(settings);
 		this.init = function()
 		{
-			
+			self.scene = new THREE.Scene();	
+			self.renderer = renderer = new THREE.WebGLRenderer();
 			self.manager = new THREE.LoadingManager();
 			self.manager.onProgress = function (item, loaded, total) {
 				console.log(item, loaded, total);
@@ -183,7 +187,7 @@ var rhvr =
 				object.receiveShadow = true;
 				self.animations=self.gltf.animations;
 				self.mixer =  new THREE.AnimationMixer(object)
-				// self.updateAnimation();	
+				self.updateAnimation();	
 				
 		        // updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
 		        					//ale mozno netreba updatovat, kedze to je este len init a update sa bude riesit
@@ -192,13 +196,13 @@ var rhvr =
 		        //var mesh = new THREE.Mesh( object, material );
 				// this.settings.sceneNewThree.add(object);
 				
-				scene.add(object);
+				self.scene.add(object);
 				
 				var fnrender  =  function() {
 				   requestAnimationFrame(fnrender);
 				    // if (mixer) mixer.update(clock.getDelta());
-				    controls.update();
-				    renderer.render(scene, camera);
+				    self.controls.update();
+				    self.renderer.render(self.scene, self.camera);
 				    requestAnimFrame();
 				}
 						
@@ -241,16 +245,16 @@ var rhvr =
 					    height = window.innerHeight-200;
 					
 					    let ambient = new THREE.AmbientLight(0x101030);
-					    scene.add(ambient);
+					    self.scene.add(ambient);
 					
 					    const light = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 8);
 					    light.position.set(10, 25, 25);
 					    light.castShadow = true;
-					    scene.add(light);
+					    self.scene.add(light);
 					
-					    camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 10000);
+					    self.camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 10000);
 					    //camera.position.set(1, 5, 30);
-					    camera.position.set(40, 10, 30);
+					    self.camera.position.set(40, 10, 30);
 					
 					
 					    /* GROUND SCENE */
@@ -262,40 +266,40 @@ var rhvr =
 					    let ground = new THREE.Mesh(geometry,material);
 					    ground.position.y -= 5;
 					    ground.receiveShadow = true;
-					    scene.add(ground);
+					    self.scene.add(ground);
 					
 					    /* RESIZE WINDOW */
 					    window.addEventListener('resize', function() { // resize
 					      var WIDTH = window.innerWidth,
 					          HEIGHT = window.innerHeight;
-					      renderer.setSize(WIDTH, HEIGHT);
-					      camera.aspect = WIDTH / HEIGHT;
-					      camera.updateProjectionMatrix();
+					      self.renderer.setSize(WIDTH, HEIGHT);
+					      self.camera.aspect = WIDTH / HEIGHT;
+					      self.camera.updateProjectionMatrix();
 					    });
 					
 					    /* AXES HELPER */
 					    let axis = new THREE.AxesHelper(1000);
-					    scene.add(axis);
+					    self.scene.add(axis);
 					
 					    
 					    //renderer.setClearColor( 0xbfe4ff );
-					    renderer.setClearColor(0xbfe4ff);
-					    renderer.shadowMap.enabled = true;
+					    self.renderer.setClearColor(0xbfe4ff);
+					    self.renderer.shadowMap.enabled = true;
 					
 					
 					    /* ORBIT CONTROLS */
-					    controls = new THREE.OrbitControls(camera, renderer.domElement);
-					    controls.userPan = false;
-					    controls.userPanSpeed = 0.0;
-					    controls.maxDistance = 5000.0;
-					    controls.maxPolarAngle = Math.PI * 0.495;
+					    self.controls = new THREE.OrbitControls(self.camera, self.renderer.domElement);
+					    self.controls.userPan = false;
+					    self.controls.userPanSpeed = 0.0;
+					    self.controls.maxDistance = 5000.0;
+					    self.controls.maxPolarAngle = Math.PI * 0.495;
 					    //controls.autoRotate = true;
-					    controls.autoRotate = false;
-					    controls.autoRotateSpeed = -2.0;
+					    self.controls.autoRotate = false;
+					    self.controls.autoRotateSpeed = -2.0;
 					
-					    renderer.setSize(width, height);
-					    renderer.gammaOutput = true;
-					    document.getElementById("container").appendChild(renderer.domElement);
+					    self.renderer.setSize(width, height);
+					    self.renderer.gammaOutput = true;
+					    document.getElementById("container").appendChild(self.renderer.domElement);
 	
 	
 						requestAnimationFrame(fnrender);

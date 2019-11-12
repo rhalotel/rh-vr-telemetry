@@ -42,11 +42,6 @@ let clock = new THREE.Clock();
 // let scene = new THREE.Scene();
 // let scene = new THREE.Scene()
 // let renderer;
-let controls;
-let camera;
-let renderer = new THREE.WebGLRenderer();
-let animations;
-let object;
 
 
 
@@ -56,7 +51,7 @@ let engine = new rhvr.Core();
 engine.init();
 
 // var vehicleSpeed;
-let truckURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced_01.gltf';
+let truckURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/src/models/truck/triangle_faced.gltf';
 let wheelVis = new rhvr.Visualisation(["container",VehicleSpeed,truckURL,specModel]);
 console.log("tototootototo"+wheelVis);
 wheelVis.init();
