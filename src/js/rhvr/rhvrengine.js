@@ -159,10 +159,10 @@ var rhvr =
 
 			let scale = 5.0;
 			var url = this.settings[2];
-			
+		
 			loader.load(url, function (data) {
 				console.log("URL inside loader.load() in library RHVR:"+url);
-		        gltf = data;
+				gltf = data;
 		        object = gltf.scene;
 		        object.scale.set(scale, scale, scale);
 		        object.position.y = 0;
