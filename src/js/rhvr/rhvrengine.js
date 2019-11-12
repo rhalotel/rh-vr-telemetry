@@ -123,12 +123,14 @@ var rhvr =
 	
 	Visualisation: function(settings)
 	{
+		let self = this;
 		let manager;
 		let loader;
 		let gltf;
-		let scene = new THREE.Scene();
+		var scene = new THREE.Scene();
 		let mixer = null;
 		var settings;
+		let animations;
 		// var settings = {
 		// 	htmlEl: "",
 		// 	specModel: null,
@@ -136,13 +138,22 @@ var rhvr =
 		// 	sceneNewThree: null //odkaz na scenu do initu EDIT:uz nie
 		// }
 	 
-				
+		this.updateAnimation = function(){
+			if (self.animations && self.animations.length) {
+				for (let i = 0; i < self.animations.length; i++) {
+					let animation = self.animations[i];
+					self.mixer.clipAction(animation).timeScale = 2;
+					self.mixer.clipAction(animation).play();
+				}
+			}
+			
+		}
 		this.constructor = function(settings)
 		{
 			//console.log("vis.constructor()")
-			this.settings = settings;
+			self.settings = settings;
 			console.log("settings:" + settings + "this.settings:" + this.settings)
-			rhvr.Core.instance.addsVis(this);
+			rhvr.Core.instance.addsVis(self);
 			
 			// this.settings.scene3d=settings[2];
 		}
@@ -150,29 +161,29 @@ var rhvr =
 		this.init = function()
 		{
 			
-			manager = new THREE.LoadingManager();
-			manager.onProgress = function (item, loaded, total) {
+			self.manager = new THREE.LoadingManager();
+			self.manager.onProgress = function (item, loaded, total) {
 				console.log(item, loaded, total);
 			};
 		
-			loader = new THREE.GLTFLoader();
-			loader.setCrossOrigin('anonymous'); // r84 以降は明示的に setCrossOrigin() を指定する必要がある
+			self.loader = new THREE.GLTFLoader();
+			self.loader.setCrossOrigin('anonymous'); // r84 以降は明示的に setCrossOrigin() を指定する必要がある
 
 			let scale = 5.0;
-			var url = this.settings[2];
+			var url = self.settings[2];
 		
-			loader.load(url, function (data) {
+			self.loader.load(url, function (data) {
 				console.log("URL inside loader.load() in library RHVR:"+url);
-				gltf = data;
-		        object = gltf.scene;
+				self.gltf = data;
+		        object = self.gltf.scene;
 		        object.scale.set(scale, scale, scale);
 		        object.position.y = 0;
 		        object.position.x = 0;
 		        object.castShadow = true;
 				object.receiveShadow = true;
-				animations=gltf.animations;
-				this.mixer =  new THREE.AnimationMixer(object)
-				updateAnimation();
+				self.animations=self.gltf.animations;
+				self.mixer =  new THREE.AnimationMixer(object)
+				// self.updateAnimation();	
 				
 		        // updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
 		        					//ale mozno netreba updatovat, kedze to je este len init a update sa bude riesit
@@ -331,19 +342,6 @@ var rhvr =
 	
 	
 };
-
-function updateAnimation(){
-			
-	if (animations && animations.length) {
-		for (let i = 0; i < animations.length; i++) {
-			let animation = animations[i];
-			mixer.clipAction(animation).timeScale = 0;
-			mixer.clipAction(animation).play();
-		}
-	}
-	
-}
-
 EventDispatcherCreate(rhvr.Core);
 EventDispatcherCreate(rhvr.Visualisation);
 EventDispatcherCreate(rhvr.DataProvider);
