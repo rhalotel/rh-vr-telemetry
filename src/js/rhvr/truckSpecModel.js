@@ -1,6 +1,7 @@
 let specModel = {
     VehicleSpeed: function(d) 
     {
+        pi = 3.1459;
         speedWheel = 0; //pre speedWheel = 1, maju kolesa ~42RPM
         // 1RPS je (2*pi*r)
         r = 0.538
