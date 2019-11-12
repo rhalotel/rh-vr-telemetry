@@ -1,5 +1,5 @@
-Datum	Plan	Vysledok
-30.10.2019	Poster finalizovat podla dohodnutej schemy, rhvr engine rozchodit tak aby uz bol schopny hybat so scenou ktora bola prezentovana na 2 stretnuti,  pouzit uz example.json pre spracovanie a vizualizaciu dat	..
-2	..	..
-3	..	..
-4	..	..
+Datum,Plan,Vysledok,,
+30.10.2019,Poster finalizovat podla dohodnutej schemy, rhvr engine rozchodit tak aby uz bol schopny hybat so scenou ktora bola prezentovana na 2 stretnuti,  pouzit uz example.json pre spracovanie a vizualizaciu dat,..
+13.11.2019,"Poster doplnit texty , doplnit specmodel pre energy, implementovat univerzalne svetla a enviromenty, a doplnit kamery ",..,,
+20.11.2019,"Vytvorit demo index, kde bude uz vidiet vysledok dvoch scen, ktory bude na testovacej stranke githubu",..,,
+4,..,..,,
