@@ -141,6 +141,7 @@ var rhvr =
 		{
 			//console.log("vis.constructor()")
 			this.settings = settings;
+			console.log("settings:" + settings + "this.settings:" + this.settings)
 			rhvr.Core.instance.addsVis(this);
 			
 			// this.settings.scene3d=settings[2];
