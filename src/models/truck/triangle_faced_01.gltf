@@ -297,7 +297,7 @@
                     }
                 }
             ],
-            "name" : "wheels_CircleAction.002",
+            "name" : "WheelBackTopSpin",
             "samplers" : [
                 {
                     "input" : 294,
@@ -316,7 +316,7 @@
                     }
                 }
             ],
-            "name" : "wheels_Circle.001Action.001",
+            "name" : "WheelFrontTopSpin",
             "samplers" : [
                 {
                     "input" : 294,
@@ -335,7 +335,7 @@
                     }
                 }
             ],
-            "name" : "wheels_Circle.002Action.001",
+            "name" : "WheelFrontMiddleSpin",
             "samplers" : [
                 {
                     "input" : 294,
@@ -354,7 +354,7 @@
                     }
                 }
             ],
-            "name" : "wheels_Circle.003Action.002",
+            "name" : "WheelBackMiddleSpin",
             "samplers" : [
                 {
                     "input" : 294,
@@ -380,7 +380,7 @@
                     }
                 }
             ],
-            "name" : "Truck_Fuel01Action",
+            "name" : "Fuel01_Drain",
             "samplers" : [
                 {
                     "input" : 299,
@@ -411,7 +411,7 @@
                     }
                 }
             ],
-            "name" : "Truck_Fuel02Action",
+            "name" : "Fuel02_Drain",
             "samplers" : [
                 {
                     "input" : 299,
@@ -831,7 +831,7 @@
             ]
         },
         {
-            "name" : "wheel_Circle.001",
+            "name" : "WheelReserveMaterial",
             "primitives" : [
                 {
                     "attributes" : {
@@ -866,7 +866,7 @@
             ]
         },
         {
-            "name" : "wheels_Circle",
+            "name" : "WheelBackTopMaterial",
             "primitives" : [
                 {
                     "attributes" : {
@@ -1241,7 +1241,7 @@
             ]
         },
         {
-            "name" : "wheels_Circle.001",
+            "name" : "WheelFrontTopMaterial",
             "primitives" : [
                 {
                     "attributes" : {
@@ -1276,7 +1276,7 @@
             ]
         },
         {
-            "name" : "wheels_Circle.002",
+            "name" : "WheelFrontMiddleMaterial",
             "primitives" : [
                 {
                     "attributes" : {
@@ -1311,7 +1311,7 @@
             ]
         },
         {
-            "name" : "wheels_Circle.003",
+            "name" : "WheelBackMiddleMaterial",
             "primitives" : [
                 {
                     "attributes" : {
