@@ -134,6 +134,8 @@ var rhvr =
 		let controls;
 		let renderer;
 		let camera;
+		var animationNames = [];
+		var cameraNames = [];
 		// var settings = {
 		// 	htmlEl: "",
 		// 	specModel: null,
@@ -141,16 +143,34 @@ var rhvr =
 		// 	sceneNewThree: null //odkaz na scenu do initu EDIT:uz nie
 		// }
 	 
-		this.updateAnimation = function(){
-			if (self.animations && self.animations.length) {
-				for (let i = 0; i < self.animations.length; i++) {
-					var animation = self.mixer.clipAction(self.animations[i]);
-					animation.timeScale = 2;
+		this.updateTimeScale = function(animations, timeScale){
+			if (animations && animations.length) {
+				for (let i = 0; i < animations.length; i++) {
+					var animation = self.mixer.clipAction(animations[i]);
+					animation.timeScale = timeScale;
   					animation.play();
 				}
 			}
-			
 		}
+		// this.getAnimationsByName = function(names) {
+
+		// }
+		this.getCameraByName = function(camName) {
+			var cams = [];
+			camName.forEach(function (item, index) {
+				console.log(cameraNames[index])
+			  cams[index] = self.gltf.cameras[self.cameraNames.indexOf(item)];
+			});
+			return cams;
+		}
+		this.getAnimationByName = function(animName) {
+			var anims = [];
+			animName.forEach(function (item, index) {
+			  anims[index] = self.animations[self.animationNames.indexOf(item)];
+			});
+		  return anims;
+		}
+
 		this.constructor = function(settings)
 		{
 			//console.log("vis.constructor()")
@@ -183,11 +203,17 @@ var rhvr =
 		        object.scale.set(scale, scale, scale);
 		        object.position.y = 0;
 		        object.position.x = 0;
-		        object.castShadow = true;
+		        object.castShadow = true;	
 				object.receiveShadow = true;
 				self.animations=self.gltf.animations;
 				self.mixer =  new THREE.AnimationMixer(object)
-				self.updateAnimation();	
+				for(i = 0;i<self.gltf.animations.length;i++){
+					self.animationNames[i] = self.animations[i].name;
+				}
+				for(i = 0;i<self.gltf.cameras.length;i++){
+					self.cameraNames[i] = self.gltf.cameras[i].name;
+				}
+				// self.updateAnimation();	
 				
 		        // updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
 		        					//ale mozno netreba updatovat, kedze to je este len init a update sa bude riesit
@@ -315,9 +341,7 @@ var rhvr =
 			// 	console.log( 'An error happened' );
 		
 			// }
-			);
-
-			
+			);			
 			//mixer = new THREE.AnimationMixer(mesh); //tuna si vytvorime mixer
 			
 		}
