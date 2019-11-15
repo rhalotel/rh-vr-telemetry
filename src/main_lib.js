@@ -19,11 +19,14 @@ let engine = new rhvr.Core();
 engine.init();
 
 // var vehicleSpeed;
-let truckURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced.gltf';
+let truckURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_01.gltf';
 let wheelVis = new rhvr.Visualisation(["container",0,truckURL,specModel]);
 console.log("tototootototo"+wheelVis);
 wheelVis.init();
-
+//Proste sa zadefinuje dalsi objekt a automaticky sa to spusta do dalsieho divka
+// let energyURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/energy/house.gltf';
+// let energyVis = new rhvr.Visualisation(["container",0,energyURL,specModel]);
+// energyVis.init();
 TestDataProvider = function (params) {
    var self =this;
    this.init = function (params) {

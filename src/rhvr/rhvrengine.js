@@ -207,13 +207,13 @@ var rhvr =
 				object.receiveShadow = true;
 				self.animations=self.gltf.animations;
 				self.mixer =  new THREE.AnimationMixer(object)
-				for(i = 0;i<self.gltf.animations.length;i++){
-					self.animationNames[i] = self.animations[i].name;
-				}
-				for(i = 0;i<self.gltf.cameras.length;i++){
-					self.cameraNames[i] = self.gltf.cameras[i].name;
-				}
-				// self.updateAnimation();	
+				// for(i = 0;i<self.gltf.animations.length;i++){
+				// 	self.animationNames[i] = self.animations[i].name;
+				// }
+				// for(i = 0;i<self.gltf.cameras.length;i++){
+				// 	self.cameraNames[i] = self.gltf.cameras[i].name;
+				// }
+				// // self.updateAnimation();	
 				
 		        // updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
 		        					//ale mozno netreba updatovat, kedze to je este len init a update sa bude riesit
