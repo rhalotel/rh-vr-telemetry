@@ -15,12 +15,12 @@
                 {
                     "color" : [
                         1,
-                        0.9760869741439819,
-                        0.7586406469345093
+                        0.9911018013954163,
+                        0.7379107475280762
                     ],
-                    "intensity" : 400,
+                    "intensity" : 1000,
                     "type" : "point",
-                    "name" : "Point.002"
+                    "name" : "Sun"
                 },
                 {
                     "color" : [
@@ -30,7 +30,7 @@
                     ],
                     "intensity" : 10,
                     "type" : "point",
-                    "name" : "Point.004"
+                    "name" : "BackLight_left"
                 },
                 {
                     "color" : [
@@ -40,7 +40,7 @@
                     ],
                     "intensity" : 10,
                     "type" : "point",
-                    "name" : "Point.007"
+                    "name" : "BackLight_left2"
                 },
                 {
                     "color" : [
@@ -50,7 +50,7 @@
                     ],
                     "intensity" : 10,
                     "type" : "point",
-                    "name" : "Point.012"
+                    "name" : "BackLight_right2"
                 },
                 {
                     "color" : [
@@ -60,7 +60,7 @@
                     ],
                     "intensity" : 10,
                     "type" : "point",
-                    "name" : "Point.011"
+                    "name" : "BackLight_right"
                 },
                 {
                     "color" : [
@@ -70,7 +70,7 @@
                     ],
                     "intensity" : 10,
                     "type" : "point",
-                    "name" : "Point.001"
+                    "name" : "FrontLight_right"
                 },
                 {
                     "color" : [
@@ -80,7 +80,7 @@
                     ],
                     "intensity" : 10,
                     "type" : "point",
-                    "name" : "Point"
+                    "name" : "FrontLight_left"
                 }
             ]
         }
@@ -378,7 +378,7 @@
                     "light" : 0
                 }
             },
-            "name" : "Point_Orientation",
+            "name" : "Sun_Orientation",
             "rotation" : [
                 -0.7071067690849304,
                 0,
@@ -390,11 +390,11 @@
             "children" : [
                 21
             ],
-            "name" : "Point",
+            "name" : "Sun",
             "translation" : [
-                10.517879486083984,
-                12.618917465209961,
-                5.258181095123291
+                8.00989818572998,
+                10,
+                6.090754508972168
             ]
         },
         {
