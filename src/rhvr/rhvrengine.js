@@ -123,21 +123,22 @@ var rhvr =
 	
 	Visualisation: function(settings)
 	{
-		let self = this;
-		let manager;
-		let loader;
-		let gltf;
-		let scene;
-		let mixer = null;
+		var self = this;
+		var manager;
+		var loader;
+		var gltf;
+		var scene;
+		var mixer = null;
 		var settings;
-		let animations;
-		let controls;
-		let renderer;
-		let camera;
+		var animations;
+		var controls;
+		var renderer;
+		var camera;
 		var animationNames;
 		var cameraNames;
 		var object3DNames;
 		var initSuccess;
+		var clock;
 		// var settings = {
 		// 	htmlEl: "",
 		// 	specModel: null,
@@ -214,9 +215,10 @@ var rhvr =
 			self.loader.setCrossOrigin('anonymous'); // r84 以降は明示的に setCrossOrigin() を指定する必要がある
 
 			let scale = 5.0;
-			var url = self.settings[2];
+			var url = self.settings.gltfModel;
 		
 			self.loader.load(url, function (data) {
+				self.clock = new THREE.Clock();
 				console.log("URL inside loader.load() in library RHVR:"+url);
 				self.gltf = data;
 		        object = self.gltf.scene;
@@ -249,7 +251,7 @@ var rhvr =
 				
 				var fnrender  =  function() {
 				   requestAnimationFrame(fnrender);
-				    if (self.mixer) self.mixer.update(clock.getDelta());
+				    if (self.mixer) self.mixer.update(self.clock.getDelta());
 				    self.controls.update();
 				    self.renderer.render(self.scene, self.camera);
 				    requestAnimFrame();
@@ -348,11 +350,11 @@ var rhvr =
 			
 			    self.renderer.setSize(width, height);
 			    self.renderer.gammaOutput = true;
-			    document.getElementById("container").appendChild(self.renderer.domElement);
+			    $(settings.container).append(self.renderer.domElement);
 
 
 				requestAnimationFrame(fnrender);
-				self.settings[3].init(self);
+				self.settings.specModel.init(self);
 				self.initSuccess = true;
 			}
 			// function ( xhr ) {
@@ -372,7 +374,7 @@ var rhvr =
 		}
 		this.update = function(d)
 		{
-			var spec =   self.settings[3]; /// specifikovat strukturu specModel
+			var spec = self.settings.specModel; /// specifikovat strukturu specModel
 			if (self.initSuccess) {spec.update(d,self);}
 			// spec.table.forEach(function(specItem) 
 			// {
