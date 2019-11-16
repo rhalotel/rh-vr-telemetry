@@ -20,7 +20,7 @@ engine.init();
 // var vehicleSpeed;
 var options = { 
 	container:'#container', 
-	gltfModel:'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_01.gltf', 
+	gltfModel:'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_02.gltf', 
 	specModel:specModel,
 };
 let wheelVis = new rhvr.Visualisation(options);
