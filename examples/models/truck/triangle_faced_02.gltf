@@ -18,7 +18,7 @@
                         0.9911018013954163,
                         0.7379107475280762
                     ],
-                    "intensity" : 2,
+                    "intensity" : 1,
                     "type" : "point",
                     "name" : "Sun"
                 },
@@ -28,7 +28,7 @@
                         0.0007779792649671435,
                         0
                     ],
-                    "intensity" : 1,
+                    "intensity" : 0.20000000298023224,
                     "type" : "point",
                     "name" : "BackLight_left"
                 },
@@ -38,7 +38,7 @@
                         0.0007779792649671435,
                         0
                     ],
-                    "intensity" : 1,
+                    "intensity" : 0.20000000298023224,
                     "type" : "point",
                     "name" : "BackLight_left2"
                 },
@@ -48,7 +48,7 @@
                         0.0007779792649671435,
                         0
                     ],
-                    "intensity" : 1,
+                    "intensity" : 0.20000000298023224,
                     "type" : "point",
                     "name" : "BackLight_right2"
                 },
@@ -58,7 +58,7 @@
                         0.0007779792649671435,
                         0
                     ],
-                    "intensity" : 1,
+                    "intensity" : 0.20000000298023224,
                     "type" : "point",
                     "name" : "BackLight_right"
                 },
