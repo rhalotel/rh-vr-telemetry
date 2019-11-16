@@ -61,11 +61,13 @@ let specModel = {
         {/* *START* Tank fuel level based on json data   */
             tankAnimNames = ["Fuel01_Drain", "Fuel02_Drain"];
             tankAnims = visItem.getAnimationByName(tankAnimNames);
-            totalFuel = json.fuelConsumption.TotalFuel * 0.001;
-            maxFuel = 600;
-            // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-            percentAnim = 100-(100/maxFuel)*totalFuel;
-            visItem.jumpToAnimationPercent(tankAnims, percentAnim);
+            totalFuel = Number(json.fuelConsumption.TotalFuel * 0.001);
+            if (!isNaN(totalFuel)) {
+                maxFuel = 600;
+                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                percentAnim = 100-(100/maxFuel)*totalFuel;
+                visItem.jumpToAnimationPercent(tankAnims, percentAnim);
+            }
         }/* *END* Tank fuel level based on json data   */
 
 
