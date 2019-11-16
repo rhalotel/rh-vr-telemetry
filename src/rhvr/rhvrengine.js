@@ -134,8 +134,10 @@ var rhvr =
 		let controls;
 		let renderer;
 		let camera;
-		var animationNames = [];
-		var cameraNames = [];
+		var animationNames;
+		var cameraNames;
+		var object3DNames;
+		var initSuccess;
 		// var settings = {
 		// 	htmlEl: "",
 		// 	specModel: null,
@@ -143,18 +145,15 @@ var rhvr =
 		// 	sceneNewThree: null //odkaz na scenu do initu EDIT:uz nie
 		// }
 	 
-		this.updateTimeScale = function(animations, timeScale){
-			if (animations && animations.length) {
-				for (let i = 0; i < animations.length; i++) {
-					var animation = self.mixer.clipAction(animations[i]);
-					animation.timeScale = timeScale;
-  					animation.play();
+		this.updateTimeScale = function(anims, timeScale){
+			if (anims && anims.length) {
+				for (let i = 0; i < anims.length; i++) {
+					var thisAnim = self.mixer.clipAction(anims[i]);
+					thisAnim.timeScale = timeScale;
+  					thisAnim.play();
 				}
 			}
 		}
-		// this.getAnimationsByName = function(names) {
-
-		// }
 		this.getCameraByName = function(camName) {
 			var cams = [];
 			camName.forEach(function (item, index) {
@@ -170,6 +169,24 @@ var rhvr =
 			});
 		  return anims;
 		}
+		this.get3DObjectByName = function(object3D) {
+			var objects3D = [];
+			object3D.forEach(function (item, index) {
+			  objects3D[index] = self.gltf.scene.children[self.object3DNames.indexOf(item)];
+			});
+		  return objects3D;
+		}
+		this.jumpToAnimationPercent = function(anims, percent){
+			if (anims && anims.length) {
+				for (let i = 0; i < anims.length; i++) {
+					var jumpTime = (anims[i].duration/100)*percent;
+					var thisAnim = self.mixer.clipAction(anims[i]);
+					thisAnim.timeScale = 0;
+  					thisAnim.time = jumpTime;
+  					thisAnim.play();;
+				}
+			}
+		}
 
 		this.constructor = function(settings)
 		{
@@ -183,6 +200,9 @@ var rhvr =
 				this.constructor(settings);
 		this.init = function()
 		{
+			self.animationNames = [];
+			self.cameraNames = [];
+			self.object3DNames = [];
 			self.scene = new THREE.Scene();	
 			self.renderer = renderer = new THREE.WebGLRenderer();
 			self.manager = new THREE.LoadingManager();
@@ -207,12 +227,15 @@ var rhvr =
 				object.receiveShadow = true;
 				self.animations=self.gltf.animations;
 				self.mixer =  new THREE.AnimationMixer(object)
-				// for(i = 0;i<self.gltf.animations.length;i++){
-				// 	self.animationNames[i] = self.animations[i].name;
-				// }
-				// for(i = 0;i<self.gltf.cameras.length;i++){
-				// 	self.cameraNames[i] = self.gltf.cameras[i].name;
-				// }
+				for(i = 0;i<self.gltf.animations.length;i++){
+					self.animationNames[i] = self.animations[i].name;
+				}
+				for(i = 0;i<self.gltf.cameras.length;i++){
+					self.cameraNames[i] = self.gltf.cameras[i].name;
+				}
+				for(i = 0;i<self.gltf.scene.children.length;i++){
+					self.object3DNames[i] = self.gltf.scene.children[i].name;
+				}
 				// // self.updateAnimation();	
 				
 		        // updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
@@ -329,6 +352,8 @@ var rhvr =
 
 
 				requestAnimationFrame(fnrender);
+				self.settings[3].init(self);
+				self.initSuccess = true;
 			}
 			// function ( xhr ) {
 
@@ -347,10 +372,8 @@ var rhvr =
 		}
 		this.update = function(d)
 		{
-
-			
 			var spec =   self.settings[3]; /// specifikovat strukturu specModel
-			spec.Update(d,self.animations,self.mixer);
+			if (self.initSuccess) {spec.update(d,self);}
 			// spec.table.forEach(function(specItem) 
 			// {
 				
