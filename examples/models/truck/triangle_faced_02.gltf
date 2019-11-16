@@ -25,22 +25,12 @@
                 {
                     "color" : [
                         1,
-                        1,
-                        1
+                        0.9760869741439819,
+                        0.7586406469345093
                     ],
-                    "intensity" : 50,
+                    "intensity" : 10,
                     "type" : "point",
                     "name" : "Point.002"
-                },
-                {
-                    "color" : [
-                        1,
-                        0.0007779792649671435,
-                        0
-                    ],
-                    "intensity" : 5,
-                    "type" : "point",
-                    "name" : "Point.003"
                 },
                 {
                     "color" : [
@@ -81,16 +71,6 @@
                     "intensity" : 5,
                     "type" : "point",
                     "name" : "Point.011"
-                },
-                {
-                    "color" : [
-                        1,
-                        0.0007779792649671435,
-                        0
-                    ],
-                    "intensity" : 1,
-                    "type" : "point",
-                    "name" : "Point.008"
                 },
                 {
                     "color" : [
@@ -147,9 +127,7 @@
                 30,
                 32,
                 34,
-                36,
-                38,
-                40
+                36
             ]
         }
     ],
@@ -456,46 +434,15 @@
             ],
             "name" : "Point",
             "translation" : [
-                5.149724960327148,
-                8.788346290588379,
-                3.630966901779175
+                -10,
+                25,
+                -25
             ]
         },
         {
             "extensions" : {
                 "KHR_lights_punctual" : {
                     "light" : 2
-                }
-            },
-            "name" : "Point.001_Orientation",
-            "rotation" : [
-                -0.7071067690849304,
-                0,
-                0,
-                0.7071067690849304
-            ]
-        },
-        {
-            "children" : [
-                25
-            ],
-            "name" : "Point.001",
-            "rotation" : [
-                0.7071067690849304,
-                0,
-                0,
-                0.7071067690849304
-            ],
-            "translation" : [
-                0.720635175704956,
-                0.41925814747810364,
-                -4.713566780090332
-            ]
-        },
-        {
-            "extensions" : {
-                "KHR_lights_punctual" : {
-                    "light" : 3
                 }
             },
             "name" : "Point.002_Orientation",
@@ -508,7 +455,7 @@
         },
         {
             "children" : [
-                27
+                25
             ],
             "name" : "Point.002",
             "rotation" : [
@@ -520,13 +467,13 @@
             "translation" : [
                 0.6015312075614929,
                 0.41925814747810364,
-                -4.713566780090332
+                -4.776536464691162
             ]
         },
         {
             "extensions" : {
                 "KHR_lights_punctual" : {
-                    "light" : 4
+                    "light" : 3
                 }
             },
             "name" : "Point.005_Orientation",
@@ -539,7 +486,7 @@
         },
         {
             "children" : [
-                29
+                27
             ],
             "name" : "Point.005",
             "rotation" : [
@@ -551,13 +498,13 @@
             "translation" : [
                 0.47248852252960205,
                 0.41925814747810364,
-                -4.713566780090332
+                -4.776536464691162
             ]
         },
         {
             "extensions" : {
                 "KHR_lights_punctual" : {
-                    "light" : 5
+                    "light" : 4
                 }
             },
             "name" : "Point.010_Orientation",
@@ -570,7 +517,7 @@
         },
         {
             "children" : [
-                31
+                29
             ],
             "name" : "Point.010",
             "rotation" : [
@@ -582,13 +529,13 @@
             "translation" : [
                 -0.472090482711792,
                 0.41925814747810364,
-                -4.713566780090332
+                -4.776536464691162
             ]
         },
         {
             "extensions" : {
                 "KHR_lights_punctual" : {
-                    "light" : 6
+                    "light" : 5
                 }
             },
             "name" : "Point.009_Orientation",
@@ -601,7 +548,7 @@
         },
         {
             "children" : [
-                33
+                31
             ],
             "name" : "Point.009",
             "rotation" : [
@@ -613,44 +560,13 @@
             "translation" : [
                 -0.5911944508552551,
                 0.41925814747810364,
-                -4.713566780090332
+                -4.776536464691162
             ]
         },
         {
             "extensions" : {
                 "KHR_lights_punctual" : {
-                    "light" : 7
-                }
-            },
-            "name" : "Point.006_Orientation",
-            "rotation" : [
-                -0.7071067690849304,
-                0,
-                0,
-                0.7071067690849304
-            ]
-        },
-        {
-            "children" : [
-                35
-            ],
-            "name" : "Point.006",
-            "rotation" : [
-                0.7071067690849304,
-                0,
-                0,
-                0.7071067690849304
-            ],
-            "translation" : [
-                -0.720237135887146,
-                0.41925814747810364,
-                -4.713566780090332
-            ]
-        },
-        {
-            "extensions" : {
-                "KHR_lights_punctual" : {
-                    "light" : 8
+                    "light" : 6
                 }
             },
             "name" : "Truck_light_left_low_Orientation",
@@ -663,7 +579,7 @@
         },
         {
             "children" : [
-                37
+                33
             ],
             "name" : "Truck_light_left_low",
             "translation" : [
@@ -675,7 +591,7 @@
         {
             "extensions" : {
                 "KHR_lights_punctual" : {
-                    "light" : 9
+                    "light" : 7
                 }
             },
             "name" : "Truck_light_right_low_Orientation",
@@ -688,7 +604,7 @@
         },
         {
             "children" : [
-                39
+                35
             ],
             "name" : "Truck_light_right_low",
             "translation" : [
