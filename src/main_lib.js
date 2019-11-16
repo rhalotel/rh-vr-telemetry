@@ -6,7 +6,6 @@
 
 // let gltf = null;
 // let mixer = null;
-let clock = new THREE.Clock();
 // let scene = new THREE.Scene();
 // let scene = new THREE.Scene()
 // let renderer;
@@ -19,9 +18,13 @@ let engine = new rhvr.Core();
 engine.init();
 
 // var vehicleSpeed;
-let truckURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_01.gltf';
-let wheelVis = new rhvr.Visualisation(["container",0,truckURL,specModel]);
-console.log("tototootototo"+wheelVis);
+var options = { 
+	container:'#container', 
+	gltfModel:'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_01.gltf', 
+	specModel:specModel,
+};
+let wheelVis = new rhvr.Visualisation(options);
+//console.log("tototootototo"+wheelVis);
 wheelVis.init();
 //Proste sa zadefinuje dalsi objekt a automaticky sa to spusta do dalsieho divka
 // let energyURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/energy/house.gltf';
