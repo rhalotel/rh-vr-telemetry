@@ -194,6 +194,8 @@ var rhvr = {
                     }
                     for (i = 0; i < self.gltf.cameras.length; i++) {
                         self.cameraNames[i] = self.gltf.cameras[i].name;
+                        self.gltf.cameras[i].aspect = $(settings.container).width()/$(settings.container).height();
+                        self.gltf.cameras[i].fov = 60;
                     }
                     for (i = 0; i < self.gltf.scene.children.length; i++) {
                         self.object3DNames[i] = self.gltf.scene.children[i].name;
@@ -266,8 +268,8 @@ var rhvr = {
                     	self.isStats = false;
                     }
 
-                    width = window.innerWidth - 200;
-                    height = window.innerHeight - 200;
+                    width = $(settings.container).width();
+                    height = $(settings.container).height();
 
                     let ambient = new THREE.AmbientLight(0x101030);
                     self.scene.add(ambient);
@@ -277,7 +279,7 @@ var rhvr = {
                     // light.castShadow = true;
                     // self.scene.add(light);
 
-                    self.camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 10000);
+                    self.camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 	10000);
                     //camera.position.set(1, 5, 30);
                     self.camera.position.set(40, 10, 30);
 
@@ -295,16 +297,16 @@ var rhvr = {
 
                     /* RESIZE WINDOW */
                     window.addEventListener('resize', function() { // resize
-                        var WIDTH = window.innerWidth,
-                            HEIGHT = window.innerHeight;
+                        var WIDTH = $(settings.container).width(),
+                            HEIGHT = $(settings.container).height();
                         self.renderer.setSize(WIDTH, HEIGHT);
                         self.camera.aspect = WIDTH / HEIGHT;
                         self.camera.updateProjectionMatrix();
                     });
 
                     /* AXES HELPER */
-                    let axis = new THREE.AxesHelper(1000);
-                    self.scene.add(axis);
+                    // let axis = new THREE.AxesHelper(1000);
+                    // self.scene.add(axis);
 
 
                     //renderer.setClearColor( 0xbfe4ff );
@@ -328,8 +330,8 @@ var rhvr = {
 
 
                     requestAnimationFrame(fnrender);
-                    self.settings.specModel.init(self);
                     self.initSuccess = true;
+                    self.settings.specModel.init(self);
                 }
 
                 // function ( xhr ) {
