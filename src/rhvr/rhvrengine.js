@@ -99,6 +99,7 @@ var rhvr = {
         var initSuccess;
         var clock;
         var stats;
+        var isStats;
         // var settings = {
         // 	htmlEl: "",
         // 	specModel: null,
@@ -160,6 +161,7 @@ var rhvr = {
         this.constructor(settings);
 
         this.init = function() {
+        	self.isStats = false;
             self.animationNames = [];
             self.cameraNames = [];
             self.object3DNames = [];
@@ -208,12 +210,12 @@ var rhvr = {
                     self.scene.add(object);
 
                     var fnrender = function() {
-                        self.stats.begin();
+                    	if (self.isStats) self.stats.begin();
                         if (self.mixer) self.mixer.update(self.clock.getDelta());
                         self.controls.update();
                         self.renderer.render(self.scene, self.camera);
-                        self.stats.end();
-                        
+                        if (self.isStats) self.stats.end();
+
                         requestAnimationFrame(fnrender);
                     }
 
@@ -249,12 +251,20 @@ var rhvr = {
 					//   }
 					// }
 
-                    self.stats = new Stats();
-                    self.stats.setMode(0);
-                    self.stats.domElement.style.position = 'absolute';
-                    self.stats.domElement.style.right = '0';
-                    self.stats.domElement.style.top = '0';
-                    $(settings.container).append(self.stats.domElement);
+                    try	{
+                    	self.stats = new Stats();
+	                    self.stats.setMode(0);
+	                    self.stats.domElement.style.position = 'absolute';
+	                    self.stats.domElement.style.left = null;
+	                    self.stats.domElement.style.right = '0';
+	                    self.stats.domElement.style.top = '0';
+	                    $(settings.container).append(self.stats.domElement);
+	                    self.isStats = true;
+                    }
+                    catch(e) {
+                    	console.error('Stats library not found. Please include Stats library for FPS counter.\n'+e);
+                    	self.isStats = false;
+                    }
 
                     width = window.innerWidth - 200;
                     height = window.innerHeight - 200;
@@ -262,10 +272,10 @@ var rhvr = {
                     let ambient = new THREE.AmbientLight(0x101030);
                     self.scene.add(ambient);
 
-                    const light = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 8);
-                    light.position.set(10, 25, 25);
-                    light.castShadow = true;
-                    self.scene.add(light);
+                    // const light = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 8);
+                    // light.position.set(10, 25, 25);
+                    // light.castShadow = true;
+                    // self.scene.add(light);
 
                     self.camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 10000);
                     //camera.position.set(1, 5, 30);
@@ -338,9 +348,7 @@ var rhvr = {
         }
         this.update = function(d) {
             var spec = self.settings.specModel; /// specifikovat strukturu specModel
-            if (self.initSuccess) {
-                spec.update(d, self);
-            }
+            if (self.initSuccess) spec.update(d, self);
             // spec.table.forEach(function(specItem) 
             // {
             // 	/*
