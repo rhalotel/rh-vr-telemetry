@@ -95,19 +95,8 @@ let specModel = {
     },
     init : function(visItem){
         {/* *START* Set opacity of fuel tanks to 0.5   */
-            // tankNames = ["Truck_Fueltank01", "Truck_Fueltank02"];
-            // wheelNames = ["WheelBackMiddle", "WheelFrontMiddle", "WheelFrontTop", "WheelBackTop"];
-            // tankObjects = visItem.get3DObjectByName(tankNames);
-            // tankObjects.forEach(function (item, index) {
-            //   item.material.transparent = true;
-            //   item.material.opacity = 0.5;
-            // });
-            // wheelObjects = visItem.get3DObjectByName(wheelNames);
-            // wheelObjects.forEach(function (item, index) {
-            //   item.children[0].material.transparent = true;
-            //   item.children[0].material.opacity = 0.5;
-            // });
-
+            opacityNames = ["Truck_Fueltank01", "Truck_Fueltank02", "WheelBackMiddleMaterial_1", "WheelFrontMiddleMaterial_2", "WheelFrontTopMaterial_2", "WheelBackTopMaterial_1"];
+            visItem.opacityObjects = visItem.get3DObjectByName(opacityNames);
         }/* *END* Set opacity of fuel tanks to 0.5   */
     },
 };
