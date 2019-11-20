@@ -36,7 +36,13 @@ TestDataProvider = function (params) {
         setInterval(function (params) {
             let e = {
                 type: "recdata",
-                arg: jQuery.parseJSON( getJson() )
+                //arg: jQuery.parseJSON( getJson() )
+                arg: jQuery.parseJSON(getJSONGit = function(){
+                    $.getJSON("https://github.com/rhalotel/rh-vr-telemetry/blob/master/examples/vis/truck01/example.json", function(results) {
+                        return results;
+                    });
+                    
+                } )
             };
 
             self.dispatch("recdata",e);
