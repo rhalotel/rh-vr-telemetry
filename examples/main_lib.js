@@ -38,7 +38,7 @@ TestDataProvider = function (params) {
                 type: "recdata",
                 //arg: jQuery.parseJSON( getJson() )
                 arg: jQuery.parseJSON(
-                    $.getJSON("https://github.com/rhalotel/rh-vr-telemetry/blob/master/examples/vis/truck01/example.json", function(results) {
+                    $.getJSON("https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/example.json", function(results) {
                         return results;
                     })
                     
