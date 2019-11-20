@@ -18,10 +18,10 @@ let engine = new rhvr.Core();
 engine.init();
 
 // var vehicleSpeed;
-var options = { 
-	container:'#container', 
-	gltfModel:'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_with_brakes.gltf', 
-	specModel:specModel,
+var options = {
+    container: '#container',
+    gltfModel: 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_with_brakes.gltf',
+    specModel: specModel,
 };
 let wheelVis = new rhvr.Visualisation(options);
 //console.log("tototootototo"+wheelVis);
@@ -31,28 +31,25 @@ wheelVis.init();
 // let energyVis = new rhvr.Visualisation(["container",0,energyURL,specModel]);
 // energyVis.init();
 TestDataProvider = function (params) {
-   var self =this;
-   this.init = function (params) {
+    var self = this;
+    this.init = function (params) {
         setInterval(function (params) {
             let e = {
                 type: "recdata",
                 //arg: jQuery.parseJSON( getJson() )
-                arg: jQuery.parseJSON(
-                    $.getJSON("https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/example.json", function(results) {
-                        return results;
-                    })
-                    
-                 )
+                arg: $.getJSON("https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/example.json", function (results) {
+                    return results;
+                }).responseJSON
             };
 
-            self.dispatch("recdata",e);
-        },1000)
+            self.dispatch("recdata", e);
+        }, 1000)
     }
     this.init();
 }
 
 //
-provider= new TestDataProvider()
+provider = new TestDataProvider()
 EventDispatcherCreate(provider);
 
 engine.setDataProvider(provider)
@@ -70,7 +67,7 @@ engine.setDataProvider(provider)
 
 
 function getJson() {
-  return `{
+    return `{
       "fuelConsumption": {
           "notUsed": 4294967295,
           "TotalFuel": 96939 
