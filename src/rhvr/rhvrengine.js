@@ -100,6 +100,9 @@ var rhvr = {
         var clock;
         var stats;
         var isStats;
+        var mouse;
+        var INTERSECTED;
+        var raycaster;
         // var settings = {
         // 	htmlEl: "",
         // 	specModel: null,
@@ -161,6 +164,8 @@ var rhvr = {
         this.constructor(settings);
 
         this.init = function() {
+            self.mouse = new THREE.Vector2();
+            self.raycaster = new THREE.Raycaster();
         	self.isStats = false;
             self.animationNames = [];
             self.cameraNames = [];
@@ -216,6 +221,11 @@ var rhvr = {
                         if (self.mixer) self.mixer.update(self.clock.getDelta());
                         self.controls.update();
                         self.renderer.render(self.scene, self.camera);
+                        self.raycaster.setFromCamera( self.mouse, self.camera );
+                        
+                        // intrsect opacity
+                        self.intersectOpacity();
+
                         if (self.isStats) self.stats.end();
 
                         requestAnimationFrame(fnrender);
@@ -296,13 +306,11 @@ var rhvr = {
                     self.scene.add(ground);
 
                     /* RESIZE WINDOW */
-                    window.addEventListener('resize', function() { // resize
-                        var WIDTH = $(settings.container).width(),
-                            HEIGHT = $(settings.container).height();
-                        self.renderer.setSize(WIDTH, HEIGHT);
-                        self.camera.aspect = WIDTH / HEIGHT;
-                        self.camera.updateProjectionMatrix();
-                    });
+                    window.addEventListener( 'resize', self.onWindowResize, false );
+
+                    /* MOUSE MOVE EVENT  */
+                    document.addEventListener( 'mousemove', self.onDocumentMouseMove, false );
+
 
                     /* AXES HELPER */
                     // let axis = new THREE.AxesHelper(1000);
@@ -312,6 +320,7 @@ var rhvr = {
                     //renderer.setClearColor( 0xbfe4ff );
                     self.renderer.setClearColor(0xbfe4ff);
                     self.renderer.shadowMap.enabled = true;
+                    self.renderer.setPixelRatio( window.devicePixelRatio );
 
 
                     /* ORBIT CONTROLS */
@@ -347,6 +356,44 @@ var rhvr = {
                 // }
             );
             //mixer = new THREE.AnimationMixer(mesh); //tuna si vytvorime mixer
+        }
+        this.intersectOpacity = function(){
+            testNames = ["Truck_Fueltank01", "Truck_Fueltank02", "WheelBackMiddle", "WheelFrontMiddle", "WheelFrontTop", "WheelBackTop"];
+            var intersects = self.raycaster.intersectObjects( self.get3DObjectByName(testNames) );
+            if ( intersects.length > 0 ) {
+                if ( self.INTERSECTED != intersects[ 0 ].object ) {
+                    if ( self.INTERSECTED ) self.INTERSECTED.material.opacity = 1;
+                    self.INTERSECTED = intersects[ 0 ].object;
+                    // if (self.INTERSECTED.material.transparent) {
+                        
+                    // }
+                    self.INTERSECTED.material.transparent = true;
+                    self.INTERSECTED.material.opacity = 0.5;
+                    if (self.INTERSECTED.children.length>0) {
+                        self.INTERSECTED.children.forEach(function(item,index){
+                            item.material.transparent = true;
+                            item.material.opacity = 0.5;
+                        });
+                    }
+                }
+            } else {
+                if ( self.INTERSECTED ) self.INTERSECTED.material.opacity = 1;
+                self.INTERSECTED = null;
+            }
+        }
+        this.onDocumentMouseMove = function ( event ) {
+            event.preventDefault();
+            var rect = $(self.settings.container).get(0).getBoundingClientRect();
+            // console.log(rect.top, rect.right, rect.bottom, rect.left);
+            self.mouse.x = (Number(event.clientX+rect.left)/window.width)*2 -1;//( event.clientX / window.width ) * 2 - rect.left;
+            self.mouse.y = -(Number(event.clientY-rect.top)/window.height)*2 +1;//( event.clientY / window.height ) * 2 + rect.top;
+        }
+        this.onWindowResize = function() {
+            var WIDTH = $(self.settings.container).width(),
+                HEIGHT = $(self.settings.container).height();
+            self.camera.aspect = WIDTH / HEIGHT;
+            self.camera.updateProjectionMatrix();
+            self.renderer.setSize(WIDTH, HEIGHT);
         }
         this.update = function(d) {
             var spec = self.settings.specModel; /// specifikovat strukturu specModel

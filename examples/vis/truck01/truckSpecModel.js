@@ -70,6 +70,21 @@ let specModel = {
             }
         }/* *END* Tank fuel level based on json data   */
 
+        {/* *START* Brake pedal position based on json data   */
+            brakeNames = ["FrontBrake_0", "FrontBrake_1", "MiddleBrake_0", "MiddleBrake_1"];
+            brakes = visItem.get3DObjectByName(brakeNames);
+            brakePosition = Number(json.electronicBreak.breakPedalPosition * 0.4);
+            if (!isNaN(brakePosition)) {
+                if (brakePosition<10) color = 0x6DE02A;
+                else if (brakePosition < 20) color = 0xF2EA00;
+                else if (brakePosition < 30) color = 0xEF632F;
+                else color = 0xFF2020;
+                brakes.forEach(function (item, index) {
+                  item.material.color.setHex( color );
+                });
+            }
+        }/* *END* Brake pedal position based on json data   */
+
 
         // speedWheel = ((1/(2*pi*r))*(speedFromData*kmph2mps))*60/sw2rpm;
         // for (var i = 0; i < animations.length; i++) {
@@ -79,17 +94,20 @@ let specModel = {
         // }
     },
     init : function(visItem){
-
-
         {/* *START* Set opacity of fuel tanks to 0.5   */
-            tankNames = ["Truck_Fueltank01", "Truck_Fueltank02"];
-            objects3D = visItem.get3DObjectByName(tankNames);
-            objects3D.forEach(function (item, index) {
-              item.material.transparent = true;
-              item.material.opacity = 0.5;
-            });
+            // tankNames = ["Truck_Fueltank01", "Truck_Fueltank02"];
+            // wheelNames = ["WheelBackMiddle", "WheelFrontMiddle", "WheelFrontTop", "WheelBackTop"];
+            // tankObjects = visItem.get3DObjectByName(tankNames);
+            // tankObjects.forEach(function (item, index) {
+            //   item.material.transparent = true;
+            //   item.material.opacity = 0.5;
+            // });
+            // wheelObjects = visItem.get3DObjectByName(wheelNames);
+            // wheelObjects.forEach(function (item, index) {
+            //   item.children[0].material.transparent = true;
+            //   item.children[0].material.opacity = 0.5;
+            // });
+
         }/* *END* Set opacity of fuel tanks to 0.5   */
-
-
     },
 };

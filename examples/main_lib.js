@@ -20,7 +20,7 @@ engine.init();
 // var vehicleSpeed;
 var options = { 
 	container:'#container', 
-	gltfModel:'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_02.gltf', 
+	gltfModel:'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_with_brakes.gltf', 
 	specModel:specModel,
 };
 let wheelVis = new rhvr.Visualisation(options);
@@ -156,7 +156,7 @@ function getJson() {
       },
       "electronicBreak": {
           "notUsed": 0,
-          "breakPedalPosition": 0,
+          "breakPedalPosition": 200,
           "notUsed1": {
               "FixedElementField": 243
           }
