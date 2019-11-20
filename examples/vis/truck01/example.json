@@ -1,17 +1,17 @@
 {
 	"fuelConsumption": {
 		"notUsed": 4294967295,
-		"TotalFuel": 96939 
+		"TotalFuel": 969390 
 	},
-	"dashDisplay": {
-		"notUsed0": 255,
-		"fuelLevel1": 300,
-		"notUsed": {
-			"FixedElementField": 255
-		},
-		"fuelLevel2": 255,
-		"notUsed8": 255
-	},
+  "dashDisplay": {
+    "notUsed0": 255,
+    "fuelLevel1": 149,
+    "notUsed": {
+      "FixedElementField": 255
+    },
+    "fuelLevel2": 255,
+    "notUsed8": 255
+  },
 	"eecTorqueSpeed": {
 		"notUsed": {
 			"FixedElementField": 242
