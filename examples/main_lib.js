@@ -34,13 +34,16 @@ TestDataProvider = function (params) {
     var self = this;
     this.init = function (params) {
         setInterval(function (params) {
-            let e = {
-                type: "recdata",
-                //arg: jQuery.parseJSON( getJson() )
-                arg: getJSON("https://github.com/rhalotel/rh-vr-telemetry/blob/master/examples/vis/truck01/example.json")
-            };
-
-            self.dispatch("recdata", e);
+            $.getJSON("https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/example.json", function(resultJSON) {
+                let e = {
+                    type: "recdata",
+                    //arg: jQuery.parseJSON( getJson() )
+                    arg: resultJSON
+                };
+    
+                self.dispatch("recdata", e);
+            });
+            
         }, 1000)
     }
     this.init();
@@ -51,17 +54,6 @@ provider = new TestDataProvider()
 EventDispatcherCreate(provider);
 
 engine.setDataProvider(provider)
-
-
-
-function getJSON(url) {
-    let json;
-    $.getJSON(url, function (results) {
-        json = results;
-    })
-    return json;
-}
-
 
 // updateAnimation()
 /*
