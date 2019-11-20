@@ -95,7 +95,6 @@ var rhvr = {
         var camera;
         var animationNames;
         var cameraNames;
-        var object3DNames;
         var initSuccess;
         var clock;
         var stats;
@@ -103,6 +102,7 @@ var rhvr = {
         var mouse;
         var INTERSECTED;
         var raycaster;
+        var opacityObjects;
         // var settings = {
         // 	htmlEl: "",
         // 	specModel: null,
@@ -137,7 +137,7 @@ var rhvr = {
         this.get3DObjectByName = function(object3D) {
             var objects3D = [];
             object3D.forEach(function(item, index) {
-                objects3D[index] = self.gltf.scene.children[self.object3DNames.indexOf(item)];
+                objects3D[index] = self.scene.getObjectByName(item);
             });
             return objects3D;
         }
@@ -156,7 +156,7 @@ var rhvr = {
         this.constructor = function(settings) {
             //console.log("vis.constructor()")
             self.settings = settings;
-            console.log("settings:" + settings + "this.settings:" + this.settings)
+            // console.log("settings:" + settings + "this.settings:" + this.settings)
             rhvr.Core.instance.addsVis(self);
             // this.settings.scene3d=settings[2];
         }
@@ -170,6 +170,7 @@ var rhvr = {
             self.animationNames = [];
             self.cameraNames = [];
             self.object3DNames = [];
+            self.opacityObjects = [];
             self.scene = new THREE.Scene();
             self.renderer = renderer = new THREE.WebGLRenderer();
             self.manager = new THREE.LoadingManager();
@@ -202,9 +203,6 @@ var rhvr = {
                         self.gltf.cameras[i].aspect = $(settings.container).width()/$(settings.container).height();
                         self.gltf.cameras[i].fov = 60;
                     }
-                    for (i = 0; i < self.gltf.scene.children.length; i++) {
-                        self.object3DNames[i] = self.gltf.scene.children[i].name;
-                    }
                     // // self.updateAnimation();	
 
                     // updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
@@ -223,7 +221,7 @@ var rhvr = {
                         self.renderer.render(self.scene, self.camera);
                         self.raycaster.setFromCamera( self.mouse, self.camera );
                         
-                        // intrsect opacity
+                        // intersect opacity
                         self.intersectOpacity();
 
                         if (self.isStats) self.stats.end();
@@ -358,26 +356,31 @@ var rhvr = {
             //mixer = new THREE.AnimationMixer(mesh); //tuna si vytvorime mixer
         }
         this.intersectOpacity = function(){
-            testNames = ["Truck_Fueltank01", "Truck_Fueltank02", "WheelBackMiddle", "WheelFrontMiddle", "WheelFrontTop", "WheelBackTop"];
-            var intersects = self.raycaster.intersectObjects( self.get3DObjectByName(testNames) );
-            if ( intersects.length > 0 ) {
-                if ( self.INTERSECTED != intersects[ 0 ].object ) {
+            var opacityIntersect = self.raycaster.intersectObjects( self.opacityObjects , true);
+            if ( opacityIntersect.length > 0 ) {
+                if ( self.INTERSECTED != opacityIntersect[ 0 ].object ) {
                     if ( self.INTERSECTED ) self.INTERSECTED.material.opacity = 1;
-                    self.INTERSECTED = intersects[ 0 ].object;
+                    if ( self.INTERSECTED ) self.INTERSECTED.material.transparent = false;
+                    self.INTERSECTED = opacityIntersect[ 0 ].object;
                     // if (self.INTERSECTED.material.transparent) {
                         
                     // }
-                    self.INTERSECTED.material.transparent = true;
-                    self.INTERSECTED.material.opacity = 0.5;
-                    if (self.INTERSECTED.children.length>0) {
-                        self.INTERSECTED.children.forEach(function(item,index){
-                            item.material.transparent = true;
-                            item.material.opacity = 0.5;
-                        });
+                    if (self.INTERSECTED.material!=undefined) {
+                        self.INTERSECTED.material.transparent = true;
+                        self.INTERSECTED.material.opacity = 0.5;
                     }
+                    // if (self.INTERSECTED.type == "Group") {
+                    //     self.INTERSECTED.children.forEach(function(item,index){
+                    //         if (item.material!=undefined) {
+                    //             item.material.transparent = true;
+                    //             item.material.opacity = 0.5;
+                    //         }
+                    //     });
+                    // }
                 }
             } else {
                 if ( self.INTERSECTED ) self.INTERSECTED.material.opacity = 1;
+                if ( self.INTERSECTED ) self.INTERSECTED.material.transparent = false;
                 self.INTERSECTED = null;
             }
         }
