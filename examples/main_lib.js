@@ -33,21 +33,21 @@ wheelVis.init();
 TestDataProvider = function (params) {
    var self =this;
    this.init = function (params) {
-     setInterval(function (params) {
-       let e = {
-         type: "recdata",
-         arg: jQuery.parseJSON( getJson() )
-       };
+        setInterval(function (params) {
+            let e = {
+                type: "recdata",
+                arg: jQuery.parseJSON( getJson() )
+            };
 
-       self.dispatch("recdata",e);
-    },1000)
-   }
-this.init();
- }
+            self.dispatch("recdata",e);
+        },1000)
+    }
+    this.init();
+}
 
 //
- provider= new TestDataProvider()
- EventDispatcherCreate(provider);
+provider= new TestDataProvider()
+EventDispatcherCreate(provider);
 
 engine.setDataProvider(provider)
 
