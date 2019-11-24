@@ -1,19 +1,6 @@
 /*
     parse JSON
 */
-
-
-
-// let gltf = null;
-// let mixer = null;
-// let scene = new THREE.Scene();
-// let scene = new THREE.Scene()
-// let renderer;
-
-
-
-
-
 let engine = new rhvr.Core();
 engine.init();
 
@@ -22,14 +9,20 @@ var options = {
     container: '#container',
     gltfModel: 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_with_brakes.gltf',
     specModel: specModel,
+    // gltfModel: 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/energy/house_curves_Sun%2BBattery_mesh.gltf',
+    // specModel: houseSpecModel,
 };
 let wheelVis = new rhvr.Visualisation(options);
-//console.log("tototootototo"+wheelVis);
+// var optionsHouse = {
+//     container: '#container2',
+//     gltfModel: 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/energy/house_curves_Sun%2BBattery_mesh.gltf',
+//     specModel: houseSpecModel,
+// };
+// let houseVis = new rhvr.Visualisation(optionsHouse);
+
 wheelVis.init();
-//Proste sa zadefinuje dalsi objekt a automaticky sa to spusta do dalsieho divka
-// let energyURL = 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/energy/house.gltf';
-// let energyVis = new rhvr.Visualisation(["container",0,energyURL,specModel]);
-// energyVis.init();
+
+// houseVis.init();
 TestDataProvider = function (params) {
     var self = this;
     this.init = function (params) {
