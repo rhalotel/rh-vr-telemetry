@@ -119,6 +119,22 @@ var rhvr = {
                 }
             }
         }
+        this.toggleObjectVisibility = function(objects) {
+            if (objects && objects.length) {
+                for (let i = 0; i < objects.length; i++) {
+                    if (objects[i].visible) {
+                        objects[i].visible = false;
+                    } else {
+                        objects[i].visible = true;
+                    }
+                }
+            }
+        }
+        this.setObjectVisibility = function(objects, visibility) {
+            if (objects && objects.length)
+                for (let i = 0; i < objects.length; i++) 
+                    objects[i].visible = visibility;
+        }
         this.getCameraByName = function(camName) {
             var cams = [];
             camName.forEach(function(item, index) {
@@ -287,21 +303,21 @@ var rhvr = {
                     // light.castShadow = true;
                     // self.scene.add(light);
 
-                    self.camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 	10000);
+                    self.camera = new THREE.PerspectiveCamera(60, width / height, 0.01, 10000);
                     //camera.position.set(1, 5, 30);
                     self.camera.position.set(40, 10, 30);
 
 
                     /* GROUND SCENE */
-                    let geometry = new THREE.BoxGeometry(100, 5, 100);
-                    let material = new THREE.MeshBasicMaterial({
-                        color: "#282B2A"
-                    });
+                    // let geometry = new THREE.BoxGeometry(100, 5, 100);
+                    // let material = new THREE.MeshBasicMaterial({
+                    //     color: "#282B2A"
+                    // });
 
-                    let ground = new THREE.Mesh(geometry, material);
-                    ground.position.y -= 5;
-                    ground.receiveShadow = true;
-                    self.scene.add(ground);
+                    // let ground = new THREE.Mesh(geometry, material);
+                    // ground.position.y -= 5;
+                    // ground.receiveShadow = true;
+                    // self.scene.add(ground);
 
                     /* RESIZE WINDOW */
                     window.addEventListener( 'resize', self.onWindowResize, false );
