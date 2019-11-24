@@ -75,10 +75,25 @@ let specModel = {
             brakes = visItem.get3DObjectByName(brakeNames);
             brakePosition = Number(json.electronicBreak.breakPedalPosition * 0.4);
             if (!isNaN(brakePosition)) {
-                if (brakePosition<10) color = 0x6DE02A;
-                else if (brakePosition < 20) color = 0xF2EA00;
-                else if (brakePosition < 30) color = 0xEF632F;
-                else color = 0xFF2020;
+                // if (brakePosition<10) color = 0x6DE02A;
+                // else if (brakePosition < 20) color = 0xF2EA00;
+                // else if (brakePosition < 30) color = 0xEF632F;
+                // else color = 0xFF2020;
+                redConst = Math.round(brakePosition*2.55);
+                greenConst = Math.round(255-brakePosition*2.55);
+                blueConst = Math.round(0);
+                color = parseInt(
+                        '0x'+
+                        (
+                            (redConst).toString(16).length==1?(redConst).toString(16)+'0':(redConst).toString(16)
+                        ) +
+                        (
+                            (greenConst).toString(16).length==1?(greenConst).toString(16)+'0':(greenConst).toString(16)
+                        ) +
+                        (
+                            (blueConst).toString(16).length==1?(blueConst).toString(16)+'0':(blueConst).toString(16)
+                        )
+                );
                 brakes.forEach(function (item, index) {
                   item.material.color.setHex( color );
                 });
@@ -94,9 +109,9 @@ let specModel = {
         // }
     },
     init : function(visItem){
-        {/* *START* Set opacity of fuel tanks to 0.5   */
+        {/* *START* Add fuel tanks and wheels to opacity items */
             opacityNames = ["Truck_Fueltank01", "Truck_Fueltank02", "WheelBackMiddleMaterial_1", "WheelFrontMiddleMaterial_2", "WheelFrontTopMaterial_2", "WheelBackTopMaterial_1"];
             visItem.opacityObjects = visItem.get3DObjectByName(opacityNames);
-        }/* *END* Set opacity of fuel tanks to 0.5   */
+        }/* *END* Add fuel tanks and wheels to opacity items */
     },
 };
