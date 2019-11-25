@@ -4,8 +4,8 @@
 
 
 $(document).ready(function () {
-    //vlozit vsetky config subory
-    let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/config.json", "https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/config.json"];
+    let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/config.json"];
+
     $.each(configURL, function (i, val) {
         $.getJSON(val, function (resultJSON) {
             $.each(resultJSON.model, function (i, item) {
@@ -13,10 +13,14 @@ $(document).ready(function () {
                 $("#modelsToChoose").append(`<a class="dropdown-item" href="#">`+item.name+`</a>`);
             });
             $("#modelsToChoose").append(`<div class="dropdown-divider"></div>`);
+            $.each(resultJSON.dataResources, function (i, item) {
+                console.log(item.dataType);
+                $("#dataToVisualize").append(`<a class="dropdown-item" href="#">`+item.name+`</a>`);
+            });
+            $("#dataToVisualize").append(`<div class="dropdown-divider"></div>`);
         });
     });
 });
-
 
 
 let engine = new rhvr.Core();
