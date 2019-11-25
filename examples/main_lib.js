@@ -15,7 +15,7 @@ $(document).ready(function () {
             $("#modelsToChoose").append(`<div class="dropdown-divider"></div>`);
             $.each(resultJSON.dataResources, function (i, item) {
                 console.log(item.dataType);
-                $("#dataToVisualize").append(`<a class="dropdown-item" href="#">`+item.name+`</a>`);
+                $("#dataToVisualize").append(`<a class="dropdown-item" href="#">`+item.dataType+`</a>`);
             });
             $("#dataToVisualize").append(`<div class="dropdown-divider"></div>`);
         });
