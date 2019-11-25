@@ -1,6 +1,24 @@
 /*
     parse JSON
 */
+
+
+$(document).ready(function () {
+    //vlozit vsetky config subory
+    let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/config.json", "https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/config.json"];
+    $.each(configURL, function (i, val) {
+        $.getJSON(val, function (resultJSON) {
+            $.each(resultJSON.model, function (i, item) {
+                console.log(item.name);
+                $("#modelsToChoose").append(`<a class="dropdown-item" href="#">`+item.name+`</a>`);
+            });
+            $("#modelsToChoose").append(`<div class="dropdown-divider"></div>`);
+        });
+    });
+});
+
+
+
 let engine = new rhvr.Core();
 engine.init();
 
