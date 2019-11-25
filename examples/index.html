@@ -1,87 +1,95 @@
-
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-	<link rel="stylesheet" href="styles/firstStyle.css" >
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="utils/bootstrap/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" >
-    <script src="./utils/d3.v5.min.js"></script>
-    <script src="../src/lib/threejs/three.min.js"></script>
-    <script src="../src/lib/threejs/controls/OrbitControls.js"></script>
-    <script src="../src/lib/threejs/loaders/GLTFLoader.js"></script>
-    <script src="../src/lib/stats/stats.min.js"></script>
-    <script src="vis/truck01/truckSpecModel.js"></script>
-    <script src="vis/energyHouse/houseSpecModel.js"></script>
-    <script src="../src/rhvr/rhvrengine.js"></script>
-    
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>RHVR - RHalotel VR telemetry visualisation engine</title>
-  </head>
-  <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">RHVR</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <link rel="stylesheet" href="styles/firstStyle.css">
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-    
-   
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          3D model
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Vis vehicle / Model truck 1</a>
-          <a class="dropdown-item" href="#">Vis vehicle / Model truck 2</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Vis energy / House</a>
-		  <a class="dropdown-item" href="#">Vis energy / Plant</a>
-        </div>
-      </li>
-	   <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Datasource
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Truck real data</a>
-          <a class="dropdown-item" href="#">Truck simulated</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Sun energy real</a>
-		  <a class="dropdown-item" href="#">Sun energy simulated</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-    <h1>RHVR - RHalotel VR telemetry visualisation engine - example</h1>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="utils/bootstrap/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T">
+  <script src="./utils/d3.v5.min.js"></script>
+  <script src="../src/lib/threejs/three.min.js"></script>
+  <script src="../src/lib/threejs/controls/OrbitControls.js"></script>
+  <script src="../src/lib/threejs/loaders/GLTFLoader.js"></script>
+  <script src="../src/lib/stats/stats.min.js"></script>
+  <script src="vis/truck01/truckSpecModel.js"></script>
+  <script src="vis/energyHouse/houseSpecModel.js"></script>
+  <script src="../src/rhvr/rhvrengine.js"></script>
 
 
+  <title>RHVR - RHalotel VR telemetry visualisation engine</title>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">RHVR</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
 
 
-
-    <div id="container" style="width:100%; height:100%; position: absolute;">
-        <div id="viewer1"></div>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            3D model
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="modelsToChoose">
+            <a class="dropdown-item" href="#">Vis vehicle / Model truck 1</a>
+            <a class="dropdown-item" href="#">Vis vehicle / Model truck 2</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Vis energy / House</a>
+            <a class="dropdown-item" href="#">Vis energy / Plant</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Datasource
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="dataToVisualize">
+            <a class="dropdown-item" href="#">Truck real data</a>
+            <a class="dropdown-item" href="#">Truck simulated</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Sun energy real</a>
+            <a class="dropdown-item" href="#">Sun energy simulated</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
     </div>
+  </nav>
+  <h1>RHVR - RHalotel VR telemetry visualisation engine - example</h1>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="./utils/jquery-3.4.1.min.js" ></script>
-    <script src="./utils/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" ></script>
-    <script src="./utils/bootstrap/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" ></script>
-    <script src="./main_lib.js"></script>
-  </body>
+
+
+
+
+  <div id="container" style="width:100%; height:100%; position: absolute;">
+    <div id="viewer1"></div>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="./utils/jquery-3.4.1.min.js"></script>
+  <script src="./utils/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"></script>
+  <script src="./utils/bootstrap/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"></script>
+  <script src="./main_lib.js"></script>
+</body>
+
 </html>
