@@ -1,25 +1,37 @@
 {
     "model": [
         {
-            "name": "truck1",
-            "url": "http://rhalotel.github.io/rh-vr-telemetry/examples/models/truck/triangle_faced_with_brakes.gltf"
+            "name": "Example Truck Model",
+            "url": "http://rhalotel.github.io/rh-vr-telemetry/examples/models/truck/triangle_faced_with_brakes.gltf",
+            "htmlElement":"truckContainer",
+            "specModelURL":"http://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/truckSpecModel.js",
+            "dataResources":[
+                {
+                    "dataType":"TestDataProvider",
+                    "url":"http://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                },
+                {
+                    "dataType":"StreamDataProvider",
+                    "url":"http://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                }
+            ]
         },
         {
-            "name": "house1",
-            "url": "http://rhalotel.github.io/rh-vr-telemetry/examples/models/energy/house_curves_withImages.gltf"
-        }
-    ],
-    "htmlElement":"#container",
-    "specModelURL":["http://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/truckSpecModel.js",
-                    "http://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/energySpecModel.js"],
-    "dataResources":[
-        {
-            "dataType":"TestDataProvider",
-            "url":"http://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
-        },
-        {
-            "dataType":"StreamDataProvider",
-            "url":"http://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+            "name": "Example House Model",
+            "url": "http://rhalotel.github.io/rh-vr-telemetry/examples/models/energy/house_curves_withImages.gltf",
+            "htmlElement":"houseContainer",
+            "specModelURL":"http://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/houseSpecModel.js",
+            "dataResources":[
+                {
+                    "dataType":"TestDataProvider",
+                    "url":"http://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                },
+                {
+                    "dataType":"StreamDataProvider",
+                    "url":"http://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                }
+            ]
         }
     ]
+   
 }
