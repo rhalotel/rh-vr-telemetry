@@ -1,7 +1,9 @@
 /*
-    parse JSON
+parse JSON
 */
 
+var modelName = "";
+var dataSource = "";
 
 $(document).ready(function () {
     let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/config.json"];
@@ -10,17 +12,35 @@ $(document).ready(function () {
         $.getJSON(val, function (resultJSON) {
             $.each(resultJSON.model, function (i, item) {
                 console.log(item.name);
-                $("#modelsToChoose").append(`<a class="dropdown-item" href="#">`+item.name+`</a>`);
+                $("#modelsToChoose").append(`<a class="dropdown-item" href="#" name="` + item.name + `">` + item.name + `</a>`);
+
+                $.each(item.dataResources, function (i, item) {
+                    console.log(item.dataType);
+                    $("#dataToVisualize").append(`<a class="dropdown-item" href="#" name="` + item.dataType + `">` + item.dataType + `</a>`);
+                });
+                $("#dataToVisualize").append(`<div class="dropdown-divider"></div>`);
             });
             $("#modelsToChoose").append(`<div class="dropdown-divider"></div>`);
-            $.each(resultJSON.dataResources, function (i, item) {
-                console.log(item.dataType);
-                $("#dataToVisualize").append(`<a class="dropdown-item" href="#">`+item.dataType+`</a>`);
-            });
-            $("#dataToVisualize").append(`<div class="dropdown-divider"></div>`);
+
+
+
         });
     });
 });
+
+$(document).on("click", "#modelsToChoose>a", function (e) {
+    modelName = $(this).attr("name");
+});
+
+$(document).on("click", "#dataToVisualize>a", function (e) {
+    dataSource = $(this).attr("name");
+});
+
+$(document).on("click", "#showModel", function (e) {
+    // dataSource = $(this).attr("name");
+});
+
+
 
 
 let engine = new rhvr.Core();
@@ -49,16 +69,16 @@ TestDataProvider = function (params) {
     var self = this;
     this.init = function (params) {
         setInterval(function (params) {
-            $.getJSON("https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/example.json", function(resultJSON) {
+            $.getJSON("https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/example.json", function (resultJSON) {
                 let e = {
                     type: "recdata",
                     //arg: jQuery.parseJSON( getJson() )
                     arg: resultJSON
                 };
-    
+
                 self.dispatch("recdata", e);
             });
-            
+
         }, 1000)
     }
     this.init();
