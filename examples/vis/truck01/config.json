@@ -2,6 +2,7 @@
     "model": [
         {
             "name": "Example Truck Model",
+            "specModelId":"truck1",
             "url": "https://rhalotel.github.io/rh-vr-telemetry/examples/models/truck/triangle_faced_with_brakes.gltf",
             "htmlElement":"truckContainer",
             "specModelURL":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/truckSpecModel.js",
@@ -18,6 +19,7 @@
         },
         {
             "name": "Example House Model",
+            "specModelId":"house1",
             "url": "https://rhalotel.github.io/rh-vr-telemetry/examples/models/energy/house_curves_withImages.gltf",
             "htmlElement":"houseContainer",
             "specModelURL":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/houseSpecModel.js",

@@ -1,4 +1,4 @@
-specModel = {
+var truck1 = {
     update: function(json,visItem) 
     {
         // var self = this;
