@@ -20,7 +20,7 @@
             "name": "Example House Model",
             "url": "https://rhalotel.github.io/rh-vr-telemetry/examples/models/energy/house_curves_withImages.gltf",
             "htmlElement":"houseContainer",
-            "specModelURL":"http://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/houseSpecModel.js",
+            "specModelURL":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/houseSpecModel.js",
             "dataResources":[
                 {
                     "dataType":"TestDataProvider",
