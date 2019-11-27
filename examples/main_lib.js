@@ -2,8 +2,9 @@
 parse JSON
 */
 
-var modelName = "";
-var dataSource = "";
+var modelName = "None";
+var dataSource = "None";
+var selectHtmlElement = "";
 
 $(document).ready(function () {
     let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/config.json"];
@@ -12,7 +13,14 @@ $(document).ready(function () {
         $.getJSON(val, function (resultJSON) {
             $.each(resultJSON.model, function (i, item) {
                 console.log(item.name);
-                $("#modelsToChoose").append(`<a class="dropdown-item" href="#" name="` + item.name + `">` + item.name + `</a>`);
+                $("#modelsToChoose").append(`<a class="dropdown-item" href="#" name="` + item.name + `" htmlElement="`+item.htmlElement+`">` + item.name + `</a>`);
+                $("#container").append(`<div id="`+item.htmlElement+`" style="width:100%; height:100%; display: none;" class="modelViewer"></div>`);
+                var options = {
+                    container: "#"+item.htmlElement,
+                    gltfModel: item.url,
+                    specModel: item.specModelURL,
+                };
+                createModel(options);
 
                 $.each(item.dataResources, function (i, item) {
                     console.log(item.dataType);
@@ -30,31 +38,45 @@ $(document).ready(function () {
 
 $(document).on("click", "#modelsToChoose>a", function (e) {
     modelName = $(this).attr("name");
+    selectHtmlElement=$(this).attr("htmlElement");
 });
 
 $(document).on("click", "#dataToVisualize>a", function (e) {
     dataSource = $(this).attr("name");
 });
 
-$(document).on("click", "#showModel", function (e) {
-    // dataSource = $(this).attr("name");
+$(document).on("click", "#modelsToChoose>a, #dataToVisualize>a", function (e) {
+    $("#selectedModelAndDataSource").text("Model: "+modelName+" - Datasource: "+dataSource+"");
 });
 
 
+$(document).on("click", "#showModel", function (e) {
+    // dataSource = $(this).attr("name");
+    if(selectHtmlElement!="" || selectHtmlElement!="None"){
+        $(".modelViewer").hide();
+        $("#"+selectHtmlElement).show();
+    }
+    
+});
 
+
+function createModel(options) {
+    let wheelVis = new rhvr.Visualisation(options);
+    wheelVis.init();
+}
 
 let engine = new rhvr.Core();
 engine.init();
 
 // var vehicleSpeed;
-var options = {
-    container: '#container',
-    gltfModel: 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_with_brakes.gltf',
-    specModel: specModel,
-    // gltfModel: 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/energy/house_curves_Sun%2BBattery_mesh.gltf',
-    // specModel: houseSpecModel,
-};
-let wheelVis = new rhvr.Visualisation(options);
+// var options = {
+//     container: '#viewer1',
+//     gltfModel: 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/truck/triangle_faced_with_brakes.gltf',
+//     specModel: specModel,
+//     // gltfModel: 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/energy/house_curves_Sun%2BBattery_mesh.gltf',
+//     // specModel: houseSpecModel,
+// };
+// let wheelVis = new rhvr.Visualisation(options);
 // var optionsHouse = {
 //     container: '#container2',
 //     gltfModel: 'https://raw.githubusercontent.com/rhalotel/rh-vr-telemetry/master/examples/models/energy/house_curves_Sun%2BBattery_mesh.gltf',
@@ -62,7 +84,7 @@ let wheelVis = new rhvr.Visualisation(options);
 // };
 // let houseVis = new rhvr.Visualisation(optionsHouse);
 
-wheelVis.init();
+// wheelVis.init();
 
 // houseVis.init();
 TestDataProvider = function (params) {
