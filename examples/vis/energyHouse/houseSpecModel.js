@@ -1,4 +1,4 @@
-let houseSpecModel = {
+specModel = {
     update: function(json,visItem) 
     {
 

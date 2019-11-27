@@ -13,14 +13,18 @@ $(document).ready(function () {
         $.getJSON(val, function (resultJSON) {
             $.each(resultJSON.model, function (i, item) {
                 console.log(item.name);
-                $("#modelsToChoose").append(`<a class="dropdown-item" href="#" name="` + item.name + `" htmlElement="`+item.htmlElement+`">` + item.name + `</a>`);
-                $("#container").append(`<div id="`+item.htmlElement+`" style="width:100%; height:100%; display: none;" class="modelViewer"></div>`);
-                var options = {
-                    container: "#"+item.htmlElement,
-                    gltfModel: item.url,
-                    specModel: item.specModelURL,
-                };
-                createModel(options);
+                $("#modelsToChoose").append(`<a class="dropdown-item" href="#" name="` + item.name + `" htmlElement="` + item.htmlElement + `">` + item.name + `</a>`);
+                $("#container").append(`<div id="` + item.htmlElement + `" style="width:100%; height:100%; display: none;" class="modelViewer"></div>`);
+                let specModel;
+                $.getScript(item.specModelURL, function () {
+                    var options = {
+                        container: "#" + item.htmlElement,
+                        gltfModel: item.url,
+                        specModel: specModel,
+                    };
+                    createModel(options);
+                });
+
 
                 $.each(item.dataResources, function (i, item) {
                     console.log(item.dataType);
@@ -38,7 +42,7 @@ $(document).ready(function () {
 
 $(document).on("click", "#modelsToChoose>a", function (e) {
     modelName = $(this).attr("name");
-    selectHtmlElement=$(this).attr("htmlElement");
+    selectHtmlElement = $(this).attr("htmlElement");
 });
 
 $(document).on("click", "#dataToVisualize>a", function (e) {
@@ -46,14 +50,14 @@ $(document).on("click", "#dataToVisualize>a", function (e) {
 });
 
 $(document).on("click", "#modelsToChoose>a, #dataToVisualize>a", function (e) {
-    $("#selectedModelAndDataSource").text("Model: "+modelName+" - Datasource: "+dataSource+"");
+    $("#selectedModelAndDataSource").text("Model: " + modelName + " - Datasource: " + dataSource + "");
 });
 
 
 $(document).on("click", "#showModel", function (e) {
-    if(selectHtmlElement!="" || selectHtmlElement!="None"){
+    if (selectHtmlElement != "" || selectHtmlElement != "None") {
         $(".modelViewer").hide();
-        $("#"+selectHtmlElement).show();
+        $("#" + selectHtmlElement).show();
     }
 });
 

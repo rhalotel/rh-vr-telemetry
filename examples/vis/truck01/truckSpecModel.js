@@ -1,4 +1,4 @@
-let specModel = {
+specModel = {
     update: function(json,visItem) 
     {
         // var self = this;
