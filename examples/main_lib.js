@@ -51,14 +51,16 @@ $(document).on("click", "#modelsToChoose>a, #dataToVisualize>a", function (e) {
 
 
 $(document).on("click", "#showModel", function (e) {
-    // dataSource = $(this).attr("name");
     if(selectHtmlElement!="" || selectHtmlElement!="None"){
         $(".modelViewer").hide();
         $("#"+selectHtmlElement).show();
     }
-    
 });
 
+$(document).on("click", "#home", function (e) {
+    $(".modelViewer").hide();
+    $("#posterViewer").show();
+});
 
 function createModel(options) {
     let wheelVis = new rhvr.Visualisation(options);
