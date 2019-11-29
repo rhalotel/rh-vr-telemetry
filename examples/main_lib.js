@@ -5,7 +5,7 @@ parse JSON
 var modelName = "None";
 var dataSource = "None";
 var selectHtmlElement = "";
-var htmlElementsArray = []
+// var htmlElementsArray = []
 
 $(document).ready(function () {
     let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/config.json"];
@@ -24,7 +24,7 @@ $(document).ready(function () {
                         specModel: window[item.specModelId],
                     };
                     createModel(options);
-                    htmlElementsArray.push(item.htmlElement);
+                    // htmlElementsArray.push(item.htmlElement);
                 });
 
 

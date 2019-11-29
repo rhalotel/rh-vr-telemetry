@@ -82,7 +82,12 @@ var rhvr = {
             self.visItems.forEach(function(item) {
                 if (item.settings.container == ("#"+htmlelement)) {
                     item.pause=false;
-                    requestAnimationFrame(item.fnrender())
+                    try {
+                        requestAnimationFrame(item.fnrender())
+                    } catch (error) {
+                        console.log("Can't execute requestAnimationFrame(item.fnrender()); "+error);
+                    }
+                    
                 }
                 else{
                     item.pause=true;
