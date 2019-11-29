@@ -78,6 +78,17 @@ var rhvr = {
         this.addsVis = function(vis) {
             this.visItems.push(vis)
         }
+        this.visToShow=function(htmlelement){
+            self.visItems.forEach(function(item) {
+                if (item.settings.container == ("#"+htmlelement)) {
+                    item.pause=false;
+                    requestAnimationFrame(item.fnrender())
+                }
+                else{
+                    item.pause=true;
+                }
+            });
+        }
         this.constructor();
     },
 
@@ -103,6 +114,8 @@ var rhvr = {
         var INTERSECTED;
         var raycaster;
         var opacityObjects;
+        var pause;
+        // var fnrender;
         // var settings = {
         // 	htmlEl: "",
         // 	specModel: null,
@@ -168,6 +181,25 @@ var rhvr = {
                 }
             }
         }
+        // this.fnrender = function() {
+        //     if (self.isStats) self.stats.begin();
+        //     if (self.mixer) self.mixer.update(self.clock.getDelta());
+        //     self.controls.update();
+        //     self.renderer.render(self.scene, self.camera);
+        //     self.raycaster.setFromCamera( self.mouse, self.camera );
+            
+        //     // intersect opacity
+        //     self.intersectOpacity();
+
+        //     if (self.isStats) self.stats.end();
+
+        //     if (self.pause) {
+        //         return;
+        //     }
+        //     requestAnimationFrame(self.fnrender());
+        //     console.log("rendering object"+self.settings.container);
+            
+        // }
 
         this.constructor = function(settings) {
             //console.log("vis.constructor()")
@@ -175,9 +207,14 @@ var rhvr = {
             // console.log("settings:" + settings + "this.settings:" + this.settings)
             rhvr.Core.instance.addsVis(self);
             // this.settings.scene3d=settings[2];
+            self.pause=false;
         }
+
+        
         
         this.constructor(settings);
+
+        
 
         this.init = function() {
             self.mouse = new THREE.Vector2();
@@ -231,7 +268,7 @@ var rhvr = {
                     self.scene.add(object);
 
                     var fnrender = function() {
-                    	if (self.isStats) self.stats.begin();
+                        if (self.isStats) self.stats.begin();
                         if (self.mixer) self.mixer.update(self.clock.getDelta());
                         self.controls.update();
                         self.renderer.render(self.scene, self.camera);
@@ -239,11 +276,18 @@ var rhvr = {
                         
                         // intersect opacity
                         self.intersectOpacity();
-
+            
                         if (self.isStats) self.stats.end();
-
+            
+                        if (self.pause) {
+                            return;
+                        }
                         requestAnimationFrame(fnrender);
+                        console.log("rendering object"+self.settings.container);
+                        
                     }
+
+                    // self.fnrender();
 
                     // var lastCalledTime;
                     // var fps;
@@ -352,7 +396,11 @@ var rhvr = {
                     $(settings.container).append(self.renderer.domElement);
 
 
+                    // if (!self.pause) {
+                    //     requestAnimationFrame(fnrender);
+                    // }
                     requestAnimationFrame(fnrender);
+                    // self.fnrender();
                     self.initSuccess = true;
                     self.settings.specModel.init(self);
                 }
