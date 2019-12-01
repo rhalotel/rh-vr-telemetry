@@ -20,7 +20,7 @@ $(document).ready(function () {
                 $.getScript(item.specModelURL, function () {
                     var options = {
                         container: "#" + item.htmlElement,
-                        gltfModel: item.param,
+                        gltfModel: item.url,
                         specModel: window[item.specModelId],
                     };
                     createModel(options);
