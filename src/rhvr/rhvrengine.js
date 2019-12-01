@@ -121,6 +121,8 @@ var rhvr = {
         var opacityObjects;
         var pause;
         var isRunning;
+        var prevMs;
+        var currMs;
         // var fnrender;
         // var settings = {
         // 	htmlEl: "",
@@ -223,7 +225,8 @@ var rhvr = {
         
         this.constructor(settings);
         this.fnrender = function() {
-            if (self.isRunning) {
+            self.currMs = new Date();
+            if (self.isRunning && Math.abs(self.currMs.getMilliseconds() - self.prevMs.getMilliseconds()) > 16) {
                 if (self.isStats) self.stats.begin();
                 if (self.mixer) self.mixer.update(self.clock.getDelta());
                 self.controls.update();
@@ -239,12 +242,15 @@ var rhvr = {
                 //     return;
                 // }
             }
-                requestAnimationFrame(self.fnrender);
-                // console.log("rendering object"+self.settings.container);
+            self.prevMs = new Date();
+            requestAnimationFrame(self.fnrender);
+            // console.log("rendering object"+self.settings.container);
         }
         
 
         this.init = function() {
+            self.currMs = new Date();
+            self.prevMs = new Date();
             self.isRunning = true;
             self.mouse = new THREE.Vector2();
             self.raycaster = new THREE.Raycaster();
