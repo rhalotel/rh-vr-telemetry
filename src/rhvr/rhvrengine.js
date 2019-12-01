@@ -295,7 +295,6 @@ var rhvr = {
                     // this.settings.sceneNewThree.add(object);
 
                     self.scene.add(object);
-                    requestAnimationFrame(self.fnrender);
 
                     // self.fnrender();
 
@@ -409,7 +408,7 @@ var rhvr = {
                     // if (!self.pause) {
                     //     requestAnimationFrame(fnrender);
                     // }
-                    requestAnimationFrame(fnrender);
+                    requestAnimationFrame(self.fnrender);
                     // self.fnrender();
                     self.initSuccess = true;
                     self.settings.specModel.init(self);
