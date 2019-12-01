@@ -80,17 +80,17 @@ var rhvr = {
         }
         this.visToShow=function(htmlelement){
             self.visItems.forEach(function(item) {
-                if (item.settings.container == ("#"+htmlelement)) {
-                    item.isRunning=false;
+                if (item.settings.container === ("#"+htmlelement)) {
+                    item.isRunning=true;
                     try {
-                        requestAnimationFrame(item.fnrender);
+                        requestAnimationFrame(item.fnrender());
                     } catch (error) {
                         console.log("Can't execute requestAnimationFrame(item.fnrender()); "+error);
                     }
                     
                 }
                 else{
-                    item.isRunning=true;
+                    item.isRunning=false;
                 }
             });
         }
