@@ -120,6 +120,7 @@ var rhvr = {
         var raycaster;
         var opacityObjects;
         var pause;
+        var isRunning;
         // var fnrender;
         // var settings = {
         // 	htmlEl: "",
@@ -186,6 +187,9 @@ var rhvr = {
                 }
             }
         }
+        this.toggleVisRenderStatus(){
+            self.isRunning = !self.isRunning;
+        }
         // this.fnrender = function() {
         //     if (self.isStats) self.stats.begin();
         //     if (self.mixer) self.mixer.update(self.clock.getDelta());
@@ -222,6 +226,7 @@ var rhvr = {
         
 
         this.init = function() {
+            self.isRunning = true;
             self.mouse = new THREE.Vector2();
             self.raycaster = new THREE.Raycaster();
         	self.isStats = false;
@@ -273,22 +278,24 @@ var rhvr = {
                     self.scene.add(object);
 
                     var fnrender = function() {
-                        if (self.isStats) self.stats.begin();
-                        if (self.mixer) self.mixer.update(self.clock.getDelta());
-                        self.controls.update();
-                        self.renderer.render(self.scene, self.camera);
-                        self.raycaster.setFromCamera( self.mouse, self.camera );
-                        
-                        // intersect opacity
-                        self.intersectOpacity();
-            
-                        if (self.isStats) self.stats.end();
-            
-                        if (self.pause) {
-                            return;
+                        if (self.isRunning) {
+                            if (self.isStats) self.stats.begin();
+                            if (self.mixer) self.mixer.update(self.clock.getDelta());
+                            self.controls.update();
+                            self.renderer.render(self.scene, self.camera);
+                            self.raycaster.setFromCamera( self.mouse, self.camera );
+                            
+                            // intersect opacity
+                            self.intersectOpacity();
+                
+                            if (self.isStats) self.stats.end();
+                
+                            if (self.pause) {
+                                return;
+                            }
+                            requestAnimationFrame(fnrender);
+                            // console.log("rendering object"+self.settings.container);
                         }
-                        requestAnimationFrame(fnrender);
-                        console.log("rendering object"+self.settings.container);
                         
                     }
 
@@ -469,7 +476,7 @@ var rhvr = {
         }
         this.update = function(d) {
             var spec = self.settings.specModel; /// specifikovat strukturu specModel
-            if (self.initSuccess) spec.update(d, self);
+            if (self.initSuccess && self.isRunning) spec.update(d, self);
             // spec.table.forEach(function(specItem) 
             // {
             // 	/*
