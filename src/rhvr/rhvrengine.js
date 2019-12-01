@@ -293,9 +293,9 @@ var rhvr = {
                             if (self.pause) {
                                 return;
                             }
+                        }
                             requestAnimationFrame(fnrender);
                             // console.log("rendering object"+self.settings.container);
-                        }
                         
                     }
 
