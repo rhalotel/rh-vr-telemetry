@@ -226,7 +226,7 @@ var rhvr = {
         this.constructor(settings);
         this.fnrender = function() {
             self.currMs = new Date();
-            if (self.isRunning && Math.abs(self.currMs.getMilliseconds() - self.prevMs.getMilliseconds()) > 16) {
+            if (self.isRunning && self.currMs - self.prevMs > 10) {
                 if (self.isStats) self.stats.begin();
                 if (self.mixer) self.mixer.update(self.clock.getDelta());
                 self.controls.update();
