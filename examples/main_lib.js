@@ -20,7 +20,7 @@ $(document).ready(function () {
                 $.getScript(item.specModelURL, function () {
                     var options = {
                         container: "#" + item.htmlElement,
-                        gltfModel: item.url,
+                        gltfModel: item.param,
                         specModel: window[item.specModelId],
                     };
                     createModel(options);
@@ -29,8 +29,8 @@ $(document).ready(function () {
 
 
                 $.each(item.dataResources, function (i, item) {
-                    console.log(item.dataType);
-                    $("#dataToVisualize").append(`<a class="dropdown-item" href="#" name="` + item.dataType + `">` + item.dataType + `</a>`);
+                    console.log(item.name);
+                    $("#dataToVisualize").append(`<a class="dropdown-item" href="#" name="` + item.name + `">` + item.name + `</a>`);
                 });
                 $("#dataToVisualize").append(`<div class="dropdown-divider"></div>`);
             });
