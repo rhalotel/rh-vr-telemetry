@@ -226,7 +226,7 @@ var rhvr = {
         
         this.constructor(settings);
         this.fnrender = function() {
-            self.deltaMs = self.deltaMs + self.currMs - self.prevMs;
+            self.deltaMs = self.deltaMs + Number(self.currMs - self.prevMs);
             self.currMs = new Date();
             if (self.isRunning && self.deltaMs > 16.6667) {
                 if (self.isStats) self.stats.begin();
