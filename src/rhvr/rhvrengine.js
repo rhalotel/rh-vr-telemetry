@@ -222,7 +222,26 @@ var rhvr = {
         
         
         this.constructor(settings);
-
+        this.fnrender = function() {
+            if (self.isRunning) {
+                if (self.isStats) self.stats.begin();
+                if (self.mixer) self.mixer.update(self.clock.getDelta());
+                self.controls.update();
+                self.renderer.render(self.scene, self.camera);
+                self.raycaster.setFromCamera( self.mouse, self.camera );
+                
+                // intersect opacity
+                self.intersectOpacity();
+    
+                if (self.isStats) self.stats.end();
+    
+                // if (self.pause) {
+                //     return;
+                // }
+            }
+                requestAnimationFrame(self.fnrender);
+                // console.log("rendering object"+self.settings.container);
+        }
         
 
         this.init = function() {
@@ -276,28 +295,7 @@ var rhvr = {
                     // this.settings.sceneNewThree.add(object);
 
                     self.scene.add(object);
-
-                    var fnrender = function() {
-                        if (self.isRunning) {
-                            if (self.isStats) self.stats.begin();
-                            if (self.mixer) self.mixer.update(self.clock.getDelta());
-                            self.controls.update();
-                            self.renderer.render(self.scene, self.camera);
-                            self.raycaster.setFromCamera( self.mouse, self.camera );
-                            
-                            // intersect opacity
-                            self.intersectOpacity();
-                
-                            if (self.isStats) self.stats.end();
-                
-                            if (self.pause) {
-                                return;
-                            }
-                        }
-                            requestAnimationFrame(fnrender);
-                            // console.log("rendering object"+self.settings.container);
-                        
-                    }
+                    requestAnimationFrame(self.fnrender);
 
                     // self.fnrender();
 
