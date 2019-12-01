@@ -83,7 +83,7 @@ var rhvr = {
                 if (item.settings.container == ("#"+htmlelement)) {
                     item.pause=false;
                     try {
-                        requestAnimationFrame(item.fnrender())
+                        // requestAnimationFrame(item.fnrender())
                     } catch (error) {
                         console.log("Can't execute requestAnimationFrame(item.fnrender()); "+error);
                     }
