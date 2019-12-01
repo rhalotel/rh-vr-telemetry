@@ -70,8 +70,8 @@ $(document).on("click", "#home", function (e) {
 });
 
 function createModel(options) {
-    let wheelVis = new rhvr.Visualisation(options);
-    wheelVis.init();
+    let crvis = new rhvr.Visualisation(options);
+    crvis.init();
 }
 
 let engine = new rhvr.Core();
