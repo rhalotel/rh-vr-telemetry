@@ -187,7 +187,7 @@ var rhvr = {
                 }
             }
         }
-        this.toggleVisRenderStatus(){
+        this.toggleVisRenderStatus= function(){
             self.isRunning = !self.isRunning;
         }
         // this.fnrender = function() {
