@@ -123,6 +123,7 @@ var rhvr = {
         var isRunning;
         var prevMs;
         var currMs;
+        var deltaMs;
         // var fnrender;
         // var settings = {
         // 	htmlEl: "",
@@ -225,8 +226,9 @@ var rhvr = {
         
         this.constructor(settings);
         this.fnrender = function() {
+            self.deltaMs = self.deltaMs + self.currMs - self.prevMs;
             self.currMs = new Date();
-            if (self.isRunning && self.currMs - self.prevMs > 10) {
+            if (self.isRunning &&  deltaMs > 16.6667) {
                 if (self.isStats) self.stats.begin();
                 if (self.mixer) self.mixer.update(self.clock.getDelta());
                 self.controls.update();
@@ -241,6 +243,7 @@ var rhvr = {
                 // if (self.pause) {
                 //     return;
                 // }
+                self.deltaMs = 0;
             }
             self.prevMs = new Date();
             requestAnimationFrame(self.fnrender);
@@ -249,6 +252,7 @@ var rhvr = {
         
 
         this.init = function() {
+            self.deltaMs = 0;
             self.currMs = new Date();
             self.prevMs = new Date();
             self.isRunning = true;
