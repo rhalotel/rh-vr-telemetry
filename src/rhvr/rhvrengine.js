@@ -32,51 +32,54 @@ function EventDispatcherCreate(obj) {
 var rhvr = {
     DataProvider: function(options) {;
     },
-    Core: function() {
+    Core: function(setTimeInterval) {
         if (rhvr.Core.instance != null)
             return rhvr.Core.instance;
 
         rhvr.Core.instance = this;
         var self = this;
+        var timeInterval;
 
         this.constructor = function() {
-            this._instance = this;
-            this.queue = [];
-            this.visItems = [];
+            self._instance = this;
+            self.queue = [];
+            self.visItems = [];
+            self.timeInterval = setTimeInterval;
         }
         this.init = function() {
-            this.run();
+            self.run();
         }
         this.run = function() {
             this.runInterval = setInterval(
                 function() {
                     if (typeof self.queue !== 'undefined' && self.queue.length > 0) {
+                        // console.log('Core.run() running at '+self.timeInterval+'ms with '+self.queue.length+' item(s) in it\'s queue.');
                         var d = self.queue.shift();
                         self.task(d);
                     }
                 },
-                100 // 0.1sec
+                self.timeInterval
             );
         }
         this.task = function(d) {
-            this.visItems.forEach(function(item) {
+            self.visItems.forEach(function(item) {
                 item.update(d);
             });
         }
         this.setDataProvider = function(provider) {
-            this.dataProvider = provider;
-            this.dataProvider.on("recdata", function(e) {
+            self.dataProvider = provider;
+            self.dataProvider.on("recdata", function(e) {
                 self._newData(e.arg)
             })
         }
         this.addToQueue = function(arg) {
-            this.queue.push(arg);
+            self.queue.push(arg);
         }
         this._newData = function(dataArg) {
-            this.queue.push(dataArg);
+            self.queue.push(dataArg);
         }
         this.addsVis = function(vis) {
-            this.visItems.push(vis)
+            self.visItems.push(vis)
         }
         this.visToShow=function(htmlelement){
             self.visItems.forEach(function(item) {

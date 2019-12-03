@@ -74,7 +74,7 @@ function createModel(options) {
     crvis.init();
 }
 
-let engine = new rhvr.Core();
+let engine = new rhvr.Core(100);
 engine.init();
 
 // var vehicleSpeed;
