@@ -1,5 +1,5 @@
 Datum,Plan,Vysledok,,
-30.10.2019,Poster finalizovat podla dohodnutej schemy, rhvr engine rozchodit tak aby uz bol schopny hybat so scenou ktora bola prezentovana na 2 stretnuti,  pouzit uz example.json pre spracovanie a vizualizaciu dat,..
-13.11.2019,"Poster doplnit texty , doplnit specmodel pre energy, implementovat univerzalne svetla a enviromenty, a doplnit kamery ",..,,
+30.10.2019,Poster finalizovat podla dohodnutej schemy,rhvr engine rozchodit tak aby uz bol schopny hybat so scenou ktora bola prezentovana na 2 stretnuti,pouzit uz example.json pre spracovanie a vizualizaciu dat,..
+13.11.2019,"Poster doplnit texty , doplnit specmodel pre energy, implementovat univerzalne svetla a enviromenty, a doplnit kamery",..,,
 20.11.2019,"Vytvorit demo index, kde bude uz vidiet vysledok dvoch scen, ktory bude na testovacej stranke githubu",..,,
-4,..,..,,
+11.12.2019,"Prosim zapracovat poziadavky, 1. design pre stranku vo vektore, 2. finalizovat pouzitelne animacie fotovoltaiky pre vykony jednotlivych vetiev a kapacitu baterie. 3. dopnit logo do 3d modelov 4. rozbehat model/truck_mb pre gltf  v zipe je blend aj pre logo.",..,,
