@@ -110,7 +110,7 @@ var truckMB1 = {
     },
     init : function(visItem){
         {/* *START* Add fuel tanks and wheels to opacity items */
-            opacityNames = ["MB1Model0.5", "e809a301-174a-4840-8233-78e7b12461eb", "e809a301-174a-4840-8233-78e7b12461eb.001", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3.001"];
+            opacityNames = ["MB1Model05", "e809a301-174a-4840-8233-78e7b12461eb", "e809a301-174a-4840-8233-78e7b12461eb001", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3001"];
             visItem.opacityObjects = visItem.get3DObjectByName(opacityNames);
         }/* *END* Add fuel tanks and wheels to opacity items */
     },
