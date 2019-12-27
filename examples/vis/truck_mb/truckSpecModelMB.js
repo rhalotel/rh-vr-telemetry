@@ -46,7 +46,7 @@ var truck1 = {
             vehicleSpeedFromData = Number(json.tco1.VehicleSpeed / 256); //km/h
 
             // define animation names vector
-            wheelAnimations = ["WheelBackTopSpin", "WheelFrontTopSpin", "WheelFrontMiddleSpin", "WheelBackMiddleSpin"];
+            wheelAnimations = ["wheelSpin"];
 
             // check for NaN
             if (!isNaN(vehicleSpeedFromData)) {
@@ -59,7 +59,7 @@ var truck1 = {
 
 
         {/* *START* Tank fuel level based on json data   */
-            tankAnimNames = ["Fuel01_Drain", "Fuel02_Drain"];
+            tankAnimNames = ["NaftDrain"];
             tankAnims = visItem.getAnimationByName(tankAnimNames);
             totalFuel = Number(json.fuelConsumption.TotalFuel * 0.001);
             if (!isNaN(totalFuel)) {
@@ -70,35 +70,35 @@ var truck1 = {
             }
         }/* *END* Tank fuel level based on json data   */
 
-        {/* *START* Brake pedal position based on json data   */
-            brakeNames = ["FrontBrake_0", "FrontBrake_1", "MiddleBrake_0", "MiddleBrake_1"];
-            brakes = visItem.get3DObjectByName(brakeNames);
-            brakePosition = Number(json.electronicBreak.breakPedalPosition * 0.4);
-            if (!isNaN(brakePosition)) {
-                // if (brakePosition<10) color = 0x6DE02A;
-                // else if (brakePosition < 20) color = 0xF2EA00;
-                // else if (brakePosition < 30) color = 0xEF632F;
-                // else color = 0xFF2020;
-                redConst = Math.round(brakePosition*2.55);
-                greenConst = Math.round(255-brakePosition*2.55);
-                blueConst = Math.round(0);
-                color = parseInt(
-                        '0x'+
-                        (
-                            (redConst).toString(16).length==1?(redConst).toString(16)+'0':(redConst).toString(16)
-                        ) +
-                        (
-                            (greenConst).toString(16).length==1?(greenConst).toString(16)+'0':(greenConst).toString(16)
-                        ) +
-                        (
-                            (blueConst).toString(16).length==1?(blueConst).toString(16)+'0':(blueConst).toString(16)
-                        )
-                );
-                brakes.forEach(function (item, index) {
-                  item.material.color.setHex( color );
-                });
-            }
-        }/* *END* Brake pedal position based on json data   */
+        // {/* *START* Brake pedal position based on json data   */
+        //     brakeNames = ["FrontBrake_0", "FrontBrake_1", "MiddleBrake_0", "MiddleBrake_1"];
+        //     brakes = visItem.get3DObjectByName(brakeNames);
+        //     brakePosition = Number(json.electronicBreak.breakPedalPosition * 0.4);
+        //     if (!isNaN(brakePosition)) {
+        //         // if (brakePosition<10) color = 0x6DE02A;
+        //         // else if (brakePosition < 20) color = 0xF2EA00;
+        //         // else if (brakePosition < 30) color = 0xEF632F;
+        //         // else color = 0xFF2020;
+        //         redConst = Math.round(brakePosition*2.55);
+        //         greenConst = Math.round(255-brakePosition*2.55);
+        //         blueConst = Math.round(0);
+        //         color = parseInt(
+        //                 '0x'+
+        //                 (
+        //                     (redConst).toString(16).length==1?(redConst).toString(16)+'0':(redConst).toString(16)
+        //                 ) +
+        //                 (
+        //                     (greenConst).toString(16).length==1?(greenConst).toString(16)+'0':(greenConst).toString(16)
+        //                 ) +
+        //                 (
+        //                     (blueConst).toString(16).length==1?(blueConst).toString(16)+'0':(blueConst).toString(16)
+        //                 )
+        //         );
+        //         brakes.forEach(function (item, index) {
+        //           item.material.color.setHex( color );
+        //         });
+        //     }
+        // }/* *END* Brake pedal position based on json data   */
 
 
         // speedWheel = ((1/(2*pi*r))*(speedFromData*kmph2mps))*60/sw2rpm;
@@ -110,7 +110,7 @@ var truck1 = {
     },
     init : function(visItem){
         {/* *START* Add fuel tanks and wheels to opacity items */
-            opacityNames = ["Truck_Fueltank01", "Truck_Fueltank02", "WheelBackMiddleMaterial_1", "WheelFrontMiddleMaterial_2", "WheelFrontTopMaterial_2", "WheelBackTopMaterial_1"];
+            opacityNames = ["MB1Model0.5", "e809a301-174a-4840-8233-78e7b12461eb", "e809a301-174a-4840-8233-78e7b12461eb.001", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3.001"];
             visItem.opacityObjects = visItem.get3DObjectByName(opacityNames);
         }/* *END* Add fuel tanks and wheels to opacity items */
     },
