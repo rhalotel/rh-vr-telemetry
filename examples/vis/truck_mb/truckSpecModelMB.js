@@ -1,4 +1,4 @@
-var truckMB = {
+var truckMB1 = {
     update: function(json,visItem) 
     {
         // var self = this;
@@ -46,7 +46,7 @@ var truckMB = {
             vehicleSpeedFromData = Number(json.tco1.VehicleSpeed / 256); //km/h
 
             // define animation names vector
-            wheelAnimations = ["wheelSpin"];
+            wheelAnimations = ["wheelsSpin"];
 
             // check for NaN
             if (!isNaN(vehicleSpeedFromData)) {
