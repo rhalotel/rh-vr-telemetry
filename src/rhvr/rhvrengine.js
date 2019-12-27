@@ -162,16 +162,19 @@ var rhvr = {
         }
         this.getCameraByName = function(camName) {
             var cams = [];
-            camName.forEach(function(item, index) {
-                console.log(cameraNames[index])
-                cams[index] = self.gltf.cameras[self.cameraNames.indexOf(item)];
+            camName.forEach(function(item) {
+                self.cameraNames.reduce(function(a, e, i) { if (e === item) a.push(i);return a;}, []).forEach(function(item2){
+                    cams.push(self.gltf.cameras[item2]);
+                });
             });
             return cams;
         }
         this.getAnimationByName = function(animName) {
             var anims = [];
-            animName.forEach(function(item, index) {
-                anims[index] = self.animations[self.animationNames.indexOf(item)];
+            animName.forEach(function(item) {
+                self.animationNames.reduce(function(a, e, i) { if (e === item) a.push(i);return a;}, []).forEach(function(item2){
+                    anims.push(self.animations[item2]);
+                });
             });
             return anims;
         }
