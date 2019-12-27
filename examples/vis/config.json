@@ -8,12 +8,12 @@
             "specModelURL":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/truckSpecModel.js",
             "dataResources":[
                 {
-                    "name":"Example_Truck_Test",
+                    "name":"Example Truck Test",
                     "dataType":"TestDataProvider",
                     "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
                 },
                 {
-                    "name":"Example_Truck_Stream",
+                    "name":"Example Truck Stream",
                     "dataType":"StreamDataProvider",
                     "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
                 }
@@ -27,12 +27,12 @@
             "specModelURL":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck_mb/truckSpecModelMB.js",
             "dataResources":[
                 {
-                    "name":"Mercedes-Benz_Test",
+                    "name":"Mercedes-Benz Test",
                     "dataType":"TestDataProvider",
                     "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
                 },
                 {
-                    "name":"Mercedes-Benz_Stream,
+                    "name":"Mercedes-Benz Stream",
                     "dataType":"StreamDataProvider",
                     "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
                 }
@@ -46,12 +46,12 @@
             "specModelURL":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/houseSpecModel.js",
             "dataResources":[
                 {
-                    "name":"Example_House_Test",
+                    "name":"Example House Test",
                     "dataType":"TestDataProvider",
                     "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
                 },
                 {
-                    "name":"Example_House_Stream",
+                    "name":"Example House Stream",
                     "dataType":"StreamDataProvider",
                     "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
                 }
