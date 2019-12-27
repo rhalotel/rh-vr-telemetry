@@ -8,7 +8,7 @@ var selectHtmlElement = "";
 // var htmlElementsArray = []
 
 $(document).ready(function () {
-    let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/config.json"];
+    let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/config.json"];
 
     $.each(configURL, function (i, val) {
         $.getJSON(val, function (resultJSON) {

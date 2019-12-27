@@ -20,6 +20,25 @@
             ]
         },
         {
+            "name": "Example Mercedes-Benz",
+            "specModelId":"truckMB",
+            "url": "https://rhalotel.github.io/rh-vr-telemetry/examples/models/TruckSimulator/rhvr_actors.gltf",
+            "htmlElement":"truckContainer",
+            "specModelURL":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck_mb/truckSpecModelMB.js",
+            "dataResources":[
+                {
+                    "name":"nameTest",
+                    "dataType":"TestDataProvider",
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                },
+                {
+                    "name":"nameStream",
+                    "dataType":"StreamDataProvider",
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                }
+            ]
+        },
+        {
             "name": "Example House Model",
             "specModelId":"house1",
             "url": "https://rhalotel.github.io/rh-vr-telemetry/examples/models/energy/house_curves_Sun%2BBattery_mesh.gltf",
