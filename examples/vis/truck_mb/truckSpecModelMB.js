@@ -1,4 +1,4 @@
-var truck1 = {
+var truckMB = {
     update: function(json,visItem) 
     {
         // var self = this;
