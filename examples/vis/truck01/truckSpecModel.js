@@ -64,7 +64,7 @@ var truck1 = {
             totalFuel = Number(json.fuelConsumption.TotalFuel * 0.001);
             if (!isNaN(totalFuel)) {
                 maxFuel = 600;
-                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                // fuel goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 percentAnim = 100-(100/maxFuel)*totalFuel;
                 visItem.jumpToAnimationPercent(tankAnims, percentAnim);
             }
