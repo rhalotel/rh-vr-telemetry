@@ -87,19 +87,19 @@ var truckMB1 = {
 
 
         {/* *START* Torque visualization based on json data   */
-            torqueAnimNames = ["CardanAction","KardanSpinCubeAction"];
-            torqueAnims = visItem.getAnimationByName(torqueAnimNames);
+            // torqueAnimNames = ["CardanAction","KardanSpinCubeAction"];
+            // torqueAnims = visItem.getAnimationByName(torqueAnimNames);
             truckTorquePercentage = Number(json.eecTorqueSpeed.Torque - 125.0);
             if (!isNaN(truckTorquePercentage)) {
-                cardanBlock = visItem.get3DObjectByName("KardanSpinCube")
+                cardanBlock = visItem.get3DObjectByName(["KardanSpinCube"])
                 if(truckTorquePercentage>85) {
-                    cardanBlock.material.color.set('0x800000');
+                    cardanBlock.material.color.setHex('0x800000');
                 }
                 else if (truckTorquePercentage>40) {
-                    cardanBlock.material.color.set('0xffff00');
+                    cardanBlock.material.color.setHex('0xffff00');
                 }
                 else {
-                    cardanBlock.material.color.set('0x00ff00');
+                    cardanBlock.material.color.setHex('0x00ff00');
                 }
             }
         }/* *END* Torque visualization based on json data   */
@@ -157,7 +157,7 @@ var truckMB1 = {
             torqueAnimNames = ["CardanAction","KardanSpinCubeAction"];
             truckTorquePercentage = Number(json.eecTorqueSpeed.Torque - 125.0);
             if(!isNaN(truckTorquePercentage) && truckTorquePercentage>0){
-                visItem.updateTimeScale(visItem.getAnimationByName(torqueAnimNames), 0.5)
+                visItem.updateTimeScale(visItem.getAnimationByName(torqueAnimNames), 0.65)
             }
         }/* *END* Inicialization of Animations */
     },
