@@ -58,7 +58,7 @@ var house1 = {
         }/* *END* Set sun animation to represent day length */
 
         {/* *START* Add battery to opacity items */
-            opacityNames = ["Shape_IndexedFaceSet019"];
+            opacityNames = ["Shape_IndexedFaceSet019","Battery001"];
             visItem.opacityObjects = visItem.get3DObjectByName(opacityNames);
         }/* *END* Add battery to opacity items */
     },
