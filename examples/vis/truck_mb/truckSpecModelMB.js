@@ -155,7 +155,6 @@ var truckMB1 = {
             visItem.jumpToAnimationPercent(weightAnims, 100);
 
             torqueAnimNames = ["CardanAction","KardanSpinCubeAction"];
-            truckTorquePercentage = Number(json.eecTorqueSpeed.Torque - 125.0);
             visItem.updateTimeScale(visItem.getAnimationByName(torqueAnimNames), 0.65);
         }/* *END* Inicialization of Animations */
     },
