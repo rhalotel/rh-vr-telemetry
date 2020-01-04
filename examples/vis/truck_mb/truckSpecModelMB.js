@@ -73,7 +73,7 @@ var truckMB1 = {
 
 
         {/* *START* Height level based on json weight data   */
-            weightAnimNames = ["ModelGoingUp"];
+            weightAnimNames = ["ModelGoingUp","NaftGoingUp"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             truckWeight = Number(json.combWeight.combVeight);
             if (!isNaN(truckWeight)) {
@@ -103,6 +103,41 @@ var truckMB1 = {
                 }
             }
         }/* *END* Torque visualization based on json data   */
+
+
+
+        {/* *START* Fuel flow based on json data   */
+            flowAnimNames = ["FlowAction"];
+            flowAnims = visItem.getAnimationByName(flowAnimNames);
+            engineSpeed = Number(json.eecTorqueSpeed.EngineSpeed * 0.125);
+            if (!isNaN(engineSpeed) && engineSpeed>0) {
+                maxSpeed = 2500;
+                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                speed = engineSpeed/maxSpeed;
+                visItem.updateTimeScale(flowAnims, speed);
+            }
+            else{
+                visItem.updateTimeScale(flowAnims, 0);
+            }
+        }/* *END* Fuel flow based on json data   */
+
+
+
+        //  {/* *START* Pressure visualization based on json data   */
+        //     truckPressurePercentage = Number(json.eecTorqueSpeed.Torque - 125.0);
+        //     if (!isNaN(truckTorquePercentage)) {
+        //         cardanBlock = visItem.get3DObjectByName(["KardanSpinCube"])
+        //         if(truckTorquePercentage>85) {
+        //             cardanBlock[0].material.color.setHex('0x800000');
+        //         }
+        //         else if (truckTorquePercentage>40) {
+        //             cardanBlock[0].material.color.setHex('0xffff00');
+        //         }
+        //         else {
+        //             cardanBlock[0].material.color.setHex('0x00ff00');
+        //         }
+        //     }
+        // }/* *END* Pressure visualization based on json data   */
 
 
         // {/* *START* Brake pedal position based on json data   */
@@ -145,7 +180,8 @@ var truckMB1 = {
     },
     init : function(visItem){
         {/* *START* Add fuel tanks and wheels to opacity items */
-            opacityNames = ["MB1Model05", "e809a301-174a-4840-8233-78e7b12461eb", "e809a301-174a-4840-8233-78e7b12461eb001", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3001"];
+            // opacityNames = ["MB1Model05", "e809a301-174a-4840-8233-78e7b12461eb", "e809a301-174a-4840-8233-78e7b12461eb001", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3001"];
+            opacityNames = ["MB1Model05","c0780c72-1813-45ba-b497-d79075d4c97c","c0780c72-1813-45ba-b497-d79075d4c97c001","aab746d3-b809-4c01-9b8f-6001b9f09bd8","c4b7ffaa-f426-4448-bb61-18217cf4d736","aab746d3-b809-4c01-9b8f-6001b9f09bd8001","c4b7ffaa-f426-4448-bb61-18217cf4d736001"];
             visItem.opacityObjects = visItem.get3DObjectByName(opacityNames);
         }/* *END* Add fuel tanks and wheels to opacity items */
 
