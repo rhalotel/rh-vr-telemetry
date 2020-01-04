@@ -33,6 +33,89 @@ var house1 = {
                 visItem.setObjectVisibility(sunObject, false);
             }
         }/* *END* Sun position based on time */
+
+
+        {/* *START* Battery drain based on data */
+            batteryAnimNames = ["BatteryDrainAction"];
+            batteryAnims = visItem.getAnimationByName(batteryAnimNames);
+            batteryState = Number(json.combWeight.combVeight);
+            if (!isNaN(batteryState)) {
+                maxBatteryState = 12000;
+                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                percentAnim = 100-(100/maxBatteryState)*batteryState;
+                visItem.jumpToAnimationPercent(batteryAnims, percentAnim);
+            }
+        }/* *END* Battery drain based on data */
+
+
+        {/* *START* Grid flow based on data */
+            gridAnimNames = ["GridFlowAction","GridFlowAction003"];
+            gridAnims = visItem.getAnimationByName(gridAnimNames);
+            gridFlow = Number(json.combWeight.combVeight);
+            if (!isNaN(gridFlow) && gridFlow>0) {
+                maxGridFlow = 12000;
+                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                gridFlow = gridFlow/maxGridFlow;
+                visItem.updateTimeScale(gridAnims, gridFlow);
+            }
+            else{
+                visItem.updateTimeScale(gridAnims, 0);
+            }
+        }/* *END* Grid flow based on data */
+
+
+        {/* *START* Panels flow based on data */
+            panelsAnimNames = ["GridFlowAction001"];
+            panelsAnims = visItem.getAnimationByName(panelsAnimNames);
+            panelsFlow = Number(json.combWeight.combVeight);
+            if (!isNaN(panelsFlow) && panelsFlow>0) {
+                maxPanelsFlow = 12000;
+                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                flow = panelsFlow/maxPanelsFlow;
+                visItem.updateTimeScale(panelsAnims, flow);
+            }
+            else{
+                visItem.updateTimeScale(flowAnims, 0);
+            }
+        }/* *END* Panels flow based on data */
+
+
+
+        {/* *START* Turbine flow based on data */
+            turbineAnimNames = ["TurbineFlowAction"];
+            turbineAnims = visItem.getAnimationByName(turbineAnimNames);
+            turbineFlow = Number(json.combWeight.combVeight);
+            if (!isNaN(turbineFlow) && turbineFlow>0) {
+                maxTurbineFlow = 12000;
+                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                flow = turbineFlow/maxTurbineFlow;
+                visItem.updateTimeScale(turbineAnims, flow);
+            }
+            else{
+                visItem.updateTimeScale(turbineAnims, 0);
+            }
+        }/* *END* Turbine flow based on data */
+
+
+        {/* *START* Car and battery flow based on data */
+            cbAnimNames = ["BatteryFlowAction","CarFlowAction"];
+            cbAnims = visItem.getAnimationByName(cbAnimNames);
+            // cbFlow = Number(json.combWeight.combVeight);
+            energySurplus = Number(json.regulator.energy);
+            if (energySurplus) {
+                intensity = 1;//podla prebytku urcit
+                visItem.updateTimeScale(cbAnims, intensity);
+            }
+            // if (!isNaN(cbFlow) && cbFlow>0) {
+            //     maxcbFlow = 12000;
+            //     // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+            //     cbFlow = cbFlow/maxcbFlow;
+            //     visItem.updateTimeScale(cbAnims, cbFlow);
+            // }
+            else{
+                visItem.updateTimeScale(cbAnims, 0);
+            }
+        }/* *END* Car and battery flow based on data */
     },
     init : function(visItem){
 
