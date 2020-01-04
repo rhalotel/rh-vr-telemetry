@@ -181,10 +181,7 @@ var truckMB1 = {
     init : function(visItem){
         {/* *START* Add fuel tanks and wheels to opacity items */
             // opacityNames = ["MB1Model05", "e809a301-174a-4840-8233-78e7b12461eb", "e809a301-174a-4840-8233-78e7b12461eb001", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3001"];
-            opacityNames = ["MB1Model05","c0780c72-1813-45ba-b497-d79075d4c97c","c0780c72-1813-45ba-b497-d79075d4c97c001","aab746d3-b809-4c01-9b8f-6001b9f09bd8",
-                            "c4b7ffaa-f426-4448-bb61-18217cf4d736","aab746d3-b809-4c01-9b8f-6001b9f09bd8001","c4b7ffaa-f426-4448-bb61-18217cf4d736001",
-                            "e809a301-174a-4840-8233-78e7b12461eb", "e809a301-174a-4840-8233-78e7b12461eb001", "eff1b551-5d7e-4bbf-a659-e7e058cebbc3", 
-                            "eff1b551-5d7e-4bbf-a659-e7e058cebbc3001"];
+            opacityNames = ["MB1Model05","c0780c72-1813-45ba-b497-d79075d4c97c","c0780c72-1813-45ba-b497-d79075d4c97c001","aab746d3-b809-4c01-9b8f-6001b9f09bd8","c4b7ffaa-f426-4448-bb61-18217cf4d736","aab746d3-b809-4c01-9b8f-6001b9f09bd8001","c4b7ffaa-f426-4448-bb61-18217cf4d736001"];
             visItem.opacityObjects = visItem.get3DObjectByName(opacityNames);
         }/* *END* Add fuel tanks and wheels to opacity items */
 
