@@ -22,7 +22,7 @@
         {
             "name": "Example Mercedes-Benz",
             "specModelId":"truckMB1",
-            "url": "https://rhalotel.github.io/rh-vr-telemetry/examples/models/TruckSimulator/rhvr_actros.gltf",
+            "url": "https://rhalotel.github.io/rh-vr-telemetry/examples/models/TruckSimulator/rhvr_actros_Newest.gltf",
             "htmlElement":"mercedesContainer",
             "specModelURL":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck_mb/truckSpecModelMB.js",
             "dataResources":[
