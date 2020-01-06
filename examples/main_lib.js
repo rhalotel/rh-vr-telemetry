@@ -18,7 +18,7 @@ $(document).ready(function () {
                 $("#modelsToChoose").append(`<a class="dropdown-item" href="#" name="` + item.name + `" htmlElement="` + item.htmlElement + `">` + item.name + `</a>`);
                 $("#container").append(`<div id="` + item.htmlElement + `" style="width:100%; height:100%; display: none;" class="modelViewer"></div>`);
                 let specModel;
-                var modelName = item.name;
+                var modelName = item.htmlElement;
                 $.getScript(item.specModelURL, function () {
                     var options = {
                         container: "#" + item.htmlElement,
@@ -34,7 +34,7 @@ $(document).ready(function () {
                     console.log(item.name);
                     $("#dataToVisualize").append(`<a class="dataSourceItem dropdown-item `+modelName+`" href="#" name="` + item.name + `" link="` + item.param + `" style="display: none;">` + item.name + `</a>`);
                 });
-                $("#dataToVisualize").append(`<div class="dropdown-divider"></div>`);
+                // $("#dataToVisualize").append(`<div class="dropdown-divider"></div>`);
             });
             $("#modelsToChoose").append(`<div class="dropdown-divider"></div>`);
 
@@ -56,8 +56,8 @@ $(document).on("click", "#dataToVisualize>a", function (e) {
 
 $(document).on("click", "#modelsToChoose>a, #dataToVisualize>a", function (e) {
     $("#selectedModelAndDataSource").text("Model: " + modelName + " - Datasource: " + dataSource + "");
-    $("dataSourceItem").hide();
-    $("."+modelName).show();
+    $(".dataSourceItem").hide();
+    $("."+selectHtmlElement).show();
 });
 
 
