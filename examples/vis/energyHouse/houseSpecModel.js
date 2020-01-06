@@ -38,9 +38,9 @@ var house1 = {
         {/* *START* Battery drain based on data */
             batteryAnimNames = ["BatteryDrainAction"];
             batteryAnims = visItem.getAnimationByName(batteryAnimNames);
-            batteryState = Number(json.combWeight.combVeight);
+            batteryState = Number(json.batteryDrainAction);
             if (!isNaN(batteryState)) {
-                maxBatteryState = 12000;
+                maxBatteryState = 100;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 percentAnim = 100-(100/maxBatteryState)*batteryState;
                 visItem.jumpToAnimationPercent(batteryAnims, percentAnim);
@@ -51,9 +51,9 @@ var house1 = {
         {/* *START* Grid flow based on data */
             gridAnimNames = ["GridFlowAction","GridFlowAction003"];
             gridAnims = visItem.getAnimationByName(gridAnimNames);
-            gridFlow = Number(json.combWeight.combVeight);
+            gridFlow = Number(json.gridFlow);
             if (!isNaN(gridFlow) && gridFlow>0) {
-                maxGridFlow = 12000;
+                maxGridFlow = 100;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 gridFlow = gridFlow/maxGridFlow;
                 visItem.updateTimeScale(gridAnims, gridFlow);
@@ -67,9 +67,9 @@ var house1 = {
         {/* *START* Panels flow based on data */
             panelsAnimNames = ["GridFlowAction001"];
             panelsAnims = visItem.getAnimationByName(panelsAnimNames);
-            panelsFlow = Number(json.combWeight.combVeight);
+            panelsFlow = Number(json.panelsFlow);
             if (!isNaN(panelsFlow) && panelsFlow>0) {
-                maxPanelsFlow = 12000;
+                maxPanelsFlow = 100;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 flow = panelsFlow/maxPanelsFlow;
                 visItem.updateTimeScale(panelsAnims, flow);
@@ -84,9 +84,9 @@ var house1 = {
         {/* *START* Turbine flow based on data */
             turbineAnimNames = ["TurbineFlowAction"];
             turbineAnims = visItem.getAnimationByName(turbineAnimNames);
-            turbineFlow = Number(json.combWeight.combVeight);
+            turbineFlow = Number(json.turbineFlow);
             if (!isNaN(turbineFlow) && turbineFlow>0) {
-                maxTurbineFlow = 12000;
+                maxTurbineFlow = 100;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 flow = turbineFlow/maxTurbineFlow;
                 visItem.updateTimeScale(turbineAnims, flow);
@@ -101,7 +101,7 @@ var house1 = {
             cbAnimNames = ["BatteryFlowAction","CarFlowAction"];
             cbAnims = visItem.getAnimationByName(cbAnimNames);
             // cbFlow = Number(json.combWeight.combVeight);
-            energySurplus = Number(json.regulator.energy);
+            energySurplus = Number(json.energySurplus);
             if (energySurplus) {
                 intensity = 1;//podla prebytku urcit
                 visItem.updateTimeScale(cbAnims, intensity);

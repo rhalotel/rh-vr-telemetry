@@ -1,0 +1,8 @@
+
+{
+	"batteryDrainAction": 50,
+	"gridFlow": 50,
+	"panelsFlow": 20,
+	"turbineFlow": 80,
+	"energySurplus": true
+}
