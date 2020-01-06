@@ -4,6 +4,7 @@ parse JSON
 
 var modelName = "None";
 var dataSource = "None";
+var dataSourceLink = "";
 var selectHtmlElement = "";
 // var htmlElementsArray = []
 
@@ -30,7 +31,7 @@ $(document).ready(function () {
 
                 $.each(item.dataResources, function (i, item) {
                     console.log(item.name);
-                    $("#dataToVisualize").append(`<a class="dropdown-item" href="#" name="` + item.name + `">` + item.name + `</a>`);
+                    $("#dataToVisualize").append(`<a class="dropdown-item" href="#" name="` + item.name + `" link="` + item.param + `">` + item.name + `</a>`);
                 });
                 $("#dataToVisualize").append(`<div class="dropdown-divider"></div>`);
             });
@@ -49,6 +50,7 @@ $(document).on("click", "#modelsToChoose>a", function (e) {
 
 $(document).on("click", "#dataToVisualize>a", function (e) {
     dataSource = $(this).attr("name");
+    dataSourceLink =$(this).attr("link");
 });
 
 $(document).on("click", "#modelsToChoose>a, #dataToVisualize>a", function (e) {
@@ -61,6 +63,7 @@ $(document).on("click", "#showModel", function (e) {
         $(".modelViewer").hide();
         $("#" + selectHtmlElement).show();
         engine.visToShow(selectHtmlElement);
+
     }
 });
 
@@ -100,7 +103,7 @@ TestDataProvider = function (params) {
     var self = this;
     this.init = function (params) {
         setInterval(function (params) {
-            $.getJSON("https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/example.json", function (resultJSON) {
+            $.getJSON(dataSourceLink, function (resultJSON) {
                 let e = {
                     type: "recdata",
                     //arg: jQuery.parseJSON( getJson() )
