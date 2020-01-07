@@ -10,12 +10,12 @@
                 {
                     "name":"Example Truck Test",
                     "dataType":"TestDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/example.json"
                 },
                 {
                     "name":"Example Truck Stream",
                     "dataType":"StreamDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck01/example.json"
                 }
             ]
         },
@@ -29,12 +29,12 @@
                 {
                     "name":"Mercedes-Benz Test",
                     "dataType":"TestDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck_mb/example.json"
                 },
                 {
                     "name":"Mercedes-Benz Stream",
                     "dataType":"StreamDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck_mb/example.json"
                 }
             ]
         },
@@ -48,12 +48,12 @@
                 {
                     "name":"Example House Test",
                     "dataType":"TestDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/example.json"
                 },
                 {
                     "name":"Example House Stream",
                     "dataType":"StreamDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energy01/example.json"
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/example.json"
                 }
             ]
         }
