@@ -129,10 +129,10 @@ var rhvr = {
         var deltaMs;
         // var fnrender;
         // var settings = {
-        // 	htmlEl: "",
-        // 	specModel: null,
-        // 	scene3d: "", //URL objektu v docs
-        // 	sceneNewThree: null //odkaz na scenu do initu EDIT:uz nie
+        //  htmlEl: "",
+        //  specModel: null,
+        //  scene3d: "", //URL objektu v docs
+        //  sceneNewThree: null //odkaz na scenu do initu EDIT:uz nie
         // }
 
         this.updateTimeScale = function(anims, timeScale) {
@@ -265,13 +265,13 @@ var rhvr = {
             self.isRunning = true;
             self.mouse = new THREE.Vector2();
             self.raycaster = new THREE.Raycaster();
-        	self.isStats = false;
+            self.isStats = false;
             self.animationNames = [];
             self.cameraNames = [];
             self.object3DNames = [];
             self.opacityObjects = [];
             self.scene = new THREE.Scene();
-            self.renderer = renderer = new THREE.WebGLRenderer();
+            self.renderer = window.renderer = new THREE.WebGLRenderer({antialias: true});
             self.manager = new THREE.LoadingManager();
             self.manager.onProgress = function(item, loaded, total) {
                 console.log(item, loaded, total);
@@ -302,9 +302,9 @@ var rhvr = {
                         self.gltf.cameras[i].aspect = $(settings.container).width()/$(settings.container).height();
                         self.gltf.cameras[i].fov = 60;
                     }
-                    // // self.updateAnimation();	
+                    // // self.updateAnimation();   
 
-                    // updateAnimation();	//treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
+                    // updateAnimation();   //treba prekopat...nasa funkcia, ktora pouziva mixer - zatial animuje iba koleso
                     //ale mozno netreba updatovat, kedze to je este len init a update sa bude riesit
                     //po prijati dat a naslednom .run a .task, co vola .update
 
@@ -321,51 +321,51 @@ var rhvr = {
                     // var times=[];
                     // var framesFPS = 10;
                     // function requestAnimFrame() {
-					
-					//   if(!lastCalledTime) {
-					//      lastCalledTime = performance.now();
-					//      fps = 0;
-					//      return;
-					//   }
-					//   delta = (performance.now() - lastCalledTime)/1000;
-					//   lastCalledTime = performance.now();
-					//   fps = 1/delta;
-					  
-					//   if (framesFPS<20) {
-					//     times.push(fps);  
-					//     framesFPS++;
-					//   }
-					//   else{
-					//     var sum = 0;
-					//     for( var i = 0; i < times.length; i++ ){
-					//         sum += parseInt( times[i], 10 ); //don't forget to add the base
-					//     }
-					
-					//     var avg = sum/times.length;
-					//     document.getElementById('fps').innerHTML = Math.round(avg);
-					//     framesFPS=0;
-					//   }
-					// }
+                    
+                    //   if(!lastCalledTime) {
+                    //      lastCalledTime = performance.now();
+                    //      fps = 0;
+                    //      return;
+                    //   }
+                    //   delta = (performance.now() - lastCalledTime)/1000;
+                    //   lastCalledTime = performance.now();
+                    //   fps = 1/delta;
+                      
+                    //   if (framesFPS<20) {
+                    //     times.push(fps);  
+                    //     framesFPS++;
+                    //   }
+                    //   else{
+                    //     var sum = 0;
+                    //     for( var i = 0; i < times.length; i++ ){
+                    //         sum += parseInt( times[i], 10 ); //don't forget to add the base
+                    //     }
+                    
+                    //     var avg = sum/times.length;
+                    //     document.getElementById('fps').innerHTML = Math.round(avg);
+                    //     framesFPS=0;
+                    //   }
+                    // }
 
-                    try	{
-                    	self.stats = new Stats();
-	                    self.stats.setMode(0);
-	                    self.stats.domElement.style.position = 'absolute';
-	                    self.stats.domElement.style.left = null;
-	                    self.stats.domElement.style.right = '0';
-	                    self.stats.domElement.style.top = '0';
-	                    $(settings.container).append(self.stats.domElement);
-	                    self.isStats = true;
+                    try {
+                        self.stats = new Stats();
+                        self.stats.setMode(0);
+                        self.stats.domElement.style.position = 'absolute';
+                        self.stats.domElement.style.left = null;
+                        self.stats.domElement.style.right = '0';
+                        self.stats.domElement.style.top = '0';
+                        $(settings.container).append(self.stats.domElement);
+                        self.isStats = true;
                     }
                     catch(e) {
-                    	console.error('Stats library not found. Please include Stats library for FPS counter.\n'+e);
-                    	self.isStats = false;
+                        console.error('Stats library not found. Please include Stats library for FPS counter.\n'+e);
+                        self.isStats = false;
                     }
 
                     width = $(settings.container).width();
                     height = $(settings.container).height();
 
-                    let ambient = new THREE.AmbientLight(0x101030);
+                    let ambient = new THREE.AmbientLight(0xffffff);
                     self.scene.add(ambient);
 
                     // const light = new THREE.SpotLight(0xFFFFFF, 2, 100, Math.PI / 4, 8);
@@ -402,10 +402,10 @@ var rhvr = {
 
 
                     //renderer.setClearColor( 0xbfe4ff );
-                    self.renderer.setClearColor(0xbfe4ff);
-                    self.renderer.shadowMap.enabled = true;
+                    self.renderer.setClearColor(0xcccccc);
+                    self.renderer.physicallyCorrectLights = true;
                     self.renderer.setPixelRatio( window.devicePixelRatio );
-
+                    //self.renderer.setSize( width, height );
 
                     /* ORBIT CONTROLS */
                     self.controls = new THREE.OrbitControls(self.camera, self.renderer.domElement);
@@ -433,13 +433,13 @@ var rhvr = {
 
                 // function ( xhr ) {
 
-                // 	console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+                //  console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
                 // },
                 // // called when loading has errors
                 // function ( error ) {
 
-                // 	console.log( 'An error happened' );
+                //  console.log( 'An error happened' );
 
                 // }
             );
@@ -493,14 +493,14 @@ var rhvr = {
             if (self.initSuccess && self.isRunning) spec.update(d, self);
             // spec.table.forEach(function(specItem) 
             // {
-            // 	/*
-            // 		Tato funckcia by sa mala volat v kazdej vizualicacii ak pridu nove data, ktore su osetrene este frontov ktora sa spracuvava v Core.run
-            // 		specItem by mal mat ciastkovu aktualizacnu konkretnu funkciu na prislusne hodnoty z dat a mala by sa na zaklade hodnoty animovat urita cast modelu napr. tocenie kolies, otocenie solarneho panelu ... atd  
+            //  /*
+            //      Tato funckcia by sa mala volat v kazdej vizualicacii ak pridu nove data, ktore su osetrene este frontov ktora sa spracuvava v Core.run
+            //      specItem by mal mat ciastkovu aktualizacnu konkretnu funkciu na prislusne hodnoty z dat a mala by sa na zaklade hodnoty animovat urita cast modelu napr. tocenie kolies, otocenie solarneho panelu ... atd  
 
-            // 	 */
+            //   */
             // });
             // if(spec.hasOwnProperty('VehicleSpeed')){
-            // 	spec.VehicleSpeed(d)
+            //  spec.VehicleSpeed(d)
             // }
         }
     }
