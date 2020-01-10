@@ -41,7 +41,7 @@
         {
             "name": "Example House Model",
             "specModelId":"house1",
-            "url": "https://rhalotel.github.io/rh-vr-telemetry/examples/models/energy/house_eletricityAnim.gltf",
+            "url": "https://rhalotel.github.io/rh-vr-telemetry/examples/models/energy/house_editedSpecular.gltf",
             "htmlElement":"houseContainer",
             "specModelURL":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/houseSpecModel.js",
             "dataResources":[
