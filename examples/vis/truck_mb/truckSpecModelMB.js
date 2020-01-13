@@ -73,7 +73,7 @@ var truckMB1 = {
 
 
         {/* *START* Height level based on json weight data   */
-            weightAnimNames = ["ModelGoingUp","NaftGoingUp"];
+            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             truckWeight = Number(json.combWeight.combVeight);
             if (!isNaN(truckWeight)) {
@@ -192,7 +192,7 @@ var truckMB1 = {
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             visItem.jumpToAnimationPercent(weightAnims, 100);
 
-            torqueAnimNames = ["CardanAction","KardanSpinCubeAction"];
+            torqueAnimNames = ["KardanSpinCubeAction"];
             visItem.updateTimeScale(visItem.getAnimationByName(torqueAnimNames), 0.65);
         }/* *END* Inicialization of Animations */
     },
