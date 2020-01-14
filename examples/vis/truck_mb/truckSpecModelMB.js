@@ -57,7 +57,7 @@ var truckMB1 = {
                 // apply road animation
                 maxSpeedRoad=100
                 roadSpeed = vehicleSpeedFromData/maxSpeedRoad;
-                visItem.updateTimeScale(visItem.getAnimationByName(roadAnimations), roadSpeed);
+                visItem.updateTimeScale(visItem.getAnimationByName(roadAnimations), -roadSpeed);
             }
         }/* *END* Wheel animation based on vehicle speed   */
 
