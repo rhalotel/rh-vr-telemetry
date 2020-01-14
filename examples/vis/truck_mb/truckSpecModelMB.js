@@ -47,7 +47,7 @@ var truckMB1 = {
 
             // define animation names vector
             wheelAnimations = ["wheelsSpin"];
-            roadAnimations = ["S1Action","S2Action","S3Action","S4Action","S5Action","S6Action","S7Action","S8Action","S9Action","S10Action","S11Action",]
+            roadAnimations = ["S1Action","S2Action","S3Action","S4Action","S5Action","S6Action","S7Action","S8Action","S9Action","S10Action","S11Action"]
 
             // check for NaN
             if (!isNaN(vehicleSpeedFromData)) {
@@ -57,7 +57,7 @@ var truckMB1 = {
                 // apply road animation
                 maxSpeedRoad=100
                 roadSpeed = vehicleSpeedFromData/maxSpeedRoad;
-                visItem.updateTimeScale(visItem.getAnimationByName(roadAnimations), -roadSpeed);
+                visItem.updateTimeScale(visItem.getAnimationByName(roadAnimations), -2*roadSpeed);
             }
         }/* *END* Wheel animation based on vehicle speed   */
 
