@@ -47,12 +47,17 @@ var truckMB1 = {
 
             // define animation names vector
             wheelAnimations = ["wheelsSpin"];
+            roadAnimations = ["S1Action","S2Action","S3Action","S4Action","S5Action","S6Action","S7Action","S8Action","S9Action","S10Action","S11Action",]
 
             // check for NaN
             if (!isNaN(vehicleSpeedFromData)) {
                 // apply animation speed
                 speedWheel = ((1/(2*pi*r))*(vehicleSpeedFromData*kmph2mps))*60/sw2rpm;
                 visItem.updateTimeScale(visItem.getAnimationByName(wheelAnimations), speedWheel);
+                // apply road animation
+                maxSpeedRoad=100
+                roadSpeed = vehicleSpeedFromData/maxSpeedRoad;
+                visItem.updateTimeScale(roadAnimations, roadSpeed);
             }
         }/* *END* Wheel animation based on vehicle speed   */
 
