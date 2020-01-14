@@ -73,7 +73,7 @@ var truckMB1 = {
 
 
         {/* *START* Height level based on json weight data   */
-            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp"];
+            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             truckWeight = Number(json.combWeight.combVeight);
             if (!isNaN(truckWeight)) {
@@ -188,7 +188,7 @@ var truckMB1 = {
         }/* *END* Add fuel tanks and wheels to opacity items */
 
         {/* *START* Inicialization of Animations */
-            weightAnimNames = ["ModelGoingUp"];
+            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             visItem.jumpToAnimationPercent(weightAnims, 100);
 
