@@ -74,7 +74,7 @@ var house1 = {
             if (!isNaN(secondGridFlow)) {
                 maxGridFlow = 1000;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-                gridFlow2 = secondtGridFlow/maxGridFlow;
+                gridFlow2 = secondGridFlow/maxGridFlow;
                 visItem.updateTimeScale(gridAnims[1], gridFlow2);
             }
             else{
