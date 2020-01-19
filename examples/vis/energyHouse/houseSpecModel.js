@@ -102,7 +102,7 @@ var house1 = {
 
 
         {/* *START* Panels flow based on data */
-            panelsAnimNames = ["GridFlowAction001"];
+            panelsAnimNames = ["GridFlowAction.001"];
             panelsAnims = visItem.getAnimationByName(panelsAnimNames);
             panelsFlow = Number(json.solar.U_PANEL);
             if (!isNaN(panelsFlow) && panelsFlow>0) {
@@ -178,6 +178,8 @@ var house1 = {
             // cbFlow = Number(json.combWeight.combVeight);
             energyDemand = Number(json.demand.L1) + Number(json.demand.L2) + Number(json.demand.L3);
             energyGrid = Number(json.grid.L1) + Number(json.grid.L2) + Number(json.grid.L3);
+            energyDemand = (energyDemand>1000) ? 1000 : energyDemand;
+            energyGrid = (energyGrid>1000) ? 1000 : energyGrid;
             if (!isNaN(energyDemand) && !isNaN(energyGrid)) {
                 maxEnergy=1000;
                 demandFlow=energyDemand/maxEnergy;
