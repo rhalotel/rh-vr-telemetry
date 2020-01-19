@@ -78,7 +78,7 @@ var truckMB1 = {
 
 
         {/* *START* Height level based on json weight data   */
-            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction"];
+            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction","LogoGoingUp"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             truckWeight = Number(json.combWeight.combVeight);
             if (!isNaN(truckWeight)) {
@@ -97,22 +97,40 @@ var truckMB1 = {
             truckTorquePercentage = Number(json.eecTorqueSpeed.Torque - 125.0);
             if (!isNaN(truckTorquePercentage)) {
                 cardanBlock = visItem.get3DObjectByName(["KardanSpinCube"])
-                if(truckTorquePercentage>85) {
-                    cardanBlock[0].material.color.setHex('0x800000');
-                }
-                else if (truckTorquePercentage>40) {
-                    cardanBlock[0].material.color.setHex('0xffff00');
-                }
-                else {
-                    cardanBlock[0].material.color.setHex('0x00ff00');
-                }
+                // if(truckTorquePercentage>85) {
+                //     cardanBlock[0].material.color.setHex('0x800000');
+                // }
+                // else if (truckTorquePercentage>40) {
+                //     cardanBlock[0].material.color.setHex('0xffff00');
+                // }
+                // else {
+                //     cardanBlock[0].material.color.setHex('0x00ff00');
+                // }
+                redConst = Math.round(brakePosition*2.55);
+                greenConst = Math.round(255-brakePosition*2.55);
+                blueConst = Math.round(0);
+                color = parseInt(
+                        '0x'+
+                        (
+                            (redConst).toString(16).length==1?(redConst).toString(16)+'0':(redConst).toString(16)
+                        ) +
+                        (
+                            (greenConst).toString(16).length==1?(greenConst).toString(16)+'0':(greenConst).toString(16)
+                        ) +
+                        (
+                            (blueConst).toString(16).length==1?(blueConst).toString(16)+'0':(blueConst).toString(16)
+                        )
+                );
+                cardanBlock.forEach(function (item, index) {
+                  item.material.color.setHex( color );
+                });
             }
         }/* *END* Torque visualization based on json data   */
 
 
 
         {/* *START* Fuel flow based on json data   */
-            flowAnimNames = ["FlowAction"];
+            flowAnimNames = ["FlowAction","Flow2Action"];
             flowAnims = visItem.getAnimationByName(flowAnimNames);
             engineSpeed = Number(json.eecTorqueSpeed.EngineSpeed * 0.125);
             if (!isNaN(engineSpeed) && engineSpeed>0) {
@@ -132,15 +150,33 @@ var truckMB1 = {
             truckPressurePercentage = Number(json.engineTemp.EngineCoolantTmp - 40.0);
             if (!isNaN(truckPressurePercentage)) {
                 cardanBlock = visItem.get3DObjectByName(["Vzdusnik"])
-                if(truckPressurePercentage>85) {
-                    cardanBlock[0].material.color.setHex('0x800000');
-                }
-                else if (truckPressurePercentage>40) {
-                    cardanBlock[0].material.color.setHex('0xffff00');
-                }
-                else {
-                    cardanBlock[0].material.color.setHex('0x00ff00');
-                }
+                // if(truckPressurePercentage>85) {
+                //     cardanBlock[0].material.color.setHex('0x800000');
+                // }
+                // else if (truckPressurePercentage>40) {
+                //     cardanBlock[0].material.color.setHex('0xffff00');
+                // }
+                // else {
+                //     cardanBlock[0].material.color.setHex('0x00ff00');
+                // }
+                redConst = Math.round(brakePosition*2.55);
+                greenConst = Math.round(255-brakePosition*2.55);
+                blueConst = Math.round(0);
+                color = parseInt(
+                        '0x'+
+                        (
+                            (redConst).toString(16).length==1?(redConst).toString(16)+'0':(redConst).toString(16)
+                        ) +
+                        (
+                            (greenConst).toString(16).length==1?(greenConst).toString(16)+'0':(greenConst).toString(16)
+                        ) +
+                        (
+                            (blueConst).toString(16).length==1?(blueConst).toString(16)+'0':(blueConst).toString(16)
+                        )
+                );
+                cardanBlock.forEach(function (item, index) {
+                  item.material.color.setHex( color );
+                });
             }
         }/* *END* Pressure visualization based on json data   */
 
@@ -193,7 +229,7 @@ var truckMB1 = {
         }/* *END* Add fuel tanks and wheels to opacity items */
 
         {/* *START* Inicialization of Animations */
-            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction"];
+            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction","LogoGoingUp"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             visItem.jumpToAnimationPercent(weightAnims, 100);
 

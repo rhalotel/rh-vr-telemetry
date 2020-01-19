@@ -34,7 +34,7 @@
                 {
                     "name":"Mercedes-Benz Stream",
                     "dataType":"StreamDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck_mb/example.json"
+                    "param":"http://www.rhalotel.com/rhvrstream.ashx?type=vehicle"
                 }
             ]
         },
@@ -53,7 +53,7 @@
                 {
                     "name":"Example House Stream",
                     "dataType":"StreamDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/example.json"
+                    "param":"http://www.rhalotel.com/rhvrstream.ashx?type=ems"
                 }
             ]
         }

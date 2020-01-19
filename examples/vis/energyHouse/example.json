@@ -16,9 +16,10 @@
 		"L3":3500
 	},
 	"solar":{
-		"U":54,
-		"I":10,
-		"W":60
+		"U_PANEL":54,
+		"I_REG":10,
+		"U_REG":60,
+		"P_PANEL":30
 	},
 	"batteryDrainAction": 50,
 	"gridFlow": 50,

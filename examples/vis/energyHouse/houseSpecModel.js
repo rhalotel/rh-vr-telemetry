@@ -2,45 +2,46 @@ var house1 = {
     isSet : false,
     update: function(json,visItem) 
     {
-        // {/* *START* Sun position based on time */
-        //     var sunObject = visItem.get3DObjectByName(["Sun"]);
-        //     sunLocationName = ["SunAction"];
-        //     sunLocationAnim = visItem.getAnimationByName(sunLocationName);
-        //     // average sunrise time for november in london: 7:18
-        //     var sunrise = "7:18".split(/[.:]/);
-        //     var hours = parseInt(sunrise[0], 10);
-        //     var minutes = sunrise[1] ? parseInt(sunrise[1], 10) : 0;
-        //     sunrise = hours + minutes / 60;
+        {/* *START* Sun position based on time */
+            var sunObject = visItem.get3DObjectByName(["Sun"]);
+            sunLocationName = ["SunAction"];
+            sunLocationAnim = visItem.getAnimationByName(sunLocationName);
+            // average sunrise time for november in london: 7:18
+            var sunrise = "7:18".split(/[.:]/);
+            var hours = parseInt(sunrise[0], 10);
+            var minutes = sunrise[1] ? parseInt(sunrise[1], 10) : 0;
+            sunrise = hours + minutes / 60;
             
-        //     // average sunset time for november in london: 16:13
-        //     var sunset = "16:13".split(/[.:]/);
-        //     hours = parseInt(sunset[0], 10);
-        //     minutes = sunset[1] ? parseInt(sunset[1], 10) : 0;
-        //     sunset = hours + minutes / 60;
+            // average sunset time for november in london: 16:13
+            var sunset = "16:13".split(/[.:]/);
+            hours = parseInt(sunset[0], 10);
+            minutes = sunset[1] ? parseInt(sunset[1], 10) : 0;
+            sunset = hours + minutes / 60;
 
-        //     var currDate = new Date();
-        //     var currTime = (currDate.getHours() + ":" + currDate.getMinutes()).split(/[.:]/);
-        //     hours = parseInt(currTime[0], 10);
-        //     minutes = currTime[1] ? parseInt(currTime[1], 10) : 0;
-        //     currTime = hours + minutes / 60;
-        //     if (currTime>=sunrise && currTime <=sunset) {
-        //     	if (!this.isSet) {
-        //     		visItem.jumpToAnimationPercent(sunLocationAnim, ((currTime-sunrise)/(sunset-sunrise))*100);
-        //     		this.isSet=true;
-        //     	}
-        //         visItem.setObjectVisibility(sunObject, true);
-        //     } else {
-        //         visItem.setObjectVisibility(sunObject, false);
-        //     }
-        // }/* *END* Sun position based on time */
+            var currDate = new Date();
+            var currTime = (currDate.getHours() + ":" + currDate.getMinutes()).split(/[.:]/);
+            hours = parseInt(currTime[0], 10);
+            minutes = currTime[1] ? parseInt(currTime[1], 10) : 0;
+            currTime = hours + minutes / 60;
+            if (currTime>=sunrise && currTime <=sunset) {
+            	if (!this.isSet) {
+            		visItem.jumpToAnimationPercent(sunLocationAnim, ((currTime-sunrise)/(sunset-sunrise))*100);
+            		this.isSet=true;
+            	}
+                visItem.setObjectVisibility(sunObject, true);
+            } else {
+                visItem.setObjectVisibility(sunObject, false);
+            }
+        }/* *END* Sun position based on time */
 
 
         {/* *START* Battery drain based on data */
             batteryAnimNames = ["BatteryDrainAction"];
             batteryAnims = visItem.getAnimationByName(batteryAnimNames);
-            batteryState = Number(json.batteryDrainAction);
+            // batteryState = Number(json.batteryDrainAction);
+            batteryState = Number(json.battery.C);
             if (!isNaN(batteryState)) {
-                maxBatteryState = 100;
+                maxBatteryState = 2;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 percentAnim = 100-(100/maxBatteryState)*batteryState;
                 visItem.jumpToAnimationPercent(batteryAnims, percentAnim);
@@ -49,17 +50,53 @@ var house1 = {
 
 
         {/* *START* Grid flow based on data */
-            gridAnimNames = ["GridFlowAction","GridFlowAction003"];
-            gridAnims = visItem.getAnimationByName(gridAnimNames);
-            gridFlow = Number(json.gridFlow);
-            if (!isNaN(gridFlow) && gridFlow>0) {
-                maxGridFlow = 100;
+            gridAnimNames=["FirstPhaseAction","GridFlowAction","ThirdPhaseAction","GridFlowAction003"];
+            gridAnims=visItem.getAnimationByName(gridAnimNames);
+            // firstAnimNames = ["FirstPhaseAction"];
+            // firstAnims = visItem.getAnimationByName(firstAnimNames);
+            // secondAnimNames = ["SecondPhaseAction"];
+            // secondAnims = visItem.getAnimationByName(secondAnimNames);
+            // thirdAnimNames = ["ThirdPhaseAction"];
+            // thirdAnims = visItem.getAnimationByName(thirdAnimNames);
+            firstGridFlow = Number(json.grid.L1);
+            secondGridFlow = Number(json.grid.L2);
+            thirdGridFlow = Number(json.grid.L3);
+
+            if (!isNaN(firstGridFlow)) {
+                maxGridFlow = 1000;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-                gridFlow = gridFlow/maxGridFlow;
-                visItem.updateTimeScale(gridAnims, gridFlow);
+                gridFlow = firstGridFlow/maxGridFlow;
+                visItem.updateTimeScale(gridAnims[0], gridFlow);
             }
             else{
-                visItem.updateTimeScale(gridAnims, 0);
+                visItem.updateTimeScale(gridAnims[0], 0);
+            }
+            if (!isNaN(secondGridFlow)) {
+                maxGridFlow = 1000;
+                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                gridFlow2 = secondtGridFlow/maxGridFlow;
+                visItem.updateTimeScale(gridAnims[1], gridFlow2);
+            }
+            else{
+                visItem.updateTimeScale(gridAnims[1], 0);
+            }
+            if (!isNaN(thirdGridFlow)) {
+                maxGridFlow = 1000;
+                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                gridFlow3 = thirdGridFlow/maxGridFlow;
+                visItem.updateTimeScale(gridAnims[2], gridFlow3);
+            }
+            else{
+                visItem.updateTimeScale(gridAnims[2], 0);
+            }
+            if ((thirdGridFlow!=0) || (secondGridFlow!=0) || (firstGridFlow!=0)) {
+                maxGridFlow = 1000;
+                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+                // gridFlow3 = thirdGridFlow/maxGridFlow;
+                visItem.updateTimeScale(gridAnims[4], 0.8);
+            }
+            else{
+                visItem.updateTimeScale(gridAnims[4], 0);
             }
         }/* *END* Grid flow based on data */
 
@@ -67,9 +104,9 @@ var house1 = {
         {/* *START* Panels flow based on data */
             panelsAnimNames = ["GridFlowAction001"];
             panelsAnims = visItem.getAnimationByName(panelsAnimNames);
-            panelsFlow = Number(json.panelsFlow);
+            panelsFlow = Number(json.solar.U_PANEL);
             if (!isNaN(panelsFlow) && panelsFlow>0) {
-                maxPanelsFlow = 100;
+                maxPanelsFlow = 1000;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 flow = panelsFlow/maxPanelsFlow;
                 visItem.updateTimeScale(panelsAnims, flow);
@@ -82,13 +119,13 @@ var house1 = {
 
 
         {/* *START* Turbine flow based on data */
-            turbineAnimNames = ["TurbineFlowAction"];
+            turbineAnimNames = ["TurbineFlowAction","TurbineToSpinAction"];
             turbineAnims = visItem.getAnimationByName(turbineAnimNames);
-            turbineFlow = Number(json.turbineFlow);
+            turbineFlow = Number(json.solar.U_PANEL);
             if (!isNaN(turbineFlow) && turbineFlow>0) {
-                maxTurbineFlow = 100;
+                maxTurbineFlow = 1200;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-                flow = turbineFlow/maxTurbineFlow;
+                flow = (1200-turbineFlow)/maxTurbineFlow;
                 visItem.updateTimeScale(turbineAnims, flow);
             }
             else{
@@ -119,26 +156,26 @@ var house1 = {
     },
     init : function(visItem){
 
-        // {/* *START* Set sun animation to represent day length and set to current time */
-        //     // average day length for november in london: 8:54
-        //     var day_length = "8:54".split(/[.:]/);
-        //     hours = parseInt(day_length[0], 10);
-        //     minutes = day_length[1] ? parseInt(day_length[1], 10) : 0;
-        //     day_length = hours + minutes / 60;
-        //     sunLocationName = ["SunAction"];
-        //     sunLocationAnim = visItem.getAnimationByName(sunLocationName);
-        //     visItem.updateTimeScale(sunLocationAnim, sunLocationAnim[0].duration/(day_length*3600));
+        {/* *START* Set sun animation to represent day length and set to current time */
+            // average day length for november in london: 8:54
+            var day_length = "8:54".split(/[.:]/);
+            hours = parseInt(day_length[0], 10);
+            minutes = day_length[1] ? parseInt(day_length[1], 10) : 0;
+            day_length = hours + minutes / 60;
+            sunLocationName = ["SunAction"];
+            sunLocationAnim = visItem.getAnimationByName(sunLocationName);
+            visItem.updateTimeScale(sunLocationAnim, sunLocationAnim[0].duration/(day_length*3600));
 
-        //     var sunrise = "7:18".split(/[.:]/);
-        //     var hours = parseInt(sunrise[0], 10);
-        //     var minutes = sunrise[1] ? parseInt(sunrise[1], 10) : 0;
-        //     sunrise = hours + minutes / 60;
-        //     var currDate = new Date();
-        //     var currTime = (currDate.getHours() + ":" + currDate.getMinutes()).split(/[.:]/);
-        //     currTimePercent = ((currTime-sunrise)/(day_length))*100;
-        //     if (currTimePercent<=100 && currTimePercent>=0)
-        //     	visItem.jumpToAnimationPercent(sunLocationAnim, currTimePercent);
-        // }/* *END* Set sun animation to represent day length */
+            var sunrise = "7:18".split(/[.:]/);
+            var hours = parseInt(sunrise[0], 10);
+            var minutes = sunrise[1] ? parseInt(sunrise[1], 10) : 0;
+            sunrise = hours + minutes / 60;
+            var currDate = new Date();
+            var currTime = (currDate.getHours() + ":" + currDate.getMinutes()).split(/[.:]/);
+            currTimePercent = ((currTime-sunrise)/(day_length))*100;
+            if (currTimePercent<=100 && currTimePercent>=0)
+            	visItem.jumpToAnimationPercent(sunLocationAnim, currTimePercent);
+        }/* *END* Set sun animation to represent day length */
 
         {/* *START* Add battery to opacity items */
             opacityNames = ["Battery001"];
