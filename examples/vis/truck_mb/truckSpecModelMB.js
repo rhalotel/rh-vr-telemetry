@@ -64,7 +64,7 @@ var truckMB1 = {
 
 
         {/* *START* Tank fuel level based on json data   */
-            tankAnimNames = ["NaftDrain"];
+            tankAnimNames = ["NaftDrain","Nafta2Drain"];
             tankAnims = visItem.getAnimationByName(tankAnimNames);
             totalFuel = Number(json.fuelConsumption.TotalFuel * 0.001);
             if (!isNaN(totalFuel)) {
@@ -78,7 +78,7 @@ var truckMB1 = {
 
 
         {/* *START* Height level based on json weight data   */
-            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction","LogoGoingUp"];
+            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction","LogoGoingUp","Nafta2GoingUp"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             truckWeight = Number(json.combWeight.combVeight);
             if (!isNaN(truckWeight)) {
