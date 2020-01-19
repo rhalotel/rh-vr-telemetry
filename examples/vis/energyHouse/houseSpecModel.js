@@ -43,7 +43,7 @@ var house1 = {
             if (!isNaN(batteryState)) {
                 maxBatteryState = 2;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-                percentAnim = 100-(100/maxBatteryState)*batteryState;
+                percentAnim = batteryState/maxBatteryState;
                 visItem.jumpToAnimationPercent(batteryAnims, percentAnim);
             }
         }/* *END* Battery drain based on data */
