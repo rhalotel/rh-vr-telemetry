@@ -178,10 +178,10 @@ var house1 = {
             // cbFlow = Number(json.combWeight.combVeight);
             energyDemand = Number(json.demand.L1) + Number(json.demand.L2) + Number(json.demand.L3);
             energyGrid = Number(json.grid.L1) + Number(json.grid.L2) + Number(json.grid.L3);
-            energyDemand = (energyDemand>1000) ? 1000 : energyDemand;
-            energyGrid = (energyGrid>1000) ? 1000 : energyGrid;
+            energyDemand = (energyDemand>4000) ? 4000 : energyDemand;
+            energyGrid = (energyGrid>4000) ? 4000 : energyGrid;
             if (!isNaN(energyDemand) && !isNaN(energyGrid)) {
-                maxEnergy=1000;
+                maxEnergy=4000;
                 demandFlow=energyDemand/maxEnergy;
                 gridFlow=energyGrid/maxEnergy;
                 visItem.jumpToAnimationPercent(cabinetAnims[0], demandFlow);
