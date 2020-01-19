@@ -106,8 +106,8 @@ var truckMB1 = {
                 // else {
                 //     cardanBlock[0].material.color.setHex('0x00ff00');
                 // }
-                redConst = Math.round(brakePosition*2.55);
-                greenConst = Math.round(255-brakePosition*2.55);
+                redConst = Math.round( truckTorquePercentage*2.55);
+                greenConst = Math.round(255- truckTorquePercentage*2.55);
                 blueConst = Math.round(0);
                 color = parseInt(
                         '0x'+
@@ -159,8 +159,8 @@ var truckMB1 = {
                 // else {
                 //     cardanBlock[0].material.color.setHex('0x00ff00');
                 // }
-                redConst = Math.round(brakePosition*2.55);
-                greenConst = Math.round(255-brakePosition*2.55);
+                redConst = Math.round(truckPressurePercentage*2.55);
+                greenConst = Math.round(255-truckPressurePercentage*2.55);
                 blueConst = Math.round(0);
                 color = parseInt(
                         '0x'+
