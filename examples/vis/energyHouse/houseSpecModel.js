@@ -118,15 +118,52 @@ var house1 = {
 
 
 
+        // {/* *START* Turbine flow based on data */
+        //     turbineAnimNames = ["TurbineFlowAction","TurbineToSpinAction"];
+        //     turbineAnims = visItem.getAnimationByName(turbineAnimNames);
+        //     turbineFlow = Number(json.solar.U_PANEL);
+        //     if (!isNaN(turbineFlow) && turbineFlow>0) {
+        //         maxTurbineFlow = 1200;
+        //         // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
+        //         flow = (1200-turbineFlow)/maxTurbineFlow;
+        //         visItem.updateTimeScale(turbineAnims, flow);
+        //     }
+        //     else{
+        //         visItem.updateTimeScale(turbineAnims, 0);
+        //     }
+        // }/* *END* Turbine flow based on data */
+
+
+        {/* *START* Car and battery flow based on data */
+            cbAnimNames = ["BatteryFlowAction","CarFlowAction"];
+            cbAnims = visItem.getAnimationByName(cbAnimNames);
+            // cbFlow = Number(json.combWeight.combVeight);
+            energySurplus = Number(json.solar.U_PANEL);
+            energyDemand = Number(json.demand.L1) + Number(json.demand.L2) + Number(json.demand.L3);
+            if (energySurplus > energyDemand) {
+                intensity = (energySurplus - energyDemand)*0.3;//podla prebytku urcit
+                if(intensity>2)
+                    intensity=2;
+                visItem.updateTimeScale(cbAnims, intensity);
+            }
+            else{
+                visItem.updateTimeScale(cbAnims, 0);
+            }
+        }/* *END* Car and battery flow based on data */
+
+
+
         {/* *START* Turbine flow based on data */
-            turbineAnimNames = ["TurbineFlowAction","TurbineToSpinAction"];
+            turbineAnimNames = ["TurbineToSpinAction","TurbineFlowAction"];
             turbineAnims = visItem.getAnimationByName(turbineAnimNames);
-            turbineFlow = Number(json.solar.U_PANEL);
-            if (!isNaN(turbineFlow) && turbineFlow>0) {
-                maxTurbineFlow = 1200;
-                // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-                flow = (1200-turbineFlow)/maxTurbineFlow;
-                visItem.updateTimeScale(turbineAnims, flow);
+            // cbFlow = Number(json.combWeight.combVeight);
+            energySurplus = Number(json.solar.U_PANEL);
+            
+            if (!isNaN(energySurplus)) {
+                maxEnergy=1000;
+                turbine=1000-energySurplus;
+                intensity=turbine/maxEnergy;
+                visItem.updateTimeScale(turbineAnims, intensity);
             }
             else{
                 visItem.updateTimeScale(turbineAnims, 0);
@@ -134,25 +171,24 @@ var house1 = {
         }/* *END* Turbine flow based on data */
 
 
-        {/* *START* Car and battery flow based on data */
-            cbAnimNames = ["BatteryFlowAction","CarFlowAction"];
-            cbAnims = visItem.getAnimationByName(cbAnimNames);
+
+        {/* *START* Cabinet animation based on data */
+            cabinetAnimNames = ["DemandCubeAction","GridCubeAction"];
+            cabinetAnims = visItem.getAnimationByName(cabinetAnimNames);
             // cbFlow = Number(json.combWeight.combVeight);
-            energySurplus = Number(json.energySurplus);
-            if (energySurplus) {
-                intensity = 1;//podla prebytku urcit
-                visItem.updateTimeScale(cbAnims, intensity);
+            energyDemand = Number(json.demand.L1) + Number(json.demand.L2) + Number(json.demand.L3);
+            energyGrid = Number(json.grid.L1) + Number(json.grid.L2) + Number(json.grid.L3);
+            if (!isNaN(energyDemand) && !isNaN(energyGrid)) {
+                maxEnergy=1000;
+                demandFlow=energyDemand/maxEnergy;
+                gridFlow=energyGrid/maxEnergy;
+                visItem.jumpToAnimationPercent(cabinetAnims[0], demandFlow);
+                visItem.jumpToAnimationPercent(cabinetAnims[1], gridFlow);
             }
-            // if (!isNaN(cbFlow) && cbFlow>0) {
-            //     maxcbFlow = 12000;
-            //     // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-            //     cbFlow = cbFlow/maxcbFlow;
-            //     visItem.updateTimeScale(cbAnims, cbFlow);
-            // }
             else{
-                visItem.updateTimeScale(cbAnims, 0);
+                visItem.jumpToAnimationPercent(turbineAnims, 0);
             }
-        }/* *END* Car and battery flow based on data */
+        }/* *END* Cabinet animation based on data */
     },
     init : function(visItem){
 
