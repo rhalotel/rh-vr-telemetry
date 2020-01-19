@@ -50,7 +50,7 @@ var house1 = {
 
 
         {/* *START* Grid flow based on data */
-            gridAnimNames=["FirstPhaseAction","GridFlowAction","ThirdPhaseAction","GridFlowAction003"];
+            gridAnimNames=["FirstPhaseAction","GridFlowAction","ThirdPhaseAction","GridFlowAction.003"];
             gridAnims=visItem.getAnimationByName(gridAnimNames);
             // firstAnimNames = ["FirstPhaseAction"];
             // firstAnims = visItem.getAnimationByName(firstAnimNames);
