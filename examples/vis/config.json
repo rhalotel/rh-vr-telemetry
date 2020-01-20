@@ -34,7 +34,7 @@
                 {
                     "name":"Mercedes-Benz Stream",
                     "dataType":"StreamDataProvider",
-                    "param":"https://www.jizdny.org/rado-os/current.ashx?type=vehicle&fbclid=IwAR3NKlhvz4_9S5QAcLSDJ_LaTIRmkuY-GWERS_RvsV7ZvBFsk0MV2ackaiQ"
+                    "param":"https://www.jizdny.org/rado-os/current.ashx?type=vehicle"
                 }
             ]
         },
@@ -53,7 +53,7 @@
                 {
                     "name":"Example House Stream",
                     "dataType":"StreamDataProvider",
-                    "param":"https://www.jizdny.org/rado-os/current.ashx?type=house&fbclid=IwAR1ffOg0aWJyiIDEnJYqdKeeQE-Ac14hxSekFKOBvZFzrgfZT2oGipanJ5g"
+                    "param":"https://www.jizdny.org/rado-os/current.ashx?type=house"
                 }
             ]
         }

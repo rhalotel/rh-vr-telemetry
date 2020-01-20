@@ -1,4 +1,18 @@
 {
+	"brakePedalPercent": 0,
+	"acclPedalPercent": 0,
+	"weight1Kg": "NaN",
+	"weight2Kg": 6300,
+	"shaftRPM": 518.5,
+	"torquePercent": 35,
+	"fuelLevelPercent": 50,
+	"speedKmh": 74.5,
+	"fuelLiterHour": 53,
+	"fuelLiterPer100Km": 222.0703125,
+	"airPressFrontKPa": 1200,
+	"airPressRearKPa": 1200 ,
+
+
 	"fuelConsumption": {
 		"notUsed": 4294967295,
 		"TotalFuel": 196939 
