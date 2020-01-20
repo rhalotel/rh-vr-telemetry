@@ -66,37 +66,37 @@ var house1 = {
                 maxGridFlow = 1000;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 gridFlow = firstGridFlow/maxGridFlow;
-                visItem.updateTimeScale(gridAnims[0], gridFlow);
+                visItem.updateTimeScale(visItem.getAnimationByName(["FirstPhaseAction"]), gridFlow);
             }
             else{
-                visItem.updateTimeScale(gridAnims[0], 0);
+                visItem.updateTimeScale(visItem.getAnimationByName(["FirstPhaseAction"]), 0);
             }
             if (!isNaN(secondGridFlow)) {
                 maxGridFlow = 1000;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 gridFlow2 = secondGridFlow/maxGridFlow;
-                visItem.updateTimeScale(gridAnims[1], gridFlow2);
+                visItem.updateTimeScale(visItem.getAnimationByName(["GridFlowAction"]), gridFlow2);
             }
             else{
-                visItem.updateTimeScale(gridAnims[1], 0);
+                visItem.updateTimeScale(visItem.getAnimationByName(["GridFlowAction"]), 0);
             }
             if (!isNaN(thirdGridFlow)) {
                 maxGridFlow = 1000;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 gridFlow3 = thirdGridFlow/maxGridFlow;
-                visItem.updateTimeScale(gridAnims[2], gridFlow3);
+                visItem.updateTimeScale(visItem.getAnimationByName(["ThirdPhaseAction"]), gridFlow3);
             }
             else{
-                visItem.updateTimeScale(gridAnims[2], 0);
+                visItem.updateTimeScale(visItem.getAnimationByName(["ThirdPhaseAction"]), 0);
             }
             if ((thirdGridFlow!=0) || (secondGridFlow!=0) || (firstGridFlow!=0)) {
                 maxGridFlow = 1000;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 // gridFlow3 = thirdGridFlow/maxGridFlow;
-                visItem.updateTimeScale(gridAnims[4], 0.8);
+                visItem.updateTimeScale(visItem.getAnimationByName(["GridFlowAction.003"]), 0.65);
             }
             else{
-                visItem.updateTimeScale(gridAnims[4], 0);
+                visItem.updateTimeScale(visItem.getAnimationByName(["GridFlowAction.003"]), 0);
             }
         }/* *END* Grid flow based on data */
 
@@ -184,8 +184,8 @@ var house1 = {
                 maxEnergy=4000;
                 demandFlow=energyDemand/maxEnergy;
                 gridFlow=energyGrid/maxEnergy;
-                visItem.jumpToAnimationPercent(cabinetAnims[0], demandFlow);
-                visItem.jumpToAnimationPercent(cabinetAnims[1], gridFlow);
+                visItem.jumpToAnimationPercent(visItem.getAnimationByName(["DemandCubeAction"]), demandFlow);
+                visItem.jumpToAnimationPercent(visItem.getAnimationByName(["GridCubeAction"]), gridFlow);
             }
             else{
                 visItem.jumpToAnimationPercent(turbineAnims, 0);
