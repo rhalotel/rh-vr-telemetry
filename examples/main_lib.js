@@ -12,7 +12,7 @@ $(document).ready(function () {
     let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/config.json"];
 
     $.each(configURL, function (i, val) {
-        $.getJSON(val, function (resultJSON) {
+        $.get(val, function (resultJSON) {
             $.each(resultJSON.model, function (i, item) {
                 console.log(item.name);
                 $("#modelsToChoose").append(`<a class="dropdown-item" href="#" name="` + item.name + `" htmlElement="` + item.htmlElement + `">` + item.name + `</a>`);
