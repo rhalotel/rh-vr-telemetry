@@ -12,7 +12,7 @@ $(document).ready(function () {
     let configURL = ["https://rhalotel.github.io/rh-vr-telemetry/examples/vis/config.json"];
 
     $.each(configURL, function (i, val) {
-        $.get(val, function (resultJSON) {
+        $.getJSON(val, function (resultJSON) {
             $.each(resultJSON.model, function (i, item) {
                 console.log(item.name);
                 $("#modelsToChoose").append(`<a class="dropdown-item" href="#" name="` + item.name + `" htmlElement="` + item.htmlElement + `">` + item.name + `</a>`);
@@ -106,7 +106,7 @@ TestDataProvider = function (params) {
     var self = this;
     this.init = function (params) {
         setInterval(function (params) {
-            $.getJSON(dataSourceLink, function (resultJSON) {
+            $.get(dataSourceLink, function (resultJSON) {
                 let e = {
                     type: "recdata",
                     //arg: jQuery.parseJSON( getJson() )
