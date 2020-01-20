@@ -106,7 +106,7 @@ TestDataProvider = function (params) {
     var self = this;
     this.init = function (params) {
         setInterval(function (params) {
-            $.getJSON(dataSourceLink, function (resultJSON) {
+            $.get(dataSourceLink, function (resultJSON) {
                 let e = {
                     type: "recdata",
                     //arg: jQuery.parseJSON( getJson() )

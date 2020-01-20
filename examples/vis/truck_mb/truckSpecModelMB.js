@@ -1,6 +1,7 @@
 var truckMB1 = {
-    update: function(json,visItem) 
+    update: function(jsonIn,visItem) 
     {
+        eval("var json = "+jsonIn);
         // var self = this;
         // var totalFuel = 0;
         // var fuelLevel1 = 0;
@@ -43,7 +44,7 @@ var truckMB1 = {
             r = 0.538
 
             // get json value from vehicle speed
-            vehicleSpeedFromData = Number(json.tco1.VehicleSpeed / 256); //km/h
+            vehicleSpeedFromData = Number(json.speedKmh); //km/h
 
             // define animation names vector
             wheelAnimations = ["wheelsSpin"];
@@ -66,11 +67,12 @@ var truckMB1 = {
         {/* *START* Tank fuel level based on json data   */
             tankAnimNames = ["NaftDrain","Nafta2Drain"];
             tankAnims = visItem.getAnimationByName(tankAnimNames);
-            totalFuel = Number(json.fuelConsumption.TotalFuel * 0.001);
+            // totalFuel = Number(json.fuelLevelPercent);
+            percentAnim = Number(json.fuelLevelPercent);
             if (!isNaN(totalFuel)) {
-                maxFuel = 600;
+                maxFuel = 100;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-                percentAnim = 100-(100/maxFuel)*totalFuel;
+                // percentAnim = 100-(100/maxFuel)*totalFuel;
                 visItem.jumpToAnimationPercent(tankAnims, percentAnim);
             }
         }/* *END* Tank fuel level based on json data   */
@@ -80,9 +82,9 @@ var truckMB1 = {
         {/* *START* Height level based on json weight data   */
             weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction","LogoGoingUp","Nafta2GoingUp"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
-            truckWeight = Number(json.combWeight.combVeight);
+            truckWeight = Number(json.weight2Kg);
             if (!isNaN(truckWeight)) {
-                maxWeight = 12000;
+                maxWeight = 35000;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                 percentAnim = 100-(100/maxWeight)*truckWeight;
                 visItem.jumpToAnimationPercent(weightAnims, percentAnim);
@@ -94,7 +96,7 @@ var truckMB1 = {
         {/* *START* Torque visualization based on json data   */
             // torqueAnimNames = ["CardanAction","KardanSpinCubeAction"];
             // torqueAnims = visItem.getAnimationByName(torqueAnimNames);
-            truckTorquePercentage = Number(json.eecTorqueSpeed.Torque - 125.0);
+            truckTorquePercentage = Number(json.torquePercent);
             if (!isNaN(truckTorquePercentage)) {
                 cardanBlock = visItem.get3DObjectByName(["KardanSpinCube"])
                 // if(truckTorquePercentage>85) {
@@ -132,12 +134,12 @@ var truckMB1 = {
         {/* *START* Fuel flow based on json data   */
             flowAnimNames = ["FlowAction","Flow2Action"];
             flowAnims = visItem.getAnimationByName(flowAnimNames);
-            engineSpeed = Number(json.eecTorqueSpeed.EngineSpeed * 0.125);
-            if (!isNaN(engineSpeed) && engineSpeed>0) {
-                maxSpeed = 2500;
+            litersHour = Number(json.fuelLiterHour);
+            if (!isNaN(litersHour) && litersHour>0) {
+                maxFlow = 2500;
                 // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-                speed = engineSpeed/maxSpeed;
-                visItem.updateTimeScale(flowAnims, speed);
+                speedAnim = litersHour/maxFlow;
+                visItem.updateTimeScale(flowAnims, speedAnim);
             }
             else{
                 visItem.updateTimeScale(flowAnims, 0);
@@ -147,7 +149,8 @@ var truckMB1 = {
 
 
          {/* *START* Pressure visualization based on json data   */
-            truckPressurePercentage = Number(json.engineTemp.EngineCoolantTmp - 40.0);
+            maxPressure=2000;
+            truckPressurePercentage = Number(json.airPressRearKPa)/maxPressure;
             if (!isNaN(truckPressurePercentage)) {
                 cardanBlock = visItem.get3DObjectByName(["Vzdusnik"])
                 // if(truckPressurePercentage>85) {
@@ -184,7 +187,7 @@ var truckMB1 = {
         {/* *START* Brake pedal position based on json data   */
             brakeNames = ["FrontLeftBrake", "FrontRightBrake"];
             brakes = visItem.get3DObjectByName(brakeNames);
-            brakePosition = Number(json.electronicBreak.breakPedalPosition * 0.4);
+            brakePosition = Number(json.brakePedalPercent);
             if (!isNaN(brakePosition)) {
                 // if (brakePosition<10) color = 0x6DE02A;
                 // else if (brakePosition < 20) color = 0xF2EA00;
@@ -229,7 +232,7 @@ var truckMB1 = {
         }/* *END* Add fuel tanks and wheels to opacity items */
 
         {/* *START* Inicialization of Animations */
-            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction","LogoGoingUp"];
+            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction","LogoGoingUp","Nafta2GoingUp"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             visItem.jumpToAnimationPercent(weightAnims, 100);
 
