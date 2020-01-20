@@ -231,7 +231,7 @@ var truckMB1 = {
         }/* *END* Add fuel tanks and wheels to opacity items */
 
         {/* *START* Inicialization of Animations */
-            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction","LogoGoingUp"];
+            weightAnimNames = ["ModelGoingUp","NaftGoingUp","SondaGoingUp","SondaTyckaGoingUp","CardanAction","LogoGoingUp","Nafta2GoingUp"];
             weightAnims = visItem.getAnimationByName(weightAnimNames);
             visItem.jumpToAnimationPercent(weightAnims, 100);
 
