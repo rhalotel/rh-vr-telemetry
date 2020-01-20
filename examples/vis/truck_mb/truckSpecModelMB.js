@@ -1,7 +1,7 @@
 var truckMB1 = {
     update: function(jsonIn,visItem) 
     {
-        json = eval("var obj = "+jsonIn);
+        eval("var json = "+jsonIn);
         // var self = this;
         // var totalFuel = 0;
         // var fuelLevel1 = 0;
