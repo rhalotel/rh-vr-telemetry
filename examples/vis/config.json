@@ -48,7 +48,7 @@
                 {
                     "name":"Example House Test",
                     "dataType":"TestDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/example.json"
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/energyHouse/example"
                 },
                 {
                     "name":"Example House Stream",

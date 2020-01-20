@@ -1,7 +1,8 @@
 var house1 = {
     isSet : false,
-    update: function(json,visItem) 
+    update: function(jsonIn,visItem) 
     {
+        eval("var json = "+jsonIn);
         {/* *START* Sun position based on time */
             var sunObject = visItem.get3DObjectByName(["Sun"]);
             sunLocationName = ["SunAction"];
