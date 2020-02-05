@@ -2,9 +2,9 @@ var truckMB1 = {
     update: function(jsonIn,visItem) 
     {
         eval("var json = "+jsonIn);
-        // if(json.brakePedalPercent == 0 && json.acclPedalPercent == 0 && json.weight1Kg == 0 && json.weight2Kg == 0 && json.shaftRPM == 0 &&  json.torquePercent == -125 && json.speedKmh == 0 && json.fuelLiterHour == 0 && json.fuelLiterPer100Km == 0 && json.airPressFrontKPa == 0 && json.airPressRearKPa == 0) {
-        //     break;
-        // }
+        if(Number(json.brakePedalPercent) == 0 && Number(json.acclPedalPercent) == 0 && Number(json.weight1Kg) == 0 && Number(json.weight2Kg) == 0 && Number(json.shaftRPM) == 0 &&  Number(json.torquePercent) == -125 && Number(json.speedKmh) == 0 && Number(json.fuelLiterHour) == 0 && Number(json.fuelLiterPer100Km) == 0 && Number(json.airPressFrontKPa) == 0 && Number(json.airPressRearKPa) == 0) {
+            break;
+        }
         // var self = this;
         // var totalFuel = 0;
         // var fuelLevel1 = 0;
