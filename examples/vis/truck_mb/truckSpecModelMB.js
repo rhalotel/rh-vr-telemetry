@@ -138,9 +138,9 @@ var truckMB1 = {
                 flowAnims = visItem.getAnimationByName(flowAnimNames);
                 litersHour = Number(json.fuelLiterHour);
                 if (!isNaN(litersHour) && litersHour > 0) {
-                    maxFlow = 100;
+                    //maxFlow = 2500;
                     // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-                    speedAnim = litersHour / maxFlow;
+                    speedAnim = 100;
                     visItem.updateTimeScale(flowAnims, speedAnim);
                 }
                 else {
