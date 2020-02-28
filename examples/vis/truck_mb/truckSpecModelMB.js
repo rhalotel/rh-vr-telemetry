@@ -71,7 +71,7 @@ var truckMB1 = {
                 tankAnims = visItem.getAnimationByName(tankAnimNames);
                 // totalFuel = Number(json.fuelLevelPercent);
                 percentAnim = Number(json.fuelLevelPercent);
-                if (!isNaN(totalFuel)) {
+                if (!isNaN(percentAnim)) {
                     maxFuel = 100;
                     // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
                     // percentAnim = 100-(100/maxFuel)*totalFuel;
