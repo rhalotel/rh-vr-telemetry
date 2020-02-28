@@ -140,7 +140,7 @@ var truckMB1 = {
                 if (!isNaN(litersHour) && litersHour > 0) {
                     //maxFlow = 2500;
                     // animation goes from 100% to 0% so animation on 0% percent is 100% of fuel
-                    speedAnim = litersHour * 10;
+                    speedAnim = litersHour/10;
                     visItem.updateTimeScale(flowAnims, speedAnim);
                 }
                 else {

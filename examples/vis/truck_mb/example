@@ -1,4 +1,4 @@
-{ brakePedalPercent: 10,
+{ brakePedalPercent: 90,
 	acclPedalPercent: 75,
 	weight1Kg: 17000,
 	weight2Kg: 5000,
