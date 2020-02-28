@@ -1,7 +1,7 @@
 
 { brakePedalPercent: 160,
 	acclPedalPercent: 250,
-	weight1Kg: NaN,
+	weight1Kg: 6500,
 	weight2Kg: 6300,
 	shaftRPM: 518.5,
 	torquePercent: 35,
