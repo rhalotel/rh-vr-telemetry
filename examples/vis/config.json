@@ -29,7 +29,7 @@
                 {
                     "name":"Mercedes-Benz Test",
                     "dataType":"TestDataProvider",
-                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck_mb/example"
+                    "param":"https://rhalotel.github.io/rh-vr-telemetry/examples/vis/truck_mb/example.json"
                 },
                 {
                     "name":"Mercedes-Benz Stream",

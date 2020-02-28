@@ -2,7 +2,7 @@ var truckMB1 = {
     update: function (jsonIn, visItem) {
         eval("var json = " + jsonIn);
         if (Number(json.brakePedalPercent) == 0 && Number(json.acclPedalPercent) == 0 && Number(json.weight1Kg) == 0 && Number(json.weight2Kg) == 0 && Number(json.shaftRPM) == 0 && Number(json.torquePercent) == -125 && Number(json.speedKmh) == 0 && Number(json.fuelLiterHour) == 0 && Number(json.fuelLiterPer100Km) == 0 && Number(json.airPressFrontKPa) == 0 && Number(json.airPressRearKPa) == 0) {
-            // break;
+            break;
         }
         // var self = this;
         // var totalFuel = 0;
