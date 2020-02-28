@@ -99,7 +99,7 @@ var truckMB1 = {
                 // torqueAnimNames = ["CardanAction","KardanSpinCubeAction"];
                 // torqueAnims = visItem.getAnimationByName(torqueAnimNames);
                 truckTorquePercentage = Number(json.torquePercent);
-                if (!isNaN(truckTorquePercentage)) {
+                if (!isNaN(truckTorquePercentage) && truckTorquePercentage != -125) {
                     cardanBlock = visItem.get3DObjectByName(["KardanSpinCube"])
                     // if(truckTorquePercentage>85) {
                     //     cardanBlock[0].material.color.setHex('0x800000');
